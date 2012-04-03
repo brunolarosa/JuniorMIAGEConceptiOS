@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EB152BC45500E507B1 /* UIKit.framework */; };
+		C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
+		C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EF152BC45500E507B1 /* CoreGraphics.framework */; };
+		C727F2F6152BC45500E507B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C727F2F4152BC45500E507B1 /* InfoPlist.strings */; };
+		C727F2F8152BC45500E507B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C727F2F7152BC45500E507B1 /* main.m */; };
+		C727F2FC152BC45500E507B1 /* JMCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */; };
+		C727F304152BC45500E507B1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F303152BC45500E507B1 /* SenTestingKit.framework */; };
+		C727F305152BC45500E507B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EB152BC45500E507B1 /* UIKit.framework */; };
+		C727F306152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
+		C727F30E152BC45500E507B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C727F30C152BC45500E507B1 /* InfoPlist.strings */; };
+		C727F311152BC45500E507B1 /* JuniorMIAGEConceptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C727F307152BC45500E507B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C727F2DE152BC45500E507B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C727F2E6152BC45500E507B1;
+			remoteInfo = JuniorMIAGEConcept;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuniorMIAGEConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C727F2EB152BC45500E507B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C727F2ED152BC45500E507B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C727F2EF152BC45500E507B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C727F2F3152BC45500E507B1 /* JuniorMIAGEConcept-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JuniorMIAGEConcept-Info.plist"; sourceTree = "<group>"; };
+		C727F2F5152BC45500E507B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C727F2F7152BC45500E507B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C727F2F9152BC45500E507B1 /* JuniorMIAGEConcept-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JuniorMIAGEConcept-Prefix.pch"; sourceTree = "<group>"; };
+		C727F2FA152BC45500E507B1 /* JMCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMCAppDelegate.h; sourceTree = "<group>"; };
+		C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMCAppDelegate.m; sourceTree = "<group>"; };
+		C727F302152BC45500E507B1 /* JuniorMIAGEConceptTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JuniorMIAGEConceptTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C727F303152BC45500E507B1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C727F30B152BC45500E507B1 /* JuniorMIAGEConceptTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JuniorMIAGEConceptTests-Info.plist"; sourceTree = "<group>"; };
+		C727F30D152BC45500E507B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C727F30F152BC45500E507B1 /* JuniorMIAGEConceptTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuniorMIAGEConceptTests.h; sourceTree = "<group>"; };
+		C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuniorMIAGEConceptTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C727F2E4152BC45500E507B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */,
+				C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */,
+				C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C727F2FE152BC45500E507B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C727F304152BC45500E507B1 /* SenTestingKit.framework in Frameworks */,
+				C727F305152BC45500E507B1 /* UIKit.framework in Frameworks */,
+				C727F306152BC45500E507B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C727F2DC152BC45500E507B1 = {
+			isa = PBXGroup;
+			children = (
+				C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */,
+				C727F309152BC45500E507B1 /* JuniorMIAGEConceptTests */,
+				C727F2EA152BC45500E507B1 /* Frameworks */,
+				C727F2E8152BC45500E507B1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C727F2E8152BC45500E507B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */,
+				C727F302152BC45500E507B1 /* JuniorMIAGEConceptTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C727F2EA152BC45500E507B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C727F2EB152BC45500E507B1 /* UIKit.framework */,
+				C727F2ED152BC45500E507B1 /* Foundation.framework */,
+				C727F2EF152BC45500E507B1 /* CoreGraphics.framework */,
+				C727F303152BC45500E507B1 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */ = {
+			isa = PBXGroup;
+			children = (
+				C727F2FA152BC45500E507B1 /* JMCAppDelegate.h */,
+				C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */,
+				C727F2F2152BC45500E507B1 /* Supporting Files */,
+			);
+			path = JuniorMIAGEConcept;
+			sourceTree = "<group>";
+		};
+		C727F2F2152BC45500E507B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C727F2F3152BC45500E507B1 /* JuniorMIAGEConcept-Info.plist */,
+				C727F2F4152BC45500E507B1 /* InfoPlist.strings */,
+				C727F2F7152BC45500E507B1 /* main.m */,
+				C727F2F9152BC45500E507B1 /* JuniorMIAGEConcept-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C727F309152BC45500E507B1 /* JuniorMIAGEConceptTests */ = {
+			isa = PBXGroup;
+			children = (
+				C727F30F152BC45500E507B1 /* JuniorMIAGEConceptTests.h */,
+				C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */,
+				C727F30A152BC45500E507B1 /* Supporting Files */,
+			);
+			path = JuniorMIAGEConceptTests;
+			sourceTree = "<group>";
+		};
+		C727F30A152BC45500E507B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C727F30B152BC45500E507B1 /* JuniorMIAGEConceptTests-Info.plist */,
+				C727F30C152BC45500E507B1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C727F2E6152BC45500E507B1 /* JuniorMIAGEConcept */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C727F314152BC45500E507B1 /* Build configuration list for PBXNativeTarget "JuniorMIAGEConcept" */;
+			buildPhases = (
+				C727F2E3152BC45500E507B1 /* Sources */,
+				C727F2E4152BC45500E507B1 /* Frameworks */,
+				C727F2E5152BC45500E507B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JuniorMIAGEConcept;
+			productName = JuniorMIAGEConcept;
+			productReference = C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C727F301152BC45500E507B1 /* JuniorMIAGEConceptTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C727F317152BC45500E507B1 /* Build configuration list for PBXNativeTarget "JuniorMIAGEConceptTests" */;
+			buildPhases = (
+				C727F2FD152BC45500E507B1 /* Sources */,
+				C727F2FE152BC45500E507B1 /* Frameworks */,
+				C727F2FF152BC45500E507B1 /* Resources */,
+				C727F300152BC45500E507B1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C727F308152BC45500E507B1 /* PBXTargetDependency */,
+			);
+			name = JuniorMIAGEConceptTests;
+			productName = JuniorMIAGEConceptTests;
+			productReference = C727F302152BC45500E507B1 /* JuniorMIAGEConceptTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C727F2DE152BC45500E507B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JMC;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Université Nice Sophia Antipolis";
+			};
+			buildConfigurationList = C727F2E1152BC45500E507B1 /* Build configuration list for PBXProject "JuniorMIAGEConcept" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C727F2DC152BC45500E507B1;
+			productRefGroup = C727F2E8152BC45500E507B1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C727F2E6152BC45500E507B1 /* JuniorMIAGEConcept */,
+				C727F301152BC45500E507B1 /* JuniorMIAGEConceptTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C727F2E5152BC45500E507B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C727F2F6152BC45500E507B1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C727F2FF152BC45500E507B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C727F30E152BC45500E507B1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C727F300152BC45500E507B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C727F2E3152BC45500E507B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C727F2F8152BC45500E507B1 /* main.m in Sources */,
+				C727F2FC152BC45500E507B1 /* JMCAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C727F2FD152BC45500E507B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C727F311152BC45500E507B1 /* JuniorMIAGEConceptTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C727F308152BC45500E507B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C727F2E6152BC45500E507B1 /* JuniorMIAGEConcept */;
+			targetProxy = C727F307152BC45500E507B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C727F2F4152BC45500E507B1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C727F2F5152BC45500E507B1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C727F30C152BC45500E507B1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C727F30D152BC45500E507B1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C727F312152BC45500E507B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C727F313152BC45500E507B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C727F315152BC45500E507B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
+				INFOPLIST_FILE = "JuniorMIAGEConcept/JuniorMIAGEConcept-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C727F316152BC45500E507B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
+				INFOPLIST_FILE = "JuniorMIAGEConcept/JuniorMIAGEConcept-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C727F318152BC45500E507B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JuniorMIAGEConcept.app/JuniorMIAGEConcept";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
+				INFOPLIST_FILE = "JuniorMIAGEConceptTests/JuniorMIAGEConceptTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C727F319152BC45500E507B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JuniorMIAGEConcept.app/JuniorMIAGEConcept";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
+				INFOPLIST_FILE = "JuniorMIAGEConceptTests/JuniorMIAGEConceptTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C727F2E1152BC45500E507B1 /* Build configuration list for PBXProject "JuniorMIAGEConcept" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C727F312152BC45500E507B1 /* Debug */,
+				C727F313152BC45500E507B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C727F314152BC45500E507B1 /* Build configuration list for PBXNativeTarget "JuniorMIAGEConcept" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C727F315152BC45500E507B1 /* Debug */,
+				C727F316152BC45500E507B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C727F317152BC45500E507B1 /* Build configuration list for PBXNativeTarget "JuniorMIAGEConceptTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C727F318152BC45500E507B1 /* Debug */,
+				C727F319152BC45500E507B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C727F2DE152BC45500E507B1 /* Project object */;
+}
