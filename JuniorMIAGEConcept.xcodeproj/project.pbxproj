@@ -111,10 +111,11 @@
 		C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */ = {
 			isa = PBXGroup;
 			children = (
-				C7FBA1B3152C34C9001827DC /* Controllers */,
-				C7FBA1B4152C34E1001827DC /* Views */,
 				C727F2FA152BC45500E507B1 /* JMCAppDelegate.h */,
 				C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */,
+				C7FBA1B3152C34C9001827DC /* Controllers */,
+				C7B92E3B152C3FC3002113DF /* Models */,
+				C7FBA1B4152C34E1001827DC /* Views */,
 				C727F2F2152BC45500E507B1 /* Supporting Files */,
 			);
 			path = JuniorMIAGEConcept;
@@ -148,6 +149,13 @@
 				C727F30C152BC45500E507B1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C7B92E3B152C3FC3002113DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C7FBA1B3152C34C9001827DC /* Controllers */ = {
