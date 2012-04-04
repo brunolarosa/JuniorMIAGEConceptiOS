@@ -1,42 +1,22 @@
 //
-//  JMCNewsTabViewController.m
+//  JMCNewsTableViewController.m
 //  JuniorMIAGEConcept
 //
 //  Created by Bruno Larosa on 04/04/12.
 //  Copyright (c) 2012 Université Nice Sophia Antipolis. All rights reserved.
 //
 
-#import "JMCNewsTabViewController.h"
+#import "JMCNewsTableViewController.h"
 
-@interface JMCNewsTabViewController ()
+@interface JMCNewsTableViewController ()
 
-@property (nonatomic, retain) NSMutableDictionary *words;
-@property (nonatomic, retain) NSArray *sections;
+@property (nonatomic, retain) NSMutableArray *jmcNewsList;
 
 @end
 
-@implementation JMCNewsTabViewController
+@implementation JMCNewsTableViewController
 
-@synthesize words = _words;
-@synthesize sections = _sections;
-
-- (NSMutableDictionary *)words
-{
-	if (!_words) {
-		NSURL *wordsURL = [NSURL URLWithString:@"http://cs193p.stanford.edu/vocabwords.txt"];
-		_words = [[NSMutableDictionary dictionaryWithContentsOfURL:wordsURL] retain];
-	}
-	return _words;
-}
-
-- (NSArray *)sections
-{
-	if (!_sections) {
-		_sections = [[[self.words allKeys] sortedArrayUsingSelector:@selector(compare:)] retain];
-	}
-	return _sections;
-}
-
+@synthesize jmcNewsList = _jmcNewsList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -50,9 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"JMC";
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -75,85 +52,85 @@
 
 #pragma mark - Table view data source
 
-- (NSString *)wordAtIndexPath:(NSIndexPath *)indexPath
-{
-	NSArray *wordsInSection = [self.words objectForKey:[self.sections objectAtIndex:indexPath.section]];
-	return [wordsInSection objectAtIndex:indexPath.row];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.sections.count;
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSArray *wordsInSection = [self.words objectForKey:[self.sections objectAtIndex:section]];
-	return wordsInSection.count;
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return [self.jmcNewsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"NewsTableViewCell";
-    
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
     
-	cell.textLabel.text = [self wordAtIndexPath:indexPath];
-    cell.detailTextLabel.text = @"Toto";
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (cell == nil)
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    
+    cell.textLabel.text = @"Test";
+    
     
     return cell;
 }
 
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
 
+/*
+// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-		NSString *section = [self.sections objectAtIndex:indexPath.section];
-		NSMutableArray *wordsInSection = [[self.words objectForKey:section] mutableCopy];
-		[wordsInSection removeObjectAtIndex:indexPath.row];
-		[self.words setObject:wordsInSection forKey:section];
-		[wordsInSection release];
-		// Delete the row from the table view
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+*/
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-	return [self.sections objectAtIndex:section];
 }
+*/
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return self.sections;
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
 }
+*/
 
-#pragma mark -
-#pragma mark Table view delegate
+#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-}
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc
-{
-	[_words release];
-	[_sections release];
-    [super dealloc];
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
 
 @end
-
-

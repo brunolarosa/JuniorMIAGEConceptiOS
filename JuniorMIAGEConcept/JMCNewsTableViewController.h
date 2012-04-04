@@ -1,5 +1,5 @@
 //
-//  JMCNewsTabViewController.h
+//  JMCNewsTableViewController.h
 //  JuniorMIAGEConcept
 //
 //  Created by Bruno Larosa on 04/04/12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JMCNewsTabViewController : UITableViewController
+@interface JMCNewsTableViewController : UITableViewController
 
 
 
