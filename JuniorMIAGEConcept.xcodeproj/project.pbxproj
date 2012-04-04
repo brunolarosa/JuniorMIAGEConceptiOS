@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3AD51D152C4E540006FA3B /* libxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3AD51C152C4E540006FA3B /* libxml.framework */; };
 		C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EB152BC45500E507B1 /* UIKit.framework */; };
 		C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
 		C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EF152BC45500E507B1 /* CoreGraphics.framework */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A3AD51C152C4E540006FA3B /* libxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libxml.framework; sourceTree = "<group>"; };
 		C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuniorMIAGEConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C727F2EB152BC45500E507B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C727F2ED152BC45500E507B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +73,7 @@
 				C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */,
 				C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */,
 				C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */,
+				2A3AD51D152C4E540006FA3B /* libxml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +112,7 @@
 		C727F2EA152BC45500E507B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A3AD51C152C4E540006FA3B /* libxml.framework */,
 				C727F2EB152BC45500E507B1 /* UIKit.framework */,
 				C727F2ED152BC45500E507B1 /* Foundation.framework */,
 				C727F2EF152BC45500E507B1 /* CoreGraphics.framework */,
@@ -372,7 +376,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -389,7 +393,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -399,9 +403,14 @@
 		C727F315152BC45500E507B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
 				INFOPLIST_FILE = "JuniorMIAGEConcept/JuniorMIAGEConcept-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -410,9 +419,14 @@
 		C727F316152BC45500E507B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
 				INFOPLIST_FILE = "JuniorMIAGEConcept/JuniorMIAGEConcept-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
