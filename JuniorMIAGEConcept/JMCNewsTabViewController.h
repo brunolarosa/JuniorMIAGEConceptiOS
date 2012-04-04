@@ -10,4 +10,6 @@
 
 @interface JMCNewsTabViewController : UITableViewController
 
+
+
 @end
