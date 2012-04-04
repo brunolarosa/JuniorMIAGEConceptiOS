@@ -16,4 +16,10 @@
 @property (nonatomic, assign) NSString *category;
 @property (nonatomic, assign) NSString *description;
 
+- (id)initWithTitle:(NSString *)newTitle 
+            pubDate:(NSString *)newPubDate 
+             author:(NSString *)newAuthor 
+           category:(NSString *)newCategory 
+        description:(NSString *)newDescription;
+
 @end

@@ -17,7 +17,7 @@
 @synthesize category;
 @synthesize description;
 
-- (id)initWithName:(NSString *)newTitle 
+- (id)initWithTitle:(NSString *)newTitle 
            pubDate:(NSString *)newPubDate 
             author:(NSString *)newAuthor 
           category:(NSString *)newCategory 
