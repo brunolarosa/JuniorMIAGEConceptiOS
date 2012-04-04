@@ -7,7 +7,7 @@
 //
 
 #import "JMCAppDelegate.h"
-#import "JMCNewsTabViewController.h"
+#import "JMCNewsTableViewController.h"
 
 @implementation JMCAppDelegate
 
@@ -26,7 +26,7 @@
     UITabBarController *tabController = [[[UITabBarController alloc] init] autorelease];
     
     
-    JMCNewsTabViewController*newsTabView =[[[JMCNewsTabViewController alloc] initWithNibName:@"JMCNewsTabViewController" bundle:nil] autorelease];
+    JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] initWithNibName:@"JMCNewsTableViewController" bundle:nil] autorelease];
     UINavigationController *navNewsController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
     
     tabController.viewControllers = [NSArray arrayWithObjects:navNewsController, nil];

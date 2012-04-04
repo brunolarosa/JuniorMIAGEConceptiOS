@@ -10,9 +10,13 @@
 
 @interface JMCNewsTableViewController ()
 
+@property (nonatomic, retain) NSMutableArray *jmcNewsList;
+
 @end
 
 @implementation JMCNewsTableViewController
+
+@synthesize jmcNewsList = _jmcNewsList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -52,14 +56,14 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.jmcNewsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +71,11 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil)
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    
+    cell.textLabel.text = @"Test";
+    
     
     return cell;
 }

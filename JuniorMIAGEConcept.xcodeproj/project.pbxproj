@@ -21,8 +21,8 @@
 		C739D3C7152C437C00FAB22D /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C2152C437C00FAB22D /* GDataXMLNode.m */; };
 		C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C4152C437C00FAB22D /* JMCNews.m */; };
 		C739D3C9152C437C00FAB22D /* JMCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C6152C437C00FAB22D /* JMCParser.m */; };
-		C7FBA1B1152C2736001827DC /* JMCNewsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FBA1AF152C2736001827DC /* JMCNewsTabViewController.m */; };
-		C7FBA1B2152C2736001827DC /* JMCNewsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FBA1B0152C2736001827DC /* JMCNewsTabViewController.xib */; };
+		C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */; };
+		C739D3D5152C4F1E00FAB22D /* libxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739D3D4152C4F1E00FAB22D /* libxml.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,9 +58,9 @@
 		C739D3C4152C437C00FAB22D /* JMCNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNews.m; sourceTree = "<group>"; };
 		C739D3C5152C437C00FAB22D /* JMCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCParser.h; sourceTree = "<group>"; };
 		C739D3C6152C437C00FAB22D /* JMCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCParser.m; sourceTree = "<group>"; };
-		C7FBA1AE152C2736001827DC /* JMCNewsTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTabViewController.h; sourceTree = "<group>"; };
-		C7FBA1AF152C2736001827DC /* JMCNewsTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsTabViewController.m; sourceTree = "<group>"; };
-		C7FBA1B0152C2736001827DC /* JMCNewsTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsTabViewController.xib; sourceTree = "<group>"; };
+		C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTableViewController.h; sourceTree = "<group>"; };
+		C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsTableViewController.m; sourceTree = "<group>"; };
+		C739D3D4152C4F1E00FAB22D /* libxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libxml.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +71,7 @@
 				C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */,
 				C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */,
 				C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */,
+				C739D3D5152C4F1E00FAB22D /* libxml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +110,7 @@
 		C727F2EA152BC45500E507B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C739D3D4152C4F1E00FAB22D /* libxml.framework */,
 				C727F2EB152BC45500E507B1 /* UIKit.framework */,
 				C727F2ED152BC45500E507B1 /* Foundation.framework */,
 				C727F2EF152BC45500E507B1 /* CoreGraphics.framework */,
@@ -184,8 +186,8 @@
 		C7FBA1B3152C34C9001827DC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C7FBA1AE152C2736001827DC /* JMCNewsTabViewController.h */,
-				C7FBA1AF152C2736001827DC /* JMCNewsTabViewController.m */,
+				C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */,
+				C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -193,7 +195,6 @@
 		C7FBA1B4152C34E1001827DC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C7FBA1B0152C2736001827DC /* JMCNewsTabViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -271,7 +272,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C727F2F6152BC45500E507B1 /* InfoPlist.strings in Resources */,
-				C7FBA1B2152C2736001827DC /* JMCNewsTabViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,10 +308,10 @@
 			files = (
 				C727F2F8152BC45500E507B1 /* main.m in Sources */,
 				C727F2FC152BC45500E507B1 /* JMCAppDelegate.m in Sources */,
-				C7FBA1B1152C2736001827DC /* JMCNewsTabViewController.m in Sources */,
 				C739D3C7152C437C00FAB22D /* GDataXMLNode.m in Sources */,
 				C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */,
 				C739D3C9152C437C00FAB22D /* JMCParser.m in Sources */,
+				C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +399,10 @@
 		C727F315152BC45500E507B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
 				INFOPLIST_FILE = "JuniorMIAGEConcept/JuniorMIAGEConcept-Info.plist";
@@ -410,6 +414,10 @@
 		C727F316152BC45500E507B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JuniorMIAGEConcept/JuniorMIAGEConcept-Prefix.pch";
 				INFOPLIST_FILE = "JuniorMIAGEConcept/JuniorMIAGEConcept-Info.plist";
