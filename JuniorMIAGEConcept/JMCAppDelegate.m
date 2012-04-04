@@ -7,6 +7,7 @@
 //
 
 #import "JMCAppDelegate.h"
+#import "JMCNewsTabViewController.h"
 
 @implementation JMCAppDelegate
 
@@ -21,11 +22,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    UITabBarController *tabController = [[[UITabBarController alloc] init] autorelease];
+    
+    
+    JMCNewsTabViewController*newsTabView =[[[JMCNewsTabViewController alloc] initWithNibName:@"JMCNewsTabViewController" bundle:nil] autorelease];
+    UINavigationController *navNewsController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
+    
+    tabController.viewControllers = [NSArray arrayWithObjects:navNewsController, nil];
+    
+    self.window.rootViewController = tabController;
     [self.window makeKeyAndVisible];
-    return YES;
-}
+    return YES;}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
