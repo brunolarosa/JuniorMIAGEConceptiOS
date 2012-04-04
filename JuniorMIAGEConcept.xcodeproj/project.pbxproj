@@ -18,6 +18,8 @@
 		C727F306152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
 		C727F30E152BC45500E507B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C727F30C152BC45500E507B1 /* InfoPlist.strings */; };
 		C727F311152BC45500E507B1 /* JuniorMIAGEConceptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */; };
+		C7FBA1B1152C2736001827DC /* JMCNewsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FBA1AF152C2736001827DC /* JMCNewsTabViewController.m */; };
+		C7FBA1B2152C2736001827DC /* JMCNewsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FBA1B0152C2736001827DC /* JMCNewsTabViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,9 @@
 		C727F30D152BC45500E507B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C727F30F152BC45500E507B1 /* JuniorMIAGEConceptTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuniorMIAGEConceptTests.h; sourceTree = "<group>"; };
 		C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuniorMIAGEConceptTests.m; sourceTree = "<group>"; };
+		C7FBA1AE152C2736001827DC /* JMCNewsTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTabViewController.h; sourceTree = "<group>"; };
+		C7FBA1AF152C2736001827DC /* JMCNewsTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsTabViewController.m; sourceTree = "<group>"; };
+		C7FBA1B0152C2736001827DC /* JMCNewsTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsTabViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +111,8 @@
 		C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */ = {
 			isa = PBXGroup;
 			children = (
+				C7FBA1B3152C34C9001827DC /* Controllers */,
+				C7FBA1B4152C34E1001827DC /* Views */,
 				C727F2FA152BC45500E507B1 /* JMCAppDelegate.h */,
 				C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */,
 				C727F2F2152BC45500E507B1 /* Supporting Files */,
@@ -141,6 +148,23 @@
 				C727F30C152BC45500E507B1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C7FBA1B3152C34C9001827DC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C7FBA1AE152C2736001827DC /* JMCNewsTabViewController.h */,
+				C7FBA1AF152C2736001827DC /* JMCNewsTabViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C7FBA1B4152C34E1001827DC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C7FBA1B0152C2736001827DC /* JMCNewsTabViewController.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C727F2F6152BC45500E507B1 /* InfoPlist.strings in Resources */,
+				C7FBA1B2152C2736001827DC /* JMCNewsTabViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +277,7 @@
 			files = (
 				C727F2F8152BC45500E507B1 /* main.m in Sources */,
 				C727F2FC152BC45500E507B1 /* JMCAppDelegate.m in Sources */,
+				C7FBA1B1152C2736001827DC /* JMCNewsTabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
