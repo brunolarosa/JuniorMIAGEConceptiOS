@@ -11,7 +11,7 @@
 @interface JMCParser (Private)
 
 -(void)dispatchLoadingOperation;
--(NSDictionary*)getItemFromXmlElement:(GDataXMLElement*)xmlItem;
+-(JMCNews *)getItemFromXmlElement:(GDataXMLElement*)xmlItem;
 
 @end
 
@@ -82,7 +82,7 @@
     [xmlData release];
 }
 
--(NSDictionary*)getItemFromXmlElement:(GDataXMLElement*)xmlItem
+-(JMCNews *)getItemFromXmlElement:(GDataXMLElement*)xmlItem
 {
 	return [NSDictionary dictionaryWithObjectsAndKeys:
             [[[xmlItem elementsForName:@"title"] objectAtIndex:0] stringValue], @"title",

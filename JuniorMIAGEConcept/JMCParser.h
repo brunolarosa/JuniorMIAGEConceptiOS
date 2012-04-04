@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GDataXMLNode.h"
+#import "JMCNews.h"
 #define kRSSUrl @"http://jmc-miage.unice.fr/projects/jmc/complet/feed/"
 
 @protocol JMCParserDelegate
