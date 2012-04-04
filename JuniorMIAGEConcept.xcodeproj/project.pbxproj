@@ -411,6 +411,7 @@
 				C727F316152BC45500E507B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C727F317152BC45500E507B1 /* Build configuration list for PBXNativeTarget "JuniorMIAGEConceptTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +420,7 @@
 				C727F319152BC45500E507B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
