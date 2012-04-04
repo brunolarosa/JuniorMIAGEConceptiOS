@@ -20,7 +20,7 @@
 
 @synthesize delegate, loaded;
 
--(id)init
+-(id)init 
 {
 	if ([super init]!=nil) {
 		self.loaded = NO;
