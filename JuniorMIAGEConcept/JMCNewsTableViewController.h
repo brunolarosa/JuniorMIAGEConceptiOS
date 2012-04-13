@@ -10,6 +10,6 @@
 
 @interface JMCNewsTableViewController : UITableViewController
 
-
+@property (nonatomic, retain) NSMutableArray *jmcNewsList;
 
 @end

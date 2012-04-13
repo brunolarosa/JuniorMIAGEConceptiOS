@@ -11,7 +11,7 @@
 @interface JMCNews : NSObject
 
 @property (nonatomic, assign) NSString *title;
-@property (nonatomic, assign) NSString *pubDate;
+@property (nonatomic, assign) NSDate *pubDate;
 @property (nonatomic, assign) NSString *author;
 @property (nonatomic, assign) NSString *category;
 @property (nonatomic, assign) NSString *description;

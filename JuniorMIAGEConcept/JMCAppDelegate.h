@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JMCParser.h"
-
 @interface JMCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) JMCParser* rss;
-
 @end

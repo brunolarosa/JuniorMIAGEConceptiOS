@@ -23,15 +23,16 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
+    
     UITabBarController *tabController = [[[UITabBarController alloc] init] autorelease];
     
+    JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] init] autorelease];
     
-    JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] initWithNibName:@"JMCNewsTableViewController" bundle:nil] autorelease];
     UINavigationController *navNewsController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
     
     tabController.viewControllers = [NSArray arrayWithObjects:navNewsController, nil];
     
-    self.window.rootViewController = tabController;
+    self.window.rootViewController = tabController; //TODO: remettre tabController
     [self.window makeKeyAndVisible];
     return YES;}
 

@@ -7,16 +7,70 @@
 //
 
 #import "JMCNewsTableViewController.h"
+#import "JMCNews.h"
 
 @interface JMCNewsTableViewController ()
-
-@property (nonatomic, retain) NSMutableArray *jmcNewsList;
 
 @end
 
 @implementation JMCNewsTableViewController
 
 @synthesize jmcNewsList = _jmcNewsList;
+
+/*- (NSMutableArray *) jmcNewsList 
+{
+    if (!_jmcNewsList)
+    {
+        JMCNews *entry1 = [[[JMCNews alloc] initWithTitle:@"1"
+                                                  pubDate:[NSDate date]
+                                                   author:@"1"
+                                                 category:@"1"
+                                              description:@"1"] autorelease];
+        
+        JMCNews *entry2 = [[[JMCNews alloc] initWithTitle:@"2"
+                                                  pubDate:[NSDate date]
+                                                   author:@"2"
+                                                 category:@"2"
+                                              description:@"2"] autorelease];
+        
+        JMCNews *entry3 = [[[JMCNews alloc] initWithTitle:@"3"
+                                                  pubDate:[NSDate date]
+                                                   author:@"3"
+                                                 category:@"3"
+                                              description:@"3"] autorelease];
+        _jmcNewsList = [[[NSMutableArray alloc] initWithObjects:entry1, entry2, entry3, nil] autorelease];
+        NSLog(@"Rows added");
+    }
+    
+    return _jmcNewsList;
+}*/
+
+- (void)addRows {
+    JMCNews *entry1 = [[[JMCNews alloc] initWithTitle:@"1"
+                                              pubDate:[NSDate date]
+                                               author:@"1"
+                                             category:@"1"
+                                          description:@"1"] autorelease];
+    
+    JMCNews *entry2 = [[[JMCNews alloc] initWithTitle:@"2"
+                                              pubDate:[NSDate date]
+                                               author:@"2"
+                                             category:@"2"
+                                          description:@"2"] autorelease];
+    
+    JMCNews *entry3 = [[[JMCNews alloc] initWithTitle:@"3"
+                                              pubDate:[NSDate date]
+                                               author:@"3"
+                                             category:@"3"
+                                          description:@"3"] autorelease];
+
+
+    
+    [self.jmcNewsList insertObject:entry1 atIndex:0];
+    [self.jmcNewsList insertObject:entry2 atIndex:0];
+    [self.jmcNewsList insertObject:entry3 atIndex:0];
+    NSLog(@"Rows added");
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,8 +82,13 @@
 }
 
 - (void)viewDidLoad
-{
+{    
     [super viewDidLoad];
+    NSLog(@"View loaded");
+    self.title = @"Feeds";
+    self.jmcNewsList = [NSMutableArray array];
+    [self addRows];
+    NSLog(@"%d", [self.jmcNewsList count]);
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -54,14 +113,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.jmcNewsList count];
 }
@@ -69,14 +125,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    }
     
-    if (cell == nil)
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    JMCNews *entry = [self.jmcNewsList objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = @"Test";
+    NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *articleDateString = [dateFormatter stringFromDate:entry.pubDate];
     
+    cell.textLabel.text = entry.title;        
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.author];
     
+    NSLog(@"Cell recupéré");
     return cell;
 }
 
@@ -131,6 +196,12 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+-(void) dealloc
+{
+    [_jmcNewsList release];
+    [super dealloc];
 }
 
 @end

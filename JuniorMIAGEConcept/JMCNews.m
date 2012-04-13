@@ -11,14 +11,14 @@
 @implementation JMCNews
 
 
-@synthesize title;
-@synthesize pubDate;
-@synthesize author;
-@synthesize category;
-@synthesize description;
+@synthesize title = _title;
+@synthesize pubDate = _pubDate;
+@synthesize author = _author;
+@synthesize category = _category;
+@synthesize description = _description;
 
 - (id)initWithTitle:(NSString *)newTitle 
-           pubDate:(NSString *)newPubDate 
+           pubDate:(NSDate *)newPubDate 
             author:(NSString *)newAuthor 
           category:(NSString *)newCategory 
        description:(NSString *)newDescription{
@@ -35,7 +35,11 @@
 }
 
 - (void) dealloc {
-    self.title = nil;    
+    [_title release];
+    [_pubDate release];
+    [_author release];
+    [_category release];
+    [_description release];
     [super dealloc];
 }
 
