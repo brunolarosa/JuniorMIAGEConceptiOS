@@ -167,12 +167,13 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     
-     JMCNewsViewController *detailViewController = [[JMCNewsViewController alloc] init];
+    JMCNewsViewController *detailViewController = [[JMCNewsViewController alloc] init];
+    //detailViewController.jmcNews = [self.jmcNewsList objectAtIndex:indexPath.row];
     detailViewController.jmcNews = [self.jmcNewsList objectAtIndex:indexPath.row];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
+    // ...
+    // Pass the selected object to the new view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    [detailViewController release];
      
 }
 

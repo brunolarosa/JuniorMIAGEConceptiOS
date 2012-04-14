@@ -15,6 +15,7 @@
 @implementation JMCNewsViewController
 
 @synthesize jmcNews = _jmcNews;
+@synthesize newsTitle = _newsTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,12 +28,14 @@
 
 - (void)viewDidLoad
 {
+    [self.newsTitle setText:self.jmcNews.title];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setNewsTitle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -43,4 +46,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [_newsTitle release];
+    [super dealloc];
+}
 @end

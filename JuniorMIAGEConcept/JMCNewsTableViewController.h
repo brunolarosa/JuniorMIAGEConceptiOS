@@ -12,4 +12,5 @@
 
 @property (nonatomic, retain) NSMutableArray *jmcNewsList;
 
+
 @end

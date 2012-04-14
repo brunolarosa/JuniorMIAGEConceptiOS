@@ -11,6 +11,7 @@
 
 @interface JMCNewsViewController : UIViewController
 
-@property (nonatomic, assign) JMCNews *jmcNews; 
+@property (retain, nonatomic) JMCNews *jmcNews;
+@property (retain, nonatomic) IBOutlet UILabel *newsTitle;
 
 @end

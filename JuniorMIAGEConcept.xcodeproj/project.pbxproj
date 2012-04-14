@@ -22,8 +22,8 @@
 		C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */; };
 		C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A7D1F615398E9300948A19 /* GDataXMLNode.m */; };
 		C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */; };
-		C7EA02101539975400DB3C76 /* JMCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA020E1539975400DB3C76 /* JMCNewsViewController.m */; };
-		C7EA02111539975400DB3C76 /* JMCNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7EA020F1539975400DB3C76 /* JMCNewsViewController.xib */; };
+		C7EA02261539A0BF00DB3C76 /* JMCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA02241539A0BF00DB3C76 /* JMCNewsViewController.m */; };
+		C7EA02271539A0BF00DB3C76 /* JMCNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7EA02251539A0BF00DB3C76 /* JMCNewsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,9 +60,9 @@
 		C7A7D1F515398E9300948A19 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		C7A7D1F615398E9300948A19 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
-		C7EA020D1539975400DB3C76 /* JMCNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsViewController.h; sourceTree = "<group>"; };
-		C7EA020E1539975400DB3C76 /* JMCNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsViewController.m; sourceTree = "<group>"; };
-		C7EA020F1539975400DB3C76 /* JMCNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsViewController.xib; sourceTree = "<group>"; };
+		C7EA02231539A0BF00DB3C76 /* JMCNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsViewController.h; sourceTree = "<group>"; };
+		C7EA02241539A0BF00DB3C76 /* JMCNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsViewController.m; sourceTree = "<group>"; };
+		C7EA02251539A0BF00DB3C76 /* JMCNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,8 +196,8 @@
 			children = (
 				C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */,
 				C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */,
-				C7EA020D1539975400DB3C76 /* JMCNewsViewController.h */,
-				C7EA020E1539975400DB3C76 /* JMCNewsViewController.m */,
+				C7EA02231539A0BF00DB3C76 /* JMCNewsViewController.h */,
+				C7EA02241539A0BF00DB3C76 /* JMCNewsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -205,7 +205,7 @@
 		C7FBA1B4152C34E1001827DC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C7EA020F1539975400DB3C76 /* JMCNewsViewController.xib */,
+				C7EA02251539A0BF00DB3C76 /* JMCNewsViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C727F2F6152BC45500E507B1 /* InfoPlist.strings in Resources */,
-				C7EA02111539975400DB3C76 /* JMCNewsViewController.xib in Resources */,
+				C7EA02271539A0BF00DB3C76 /* JMCNewsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +323,7 @@
 				C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */,
 				C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */,
 				C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */,
-				C7EA02101539975400DB3C76 /* JMCNewsViewController.m in Sources */,
+				C7EA02261539A0BF00DB3C76 /* JMCNewsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
