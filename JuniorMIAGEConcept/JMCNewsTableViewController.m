@@ -147,7 +147,9 @@
     }
     JMCNews *entry = [self.jmcNewsList objectAtIndex:((indexPath.row-1)/2)];
     NSLog(@"%@", entry.title);
-  
+
+    
+    
     //date format
     /*NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];

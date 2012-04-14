@@ -18,5 +18,4 @@
 @property (nonatomic, retain) NSMutableArray *jmcNewsList;
 @property (nonatomic, retain) JMCParser* rss;
 
-
 @end
