@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AF10F0915399E120032220A /* JMCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF10F0815399E120032220A /* JMCParser.m */; };
+		2AF10F0A15399E120032220A /* JMCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF10F0815399E120032220A /* JMCParser.m */; };
 		C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EB152BC45500E507B1 /* UIKit.framework */; };
 		C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
 		C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EF152BC45500E507B1 /* CoreGraphics.framework */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2AF10F0715399E120032220A /* JMCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCParser.h; sourceTree = "<group>"; };
+		2AF10F0815399E120032220A /* JMCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCParser.m; sourceTree = "<group>"; };
 		C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuniorMIAGEConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C727F2EB152BC45500E507B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C727F2ED152BC45500E507B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -182,6 +186,8 @@
 			children = (
 				C739D3C3152C437C00FAB22D /* JMCNews.h */,
 				C739D3C4152C437C00FAB22D /* JMCNews.m */,
+				2AF10F0715399E120032220A /* JMCParser.h */,
+				2AF10F0815399E120032220A /* JMCParser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 				C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */,
 				C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */,
 				C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */,
+				2AF10F0915399E120032220A /* JMCParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C727F311152BC45500E507B1 /* JuniorMIAGEConceptTests.m in Sources */,
+				2AF10F0A15399E120032220A /* JMCParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
