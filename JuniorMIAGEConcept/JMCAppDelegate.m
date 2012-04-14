@@ -8,10 +8,15 @@
 
 #import "JMCAppDelegate.h"
 #import "JMCNewsTableViewController.h"
+#import "JMCMenuViewController.h"
+#import "IIViewDeckController.h"
 
 @implementation JMCAppDelegate
 
 @synthesize window = _window;
+
+@synthesize leftViewController = _leftViewController;
+@synthesize centerViewController = _centerViewController;
 
 - (void)dealloc
 {
@@ -23,18 +28,17 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
-    
-    UITabBarController *tabController = [[[UITabBarController alloc] init] autorelease];
-    
     JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] init] autorelease];
+    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
     
-    UINavigationController *navNewsController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
+    self.leftViewController = [[[JMCMenuViewController alloc] init] autorelease];
     
-    tabController.viewControllers = [NSArray arrayWithObjects:navNewsController, nil];
+    IIViewDeckController *deck = [[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController leftViewController:self.leftViewController];
     
-    self.window.rootViewController = tabController; //TODO: remettre tabController
+    self.window.rootViewController = deck; //TODO: remettre tabController
     [self.window makeKeyAndVisible];
-    return YES;}
+    return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

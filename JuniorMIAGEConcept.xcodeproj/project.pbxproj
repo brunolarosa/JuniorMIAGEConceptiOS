@@ -24,6 +24,9 @@
 		C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */; };
 		C7EA02261539A0BF00DB3C76 /* JMCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA02241539A0BF00DB3C76 /* JMCNewsViewController.m */; };
 		C7EA02271539A0BF00DB3C76 /* JMCNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7EA02251539A0BF00DB3C76 /* JMCNewsViewController.xib */; };
+		C7EA02351539B4B400DB3C76 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA02321539B4B400DB3C76 /* IIViewDeckController.m */; };
+		C7EA02361539B4B400DB3C76 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA02341539B4B400DB3C76 /* WrapController.m */; };
+		C7EA02391539C18300DB3C76 /* JMCMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA02381539C18300DB3C76 /* JMCMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,12 @@
 		C7EA02231539A0BF00DB3C76 /* JMCNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsViewController.h; sourceTree = "<group>"; };
 		C7EA02241539A0BF00DB3C76 /* JMCNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsViewController.m; sourceTree = "<group>"; };
 		C7EA02251539A0BF00DB3C76 /* JMCNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsViewController.xib; sourceTree = "<group>"; };
+		C7EA02311539B4B400DB3C76 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		C7EA02321539B4B400DB3C76 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		C7EA02331539B4B400DB3C76 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
+		C7EA02341539B4B400DB3C76 /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrapController.m; sourceTree = "<group>"; };
+		C7EA02371539C18300DB3C76 /* JMCMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMCMenuViewController.h; path = JuniorMIAGEConcept/JMCMenuViewController.h; sourceTree = SOURCE_ROOT; };
+		C7EA02381539C18300DB3C76 /* JMCMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMCMenuViewController.m; path = JuniorMIAGEConcept/JMCMenuViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +102,6 @@
 		C727F2DC152BC45500E507B1 = {
 			isa = PBXGroup;
 			children = (
-				C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */,
 				C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */,
 				C727F309152BC45500E507B1 /* JuniorMIAGEConceptTests */,
 				C727F2EA152BC45500E507B1 /* Frameworks */,
@@ -113,6 +121,7 @@
 		C727F2EA152BC45500E507B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */,
 				C727F2EB152BC45500E507B1 /* UIKit.framework */,
 				C727F2ED152BC45500E507B1 /* Foundation.framework */,
 				C727F2EF152BC45500E507B1 /* CoreGraphics.framework */,
@@ -168,6 +177,7 @@
 		C739D3CB152C43A300FAB22D /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				C7EA02301539B4B400DB3C76 /* ViewDeck */,
 				C7A7D1F415398E9300948A19 /* GDataXML */,
 			);
 			name = Library;
@@ -191,10 +201,23 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C7EA02301539B4B400DB3C76 /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				C7EA02311539B4B400DB3C76 /* IIViewDeckController.h */,
+				C7EA02321539B4B400DB3C76 /* IIViewDeckController.m */,
+				C7EA02331539B4B400DB3C76 /* WrapController.h */,
+				C7EA02341539B4B400DB3C76 /* WrapController.m */,
+			);
+			path = ViewDeck;
+			sourceTree = "<group>";
+		};
 		C7FBA1B3152C34C9001827DC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */,
+				C7EA02371539C18300DB3C76 /* JMCMenuViewController.h */,
+				C7EA02381539C18300DB3C76 /* JMCMenuViewController.m */,
 				C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */,
 				C7EA02231539A0BF00DB3C76 /* JMCNewsViewController.h */,
 				C7EA02241539A0BF00DB3C76 /* JMCNewsViewController.m */,
@@ -324,6 +347,9 @@
 				C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */,
 				C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */,
 				C7EA02261539A0BF00DB3C76 /* JMCNewsViewController.m in Sources */,
+				C7EA02351539B4B400DB3C76 /* IIViewDeckController.m in Sources */,
+				C7EA02361539B4B400DB3C76 /* WrapController.m in Sources */,
+				C7EA02391539C18300DB3C76 /* JMCMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
