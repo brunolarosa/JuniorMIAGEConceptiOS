@@ -7,6 +7,7 @@
 //
 
 #import "JMCNewsTableViewController.h"
+#import "JMCNewsViewController.h"
 #import "JMCNews.h"
 
 @interface JMCNewsTableViewController ()
@@ -44,6 +45,7 @@
     [self.jmcNewsList insertObject:entry3 atIndex:0];
     NSLog(@"Rows added");
 }
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -116,6 +118,7 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.author];
     
     NSLog(@"Cell recupéré");
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -163,13 +166,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+    
+     JMCNewsViewController *detailViewController = [[JMCNewsViewController alloc] init];
+    detailViewController.jmcNews = [self.jmcNewsList objectAtIndex:indexPath.row];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
-     */
+     
 }
 
 -(void) dealloc
