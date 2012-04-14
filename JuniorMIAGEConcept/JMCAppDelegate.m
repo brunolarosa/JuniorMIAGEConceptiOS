@@ -31,8 +31,10 @@
     JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] init] autorelease];
     self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
     
+    NSLog(@"NewsTableView Allocated");
     self.leftViewController = [[[JMCMenuViewController alloc] init] autorelease];
     
+    NSLog(@"MenuView Allocated");
     IIViewDeckController *deck = [[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController leftViewController:self.leftViewController];
     
     self.window.rootViewController = deck; //TODO: remettre tabController
