@@ -18,11 +18,10 @@
 		C727F306152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
 		C727F30E152BC45500E507B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C727F30C152BC45500E507B1 /* InfoPlist.strings */; };
 		C727F311152BC45500E507B1 /* JuniorMIAGEConceptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */; };
-		C739D3C7152C437C00FAB22D /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C2152C437C00FAB22D /* GDataXMLNode.m */; };
 		C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C4152C437C00FAB22D /* JMCNews.m */; };
-		C739D3C9152C437C00FAB22D /* JMCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C6152C437C00FAB22D /* JMCParser.m */; };
 		C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */; };
-		C739D3D5152C4F1E00FAB22D /* libxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739D3D4152C4F1E00FAB22D /* libxml.framework */; };
+		C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A7D1F615398E9300948A19 /* GDataXMLNode.m */; };
+		C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,15 +51,13 @@
 		C727F30D152BC45500E507B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C727F30F152BC45500E507B1 /* JuniorMIAGEConceptTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuniorMIAGEConceptTests.h; sourceTree = "<group>"; };
 		C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuniorMIAGEConceptTests.m; sourceTree = "<group>"; };
-		C739D3C1152C437C00FAB22D /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		C739D3C2152C437C00FAB22D /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		C739D3C3152C437C00FAB22D /* JMCNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNews.h; sourceTree = "<group>"; };
 		C739D3C4152C437C00FAB22D /* JMCNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNews.m; sourceTree = "<group>"; };
-		C739D3C5152C437C00FAB22D /* JMCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCParser.h; sourceTree = "<group>"; };
-		C739D3C6152C437C00FAB22D /* JMCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCParser.m; sourceTree = "<group>"; };
 		C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTableViewController.h; sourceTree = "<group>"; };
 		C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsTableViewController.m; sourceTree = "<group>"; };
-		C739D3D4152C4F1E00FAB22D /* libxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libxml.framework; sourceTree = "<group>"; };
+		C7A7D1F515398E9300948A19 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		C7A7D1F615398E9300948A19 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +65,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */,
 				C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */,
 				C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */,
 				C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */,
-				C739D3D5152C4F1E00FAB22D /* libxml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +88,7 @@
 		C727F2DC152BC45500E507B1 = {
 			isa = PBXGroup;
 			children = (
+				C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */,
 				C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */,
 				C727F309152BC45500E507B1 /* JuniorMIAGEConceptTests */,
 				C727F2EA152BC45500E507B1 /* Frameworks */,
@@ -110,7 +108,6 @@
 		C727F2EA152BC45500E507B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C739D3D4152C4F1E00FAB22D /* libxml.framework */,
 				C727F2EB152BC45500E507B1 /* UIKit.framework */,
 				C727F2ED152BC45500E507B1 /* Foundation.framework */,
 				C727F2EF152BC45500E507B1 /* CoreGraphics.framework */,
@@ -166,17 +163,23 @@
 		C739D3CB152C43A300FAB22D /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				C739D3C1152C437C00FAB22D /* GDataXMLNode.h */,
-				C739D3C2152C437C00FAB22D /* GDataXMLNode.m */,
+				C7A7D1F415398E9300948A19 /* GDataXML */,
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		C7A7D1F415398E9300948A19 /* GDataXML */ = {
+			isa = PBXGroup;
+			children = (
+				C7A7D1F515398E9300948A19 /* GDataXMLNode.h */,
+				C7A7D1F615398E9300948A19 /* GDataXMLNode.m */,
+			);
+			path = GDataXML;
 			sourceTree = "<group>";
 		};
 		C7B92E3B152C3FC3002113DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C739D3C5152C437C00FAB22D /* JMCParser.h */,
-				C739D3C6152C437C00FAB22D /* JMCParser.m */,
 				C739D3C3152C437C00FAB22D /* JMCNews.h */,
 				C739D3C4152C437C00FAB22D /* JMCNews.m */,
 			);
@@ -308,10 +311,9 @@
 			files = (
 				C727F2F8152BC45500E507B1 /* main.m in Sources */,
 				C727F2FC152BC45500E507B1 /* JMCAppDelegate.m in Sources */,
-				C739D3C7152C437C00FAB22D /* GDataXMLNode.m in Sources */,
 				C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */,
-				C739D3C9152C437C00FAB22D /* JMCParser.m in Sources */,
 				C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */,
+				C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

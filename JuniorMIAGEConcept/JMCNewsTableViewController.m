@@ -17,33 +17,6 @@
 
 @synthesize jmcNewsList = _jmcNewsList;
 
-/*- (NSMutableArray *) jmcNewsList 
-{
-    if (!_jmcNewsList)
-    {
-        JMCNews *entry1 = [[[JMCNews alloc] initWithTitle:@"1"
-                                                  pubDate:[NSDate date]
-                                                   author:@"1"
-                                                 category:@"1"
-                                              description:@"1"] autorelease];
-        
-        JMCNews *entry2 = [[[JMCNews alloc] initWithTitle:@"2"
-                                                  pubDate:[NSDate date]
-                                                   author:@"2"
-                                                 category:@"2"
-                                              description:@"2"] autorelease];
-        
-        JMCNews *entry3 = [[[JMCNews alloc] initWithTitle:@"3"
-                                                  pubDate:[NSDate date]
-                                                   author:@"3"
-                                                 category:@"3"
-                                              description:@"3"] autorelease];
-        _jmcNewsList = [[[NSMutableArray alloc] initWithObjects:entry1, entry2, entry3, nil] autorelease];
-        NSLog(@"Rows added");
-    }
-    
-    return _jmcNewsList;
-}*/
 
 - (void)addRows {
     JMCNews *entry1 = [[[JMCNews alloc] initWithTitle:@"1"
@@ -86,6 +59,7 @@
     [super viewDidLoad];
     NSLog(@"View loaded");
     self.title = @"Feeds";
+    
     self.jmcNewsList = [NSMutableArray array];
     [self addRows];
     NSLog(@"%d", [self.jmcNewsList count]);
