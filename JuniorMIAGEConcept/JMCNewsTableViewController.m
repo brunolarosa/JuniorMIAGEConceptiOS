@@ -7,7 +7,6 @@
 //
 
 #import "JMCNewsTableViewController.h"
-#import "JMCNewsViewController.h"
 #import "JMCNews.h"
 
 @interface JMCNewsTableViewController ()
@@ -17,6 +16,7 @@
 @implementation JMCNewsTableViewController
 
 @synthesize jmcNewsList = _jmcNewsList;
+@synthesize rss = _rss;
 
 
 - (void)addRows {
@@ -46,7 +46,6 @@
     NSLog(@"Rows added");
 }
 
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -59,12 +58,15 @@
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    NSLog(@"View loaded");
-    self.title = @"Feeds";
     
-    self.jmcNewsList = [NSMutableArray array];
-    [self addRows];
-    NSLog(@"%d", [self.jmcNewsList count]);
+    NSLog(@"View loaded");
+    self.navigationItem.title = @"RSSFeeds";
+    
+    self.jmcNewsList = nil;
+    self.rss = nil;
+    
+    //[self addRows];
+    //NSLog(@"%d", [self.jmcNewsList count]);
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,12 +75,26 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.rss==nil) {
+		self.rss = [[[JMCParser alloc] init] autorelease];
+		self.rss.delegate = self;
+		[self.rss load];
+	}
+    
+    NSLog(@"Flux chargé : %@", self.rss );
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -95,30 +111,91 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.jmcNewsList count];
+    if (self.rss.loaded == YES) {
+		return [self.jmcNewsList count]*2;
+	} else {
+		return 1;
+	}
+}
+
+- (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
+{
+    static NSString *LoadingCellIdentifier = @"LoadingCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
+    
+	if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
+    }
+	
+	cell.textLabel.text = @"chargement...";
+	
+	UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[activity startAnimating];
+	[cell setAccessoryView: activity];
+	[activity release];
+	
+    return cell;
+}
+
+- (UITableViewCell *)getTextCellWithTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+	static NSString *TextCellIdentifier = @"TextCell";
+	
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TextCellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TextCellIdentifier] autorelease];
+    }
+    JMCNews *entry = [self.jmcNewsList objectAtIndex:((indexPath.row-1)/2)];
+    NSLog(@"%@", entry.title);
+  
+    //date format
+    /*NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *articleDateString = [dateFormatter stringFromDate:item.pubDate];*/
+	
+	//article preview
+	cell.textLabel.font = [UIFont systemFontOfSize:11];
+	cell.textLabel.numberOfLines = 3;
+	cell.textLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+	cell.backgroundColor = [UIColor clearColor];
+	cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+	UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+	backView.backgroundColor = [UIColor clearColor];
+	cell.backgroundView = backView;
+	
+	CGRect f = cell.textLabel.frame;
+	[cell.textLabel setFrame: CGRectMake(f.origin.x+15, f.origin.y, f.size.width-15, f.size.height)];
+	cell.textLabel.text = entry.description;
+	
+	return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.rss.loaded == NO) {
+		return [self getLoadingTableCellWithTableView:tableView];
+	}
+    
+    if (indexPath.row % 2 == 1) {
+		return [self getTextCellWithTableView:tableView atIndexPath:indexPath];
+	}
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    
-    JMCNews *entry = [self.jmcNewsList objectAtIndex:indexPath.row];
-    
-    NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    NSString *articleDateString = [dateFormatter stringFromDate:entry.pubDate];
-    
-    cell.textLabel.text = entry.title;        
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.author];
-    
-    NSLog(@"Cell recupéré");
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+	backView.backgroundColor = [UIColor clearColor];
+	cell.backgroundView = backView;
+
+	JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.row/2];
+	cell.textLabel.text = entry.title;        
+    NSLog(@"Cell recupéré : %@", cell.textLabel.text);
     return cell;
 }
 
@@ -161,26 +238,43 @@
 }
 */
 
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    
-    JMCNewsViewController *detailViewController = [[JMCNewsViewController alloc] init];
-    //detailViewController.jmcNews = [self.jmcNewsList objectAtIndex:indexPath.row];
-    detailViewController.jmcNews = [self.jmcNewsList objectAtIndex:indexPath.row];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-     
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
 
 -(void) dealloc
 {
     [_jmcNewsList release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark JMCParserdelegate
+-(void)updatedFeedWithRSS:(NSMutableArray*)items
+{
+	self.jmcNewsList = [items retain];
+	[self.tableView reloadData];
+}
+
+-(void)failedFeedUpdateWithError:(NSError *)error
+{
+	//
+}
+
+-(void)updatedFeedTitle:(NSString*)rssTitle
+{
+    //
 }
 
 @end

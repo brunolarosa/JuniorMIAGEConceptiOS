@@ -10,11 +10,11 @@
 
 @interface JMCNews : NSObject
 
-@property (nonatomic, assign) NSString *title;
-@property (nonatomic, assign) NSDate *pubDate;
-@property (nonatomic, assign) NSString *author;
-@property (nonatomic, assign) NSString *category;
-@property (nonatomic, assign) NSString *description;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSDate *pubDate;
+@property (nonatomic, retain) NSString *author;
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *description;
 
 - (id)initWithTitle:(NSString *)newTitle 
             pubDate:(NSString *)newPubDate 

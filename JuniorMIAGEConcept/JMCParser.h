@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GDataXMLNode.h"
 #import "JMCNews.h"
-#define kRSSUrl @"http://jmc-miage.unice.fr/projects/jmc/complet/feed/"
+#define kRSSUrl @"http://www.juniormiageconcept.com/clients/?feed=rss2"
 
 @protocol JMCParserDelegate
 @required
@@ -25,6 +25,7 @@
 
 @property (retain, nonatomic) UIViewController<JMCParserDelegate> * delegate;
 @property (nonatomic, assign) BOOL loaded;
-
+ 
 -(void)load;
+
 @end

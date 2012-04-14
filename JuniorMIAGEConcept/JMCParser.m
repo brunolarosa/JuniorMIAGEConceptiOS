@@ -39,12 +39,14 @@
 	[super dealloc];
 }
 
+// Pour avoir un meilleur lancement de l'application
+// on cree un thread pour le chargement des news
 -(void)dispatchLoadingOperation
 {
 	NSOperationQueue *queue = [NSOperationQueue new];
 	
 	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
-																			selector:@selector(fetchRss)
+																			selector:@selector(fetchRSS)
 																			  object:nil];
 	
 	[queue addOperation:operation];
@@ -67,13 +69,13 @@
 		[self.delegate updatedFeedTitle: [title stringValue] ];
 		
 		NSArray* items = [[doc rootElement] nodesForXPath:@"channel/item" error:&error];
-		NSMutableArray* rssItems = [NSMutableArray arrayWithCapacity:[items count] ];
+		NSMutableArray* JMCNewsList = [NSMutableArray arrayWithCapacity:[items count] ];
 		
 		for (GDataXMLElement* xmlItem in items) {
-			[rssItems addObject: [self getItemFromXmlElement:xmlItem] ];
+			[JMCNewsList addObject: [self getItemFromXmlElement:xmlItem] ];
 		}
-		
-		[self.delegate performSelectorOnMainThread:@selector(updatedFeedWithRSS:) withObject:rssItems waitUntilDone:YES];
+        
+		[self.delegate performSelectorOnMainThread:@selector(updatedFeedWithRSS:) withObject:JMCNewsList waitUntilDone:YES];
 	} else {
 		[self.delegate performSelectorOnMainThread:@selector(failedFeedUpdateWithError:) withObject:error waitUntilDone:YES];
 	}
@@ -88,8 +90,9 @@
                                          pubDate:[[[xmlItem elementsForName:@"pubDate"] objectAtIndex:0] stringValue]
                                           author:[[[xmlItem elementsForName:@"author"] objectAtIndex:0] stringValue]
                                         category:[[[xmlItem elementsForName:@"category"] objectAtIndex:0] stringValue]
-                                     description:[[[xmlItem elementsForName:@"description"] objectAtIndex:0] stringValue]];
-    NSLog([news description]);
+                                      description:[[[xmlItem elementsForName:@"description"] objectAtIndex:0] stringValue]
+                     ];
+    NSLog(@"%@",news.title);
 	return news;
 }
 
