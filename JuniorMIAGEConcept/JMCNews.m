@@ -34,6 +34,20 @@
     
 }
 
++ (NSArray *) getNewsFromCategory:(NSArray *)anArray
+                         category:(NSString *)aCategory{
+    
+    NSEnumerator *e = [anArray objectEnumerator];
+    NSMutableArray *returnValues = [[NSMutableArray alloc] init];
+    JMCNews *object = nil;
+    while (object = [e nextObject]) {
+        if([object.category isEqualToString:aCategory]){
+            [returnValues addObject:object];
+        }            
+    }
+    return returnValues;    
+}
+
 - (void) dealloc {
     [_title release];
     [_pubDate release];
