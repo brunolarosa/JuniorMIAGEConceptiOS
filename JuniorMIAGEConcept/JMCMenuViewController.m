@@ -7,12 +7,49 @@
 //
 
 #import "JMCMenuViewController.h"
+#import "IIViewDeckController.h"
+#import "JMCNewsTableViewController.h"
+
 
 @interface JMCMenuViewController ()
+
+@property (retain, nonatomic) NSArray *sections;
+@property (retain, nonatomic) NSMutableDictionary *menu;
 
 @end
 
 @implementation JMCMenuViewController
+
+@synthesize sections = _sections;
+@synthesize menu = _menu;
+
+- (NSArray *) sections
+{
+    if(!_sections)
+    {
+        _sections = [[NSArray alloc] initWithObjects:@"Général", @"Catégorie", @"Autres", nil];
+    }
+    
+    return _sections;
+}
+
+- (NSMutableDictionary *) menu
+{
+    if (!_menu)
+    {
+        NSArray *geneMenu = [[[NSArray alloc] initWithObjects:@"All", @"New", nil] autorelease];
+        NSArray *categoryMenu = [[[NSArray alloc] initWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil] autorelease];
+        
+        _menu = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], categoryMenu, [self.sections objectAtIndex:1], nil] autorelease];
+    }
+    return _menu;
+}
+
+- (NSString *)menusAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSArray *menusInSection = [self.menu objectForKey:[self.sections objectAtIndex:indexPath.section]];
+	return [menusInSection objectAtIndex:indexPath.row];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,10 +63,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -51,80 +88,76 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [self.sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 3;
+	NSArray *menuInSection = [self.menu objectForKey:[self.sections objectAtIndex:section]];
+	return menuInSection.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MenuCell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"Test1";
-            break;
-        case 1:
-            cell.textLabel.text = @"Test2";
-            break;
-        case 2:
-            cell.textLabel.text = @"Test3";
-            break;
-            
-        default:
-            break;
-    }
+    
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+    cell.textLabel.text = [self menusAtIndexPath:indexPath];
+    
     return cell;
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }   
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }   
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+	return [self.sections objectAtIndex:section];
 }
-*/
 
 #pragma mark - Table view delegate
 
@@ -138,6 +171,17 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller)
+     {
+         if ([controller.centerController isKindOfClass:[UINavigationController class]])
+         {
+             JMCNewsTableViewController *jmcNewsTableController = (JMCNewsTableViewController *)((UINavigationController *)controller.centerController).topViewController;
+             
+             jmcNewsTableController.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+         }
+     }];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  JMCMenuViewController.h
 //  JuniorMIAGEConcept
 //
-//  Created by Bruno LAROSA on 14/04/12.
+//  Created by Bruno LAROSA on 16/04/12.
 //  Copyright (c) 2012 Université Nice Sophia Antipolis. All rights reserved.
 //
 

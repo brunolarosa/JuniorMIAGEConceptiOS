@@ -19,33 +19,6 @@
 @synthesize rss = _rss;
 
 
-- (void)addRows {
-    JMCNews *entry1 = [[[JMCNews alloc] initWithTitle:@"1"
-                                              pubDate:[NSDate date]
-                                               author:@"1"
-                                             category:@"1"
-                                          description:@"1"] autorelease];
-    
-    JMCNews *entry2 = [[[JMCNews alloc] initWithTitle:@"2"
-                                              pubDate:[NSDate date]
-                                               author:@"2"
-                                             category:@"2"
-                                          description:@"2"] autorelease];
-    
-    JMCNews *entry3 = [[[JMCNews alloc] initWithTitle:@"3"
-                                              pubDate:[NSDate date]
-                                               author:@"3"
-                                             category:@"3"
-                                          description:@"3"] autorelease];
-
-
-    
-    [self.jmcNewsList insertObject:entry1 atIndex:0];
-    [self.jmcNewsList insertObject:entry2 atIndex:0];
-    [self.jmcNewsList insertObject:entry3 atIndex:0];
-    NSLog(@"Rows added");
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
