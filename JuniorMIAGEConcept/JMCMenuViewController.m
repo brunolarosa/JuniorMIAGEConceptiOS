@@ -55,6 +55,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.tableView.rowHeight = 27.0;
         // Custom initialization
     }
     return self;
@@ -109,9 +110,7 @@
     }
     // Configure the cell...
     
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
     cell.textLabel.text = [self menusAtIndexPath:indexPath];
-    
     return cell;
 }
 
