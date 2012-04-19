@@ -9,6 +9,7 @@
 #import "JMCMenuViewController.h"
 #import "IIViewDeckController.h"
 #import "JMCNewsTableViewController.h"
+#import "JMCMenuHeaderSectionView.h"
 
 
 @interface JMCMenuViewController ()
@@ -37,10 +38,10 @@
 {
     if (!_menu)
     {
-        NSArray *geneMenu = [[[NSArray alloc] initWithObjects:@"All", @"New", nil] autorelease];
-        NSArray *categoryMenu = [[[NSArray alloc] initWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil] autorelease];
+        NSArray *geneMenu = [[NSArray alloc] initWithObjects:@"All", @"New", nil];
+        NSArray *categoryMenu = [[NSArray alloc] initWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil];
         
-        _menu = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], categoryMenu, [self.sections objectAtIndex:1], nil] autorelease];
+        _menu = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], categoryMenu, [self.sections objectAtIndex:1], nil] retain];
     }
     return _menu;
 }
@@ -55,8 +56,17 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.tableView.rowHeight = 27.0;
         // Custom initialization
+        //
+        // Change the properties of the imageView and tableView (these could be set
+        // in interface builder instead).
+        //
+        self.tableView.rowHeight = 30;
+        self.tableView.backgroundColor = [UIColor colorWithRed:(49.0/255.0)
+                                                         green:(57.0/255.0)
+                                                          blue:(74.0/255.0)
+                                                         alpha:1.0];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -64,6 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -86,6 +97,16 @@
 
 #pragma mark - Table view data source
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CGRect frame = CGRectMake(0, 0, 320, 15);
+	// create the parent view that will hold header Label
+	JMCMenuHeaderSectionView *headerSectionView = [[[JMCMenuHeaderSectionView alloc] initWithFrame:frame] autorelease];
+    headerSectionView.sectionTitle.text = @"CATEGORIES";
+    NSLog(@"%f", headerSectionView.frame.size.height);
+	return headerSectionView;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -107,10 +128,22 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuCell.png"]]autorelease];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+        cell.textLabel.textColor = [UIColor colorWithRed:(194.0/255.0)
+                                                   green:(204.0/255.0)
+                                                    blue:(218.0/255.0)
+                                                   alpha:1.0];
+        cell.textLabel.shadowColor = [UIColor blackColor];
+        cell.textLabel.shadowOffset = CGSizeMake(0, 1);
     }
     // Configure the cell...
     
     cell.textLabel.text = [self menusAtIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:@"iconNew.png"]; 
+    
     return cell;
 }
 

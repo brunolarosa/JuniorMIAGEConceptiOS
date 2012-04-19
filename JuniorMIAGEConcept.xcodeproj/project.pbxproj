@@ -24,12 +24,17 @@
 		C727F311152BC45500E507B1 /* JuniorMIAGEConceptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C727F310152BC45500E507B1 /* JuniorMIAGEConceptTests.m */; };
 		C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C4152C437C00FAB22D /* JMCNews.m */; };
 		C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */; };
+		C74A82BA153F7416002EF930 /* JMCMenuHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A82B9153F7416002EF930 /* JMCMenuHeaderSectionView.m */; };
 		C74E03A41539EED8007A6974 /* JMCNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74E03A31539EED8007A6974 /* JMCNewsViewController.xib */; };
 		C74E03AA1539EF1E007A6974 /* JMCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74E03A81539EF1E007A6974 /* JMCNewsViewController.m */; };
 		C74E03B01539EF33007A6974 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74E03AD1539EF33007A6974 /* IIViewDeckController.m */; };
 		C74E03B11539EF33007A6974 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74E03AF1539EF33007A6974 /* WrapController.m */; };
 		C7A7D1F715398E9300948A19 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A7D1F615398E9300948A19 /* GDataXMLNode.m */; };
 		C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */; };
+		C7BD2D9715403D590031A7E1 /* Sectionheader.png in Resources */ = {isa = PBXBuildFile; fileRef = C7BD2D9615403D590031A7E1 /* Sectionheader.png */; };
+		C7BD2DA2154043430031A7E1 /* menuCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C7BD2DA1154043430031A7E1 /* menuCell.png */; };
+		C7BD2DA415404B6D0031A7E1 /* iconAll.png in Resources */ = {isa = PBXBuildFile; fileRef = C7BD2DA315404B6D0031A7E1 /* iconAll.png */; };
+		C7BD2DA615404D460031A7E1 /* iconNew.png in Resources */ = {isa = PBXBuildFile; fileRef = C7BD2DA515404D460031A7E1 /* iconNew.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +73,8 @@
 		C739D3C4152C437C00FAB22D /* JMCNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNews.m; sourceTree = "<group>"; };
 		C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTableViewController.h; sourceTree = "<group>"; };
 		C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsTableViewController.m; sourceTree = "<group>"; };
+		C74A82B8153F7416002EF930 /* JMCMenuHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCMenuHeaderSectionView.h; sourceTree = "<group>"; };
+		C74A82B9153F7416002EF930 /* JMCMenuHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCMenuHeaderSectionView.m; sourceTree = "<group>"; };
 		C74E03A31539EED8007A6974 /* JMCNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsViewController.xib; sourceTree = "<group>"; };
 		C74E03A71539EF1E007A6974 /* JMCNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsViewController.h; sourceTree = "<group>"; };
 		C74E03A81539EF1E007A6974 /* JMCNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsViewController.m; sourceTree = "<group>"; };
@@ -78,6 +85,10 @@
 		C7A7D1F515398E9300948A19 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		C7A7D1F615398E9300948A19 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
+		C7BD2D9615403D590031A7E1 /* Sectionheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sectionheader.png; sourceTree = "<group>"; };
+		C7BD2DA1154043430031A7E1 /* menuCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCell.png; sourceTree = "<group>"; };
+		C7BD2DA315404B6D0031A7E1 /* iconAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconAll.png; sourceTree = "<group>"; };
+		C7BD2DA515404D460031A7E1 /* iconNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconNew.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +150,7 @@
 		C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */ = {
 			isa = PBXGroup;
 			children = (
+				C7BD2D9515403D590031A7E1 /* Ressources */,
 				C727F2FA152BC45500E507B1 /* JMCAppDelegate.h */,
 				C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */,
 				C7FBA1B3152C34C9001827DC /* Controllers */,
@@ -220,6 +232,17 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C7BD2D9515403D590031A7E1 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				C7BD2DA315404B6D0031A7E1 /* iconAll.png */,
+				C7BD2DA1154043430031A7E1 /* menuCell.png */,
+				C7BD2DA515404D460031A7E1 /* iconNew.png */,
+				C7BD2D9615403D590031A7E1 /* Sectionheader.png */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
 		C7FBA1B3152C34C9001827DC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +261,8 @@
 			children = (
 				C710D9E3153B8DB000779B10 /* JMCMenuViewController.xib */,
 				C74E03A31539EED8007A6974 /* JMCNewsViewController.xib */,
+				C74A82B8153F7416002EF930 /* JMCMenuHeaderSectionView.h */,
+				C74A82B9153F7416002EF930 /* JMCMenuHeaderSectionView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -317,6 +342,10 @@
 				C727F2F6152BC45500E507B1 /* InfoPlist.strings in Resources */,
 				C74E03A41539EED8007A6974 /* JMCNewsViewController.xib in Resources */,
 				C710D9E5153B8DB000779B10 /* JMCMenuViewController.xib in Resources */,
+				C7BD2D9715403D590031A7E1 /* Sectionheader.png in Resources */,
+				C7BD2DA2154043430031A7E1 /* menuCell.png in Resources */,
+				C7BD2DA415404B6D0031A7E1 /* iconAll.png in Resources */,
+				C7BD2DA615404D460031A7E1 /* iconNew.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +390,7 @@
 				C74E03B01539EF33007A6974 /* IIViewDeckController.m in Sources */,
 				C74E03B11539EF33007A6974 /* WrapController.m in Sources */,
 				C710D9E4153B8DB000779B10 /* JMCMenuViewController.m in Sources */,
+				C74A82BA153F7416002EF930 /* JMCMenuHeaderSectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
