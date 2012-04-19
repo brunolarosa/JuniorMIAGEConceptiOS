@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @interface JMCAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (retain, nonatomic) UIWindow *window;
 
 @property (retain, nonatomic) UITableViewController *leftViewController;
 @property (retain, nonatomic) UIViewController* centerViewController;

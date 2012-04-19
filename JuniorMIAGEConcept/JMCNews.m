@@ -38,7 +38,7 @@
                          category:(NSString *)aCategory{
     
     NSEnumerator *e = [anArray objectEnumerator];
-    NSMutableArray *returnValues = [[NSMutableArray alloc] init];
+    NSMutableArray *returnValues = [[[NSMutableArray alloc] init] autorelease];
     JMCNews *object = nil;
     while (object = [e nextObject]) {
         if([object.category isEqualToString:aCategory]){
