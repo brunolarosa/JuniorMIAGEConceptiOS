@@ -37,6 +37,8 @@
 		C7BD2DA615404D460031A7E1 /* iconNew.png in Resources */ = {isa = PBXBuildFile; fileRef = C7BD2DA515404D460031A7E1 /* iconNew.png */; };
 		C7BD2DBD15405D740031A7E1 /* JMCNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BD2DBC15405D740031A7E1 /* JMCNewsCell.m */; };
 		C7D53B211540C23700BFB6BB /* sectionheader.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D53B201540C23700BFB6BB /* sectionheader.png */; };
+		C7D53B231540C9CE00BFB6BB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D53B221540C9CE00BFB6BB /* Icon.png */; };
+		C7D53B251540C9D100BFB6BB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D53B241540C9D100BFB6BB /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		C7BD2DBB15405D740031A7E1 /* JMCNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsCell.h; sourceTree = "<group>"; };
 		C7BD2DBC15405D740031A7E1 /* JMCNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsCell.m; sourceTree = "<group>"; };
 		C7D53B201540C23700BFB6BB /* sectionheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectionheader.png; sourceTree = "<group>"; };
+		C7D53B221540C9CE00BFB6BB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		C7D53B241540C9D100BFB6BB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 		C727F2DC152BC45500E507B1 = {
 			isa = PBXGroup;
 			children = (
+				C7D53B241540C9D100BFB6BB /* Icon@2x.png */,
+				C7D53B221540C9CE00BFB6BB /* Icon.png */,
 				C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */,
 				C727F309152BC45500E507B1 /* JuniorMIAGEConceptTests */,
 				C727F2EA152BC45500E507B1 /* Frameworks */,
@@ -355,6 +361,8 @@
 				C7BD2DA615404D460031A7E1 /* iconNew.png in Resources */,
 				C7665D4F15407CBC00C4706F /* bubleComment.png in Resources */,
 				C7D53B211540C23700BFB6BB /* sectionheader.png in Resources */,
+				C7D53B231540C9CE00BFB6BB /* Icon.png in Resources */,
+				C7D53B251540C9D100BFB6BB /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
