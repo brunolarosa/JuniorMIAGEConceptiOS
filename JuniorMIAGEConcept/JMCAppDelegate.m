@@ -63,7 +63,7 @@
 - (void) customizeNavBar
 {
     // Set the background image for *all* UINavigationBars
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar.png"]
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar.png"]
                                        forBarMetrics:UIBarMetricsDefault];
     NSLog(@"Background OK");
     

@@ -34,7 +34,7 @@
 		C731010A1543238600428893 /* iconNew.png in Resources */ = {isa = PBXBuildFile; fileRef = C73101031543238600428893 /* iconNew.png */; };
 		C731010B1543238600428893 /* menuCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C73101041543238600428893 /* menuCell.png */; };
 		C731010C1543238600428893 /* navBar.png in Resources */ = {isa = PBXBuildFile; fileRef = C73101051543238600428893 /* navBar.png */; };
-		C731010D1543238600428893 /* sectionheader.png in Resources */ = {isa = PBXBuildFile; fileRef = C73101061543238600428893 /* sectionheader.png */; };
+		C7310114154329B400428893 /* sectionHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = C7310113154329B400428893 /* sectionHeader.png */; };
 		C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C4152C437C00FAB22D /* JMCNews.m */; };
 		C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */; };
 		C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */; };
@@ -89,7 +89,7 @@
 		C73101031543238600428893 /* iconNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconNew.png; sourceTree = "<group>"; };
 		C73101041543238600428893 /* menuCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCell.png; sourceTree = "<group>"; };
 		C73101051543238600428893 /* navBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar.png; sourceTree = "<group>"; };
-		C73101061543238600428893 /* sectionheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectionheader.png; sourceTree = "<group>"; };
+		C7310113154329B400428893 /* sectionHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectionHeader.png; sourceTree = "<group>"; };
 		C739D3C3152C437C00FAB22D /* JMCNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNews.h; sourceTree = "<group>"; };
 		C739D3C4152C437C00FAB22D /* JMCNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNews.m; sourceTree = "<group>"; };
 		C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTableViewController.h; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 				C73101021543238600428893 /* iconAll.png */,
 				C73101031543238600428893 /* iconNew.png */,
 				C73101041543238600428893 /* menuCell.png */,
+				C7310113154329B400428893 /* sectionHeader.png */,
 				C73101051543238600428893 /* navBar.png */,
-				C73101061543238600428893 /* sectionheader.png */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 				C731010A1543238600428893 /* iconNew.png in Resources */,
 				C731010B1543238600428893 /* menuCell.png in Resources */,
 				C731010C1543238600428893 /* navBar.png in Resources */,
-				C731010D1543238600428893 /* sectionheader.png in Resources */,
+				C7310114154329B400428893 /* sectionHeader.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
