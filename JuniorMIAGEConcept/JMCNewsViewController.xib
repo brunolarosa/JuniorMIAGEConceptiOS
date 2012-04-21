@@ -76,6 +76,7 @@
 						<string key="NSFrame">{{20, 90}, {280, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="391012670"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -104,23 +105,23 @@
 							<object class="IBUIImageView" id="464464214">
 								<reference key="NSNextResponder" ref="391012670"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 12}, {240, 135}}</string>
+								<string key="NSFrame">{{20, 20}, {240, 135}}</string>
 								<reference key="NSSuperview" ref="391012670"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUITextView" id="1020987719">
+							<object class="IBUITextView" id="196969067">
 								<reference key="NSNextResponder" ref="391012670"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 155}, {240, 401}}</string>
+								<string key="NSFrame">{{20, 163}, {240, 221}}</string>
 								<reference key="NSSuperview" ref="391012670"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIAutoresizesSubviews">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
+								<int key="IBUIContentMode">5</int>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<bool key="IBUIScrollEnabled">NO</bool>
@@ -142,13 +143,17 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{20, 115}, {280, 281}}</string>
+						<string key="NSFrame">{{20, 107}, {280, 442}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="464464214"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIAutoresizesSubviews">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIDirectionalLockEnabled">YES</bool>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
@@ -187,6 +192,22 @@
 						<reference key="destination" ref="326053689"/>
 					</object>
 					<int key="connectionID">9</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">scrollView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="391012670"/>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">newsContent</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="196969067"/>
+					</object>
+					<int key="connectionID">28</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -233,7 +254,7 @@
 						<reference key="object" ref="391012670"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="464464214"/>
-							<reference ref="1020987719"/>
+							<reference ref="196969067"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -243,8 +264,8 @@
 						<reference key="parent" ref="391012670"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">17</int>
-						<reference key="object" ref="1020987719"/>
+						<int key="objectID">27</int>
+						<reference key="object" ref="196969067"/>
 						<reference key="parent" ref="391012670"/>
 					</object>
 				</array>
@@ -257,7 +278,7 @@
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -265,7 +286,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -276,6 +297,7 @@
 						<string key="newsContent">UITextView</string>
 						<string key="newsSubTitle">UILabel</string>
 						<string key="newsTitle">UILabel</string>
+						<string key="scrollView">UIScrollView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="newsContent">
@@ -289,6 +311,10 @@
 						<object class="IBToOneOutletInfo" key="newsTitle">
 							<string key="name">newsTitle</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="scrollView">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

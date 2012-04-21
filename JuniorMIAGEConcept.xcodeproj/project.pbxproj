@@ -35,6 +35,7 @@
 		C731010B1543238600428893 /* menuCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C73101041543238600428893 /* menuCell.png */; };
 		C731010C1543238600428893 /* navBar.png in Resources */ = {isa = PBXBuildFile; fileRef = C73101051543238600428893 /* navBar.png */; };
 		C7310114154329B400428893 /* sectionHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = C7310113154329B400428893 /* sectionHeader.png */; };
+		C731011B15432D3A00428893 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C731011A15432D3A00428893 /* menuButton.png */; };
 		C739D3C8152C437C00FAB22D /* JMCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3C4152C437C00FAB22D /* JMCNews.m */; };
 		C739D3D3152C4C6D00FAB22D /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C739D3D2152C4C6D00FAB22D /* JMCNewsTableViewController.m */; };
 		C7A7D1F915398F8800948A19 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A7D1F815398F8800948A19 /* libxml2.2.7.3.dylib */; };
@@ -90,6 +91,7 @@
 		C73101041543238600428893 /* menuCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCell.png; sourceTree = "<group>"; };
 		C73101051543238600428893 /* navBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar.png; sourceTree = "<group>"; };
 		C7310113154329B400428893 /* sectionHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectionHeader.png; sourceTree = "<group>"; };
+		C731011A15432D3A00428893 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		C739D3C3152C437C00FAB22D /* JMCNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNews.h; sourceTree = "<group>"; };
 		C739D3C4152C437C00FAB22D /* JMCNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNews.m; sourceTree = "<group>"; };
 		C739D3D1152C4C6D00FAB22D /* JMCNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTableViewController.h; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		2A848791154313E2001B4939 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C731011A15432D3A00428893 /* menuButton.png */,
 				C73101001543238600428893 /* backButton.png */,
 				C73101011543238600428893 /* bubleComment.png */,
 				C73101021543238600428893 /* iconAll.png */,
@@ -344,6 +347,7 @@
 				C731010B1543238600428893 /* menuCell.png in Resources */,
 				C731010C1543238600428893 /* navBar.png in Resources */,
 				C7310114154329B400428893 /* sectionHeader.png in Resources */,
+				C731011B15432D3A00428893 /* menuButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

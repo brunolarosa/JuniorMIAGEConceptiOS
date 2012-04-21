@@ -5,11 +5,13 @@
 //  Created by Bruno Larosa on 04/04/12.
 //  Copyright (c) 2012 Université Nice Sophia Antipolis. All rights reserved.
 //
+#import "IIViewDeckController.h"
 
 #import "JMCNewsTableViewController.h"
 #import "JMCNews.h"
 #import "JMCNewsCell.h"
 #import "JMCNewsViewController.h"
+
 
 #define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
@@ -37,6 +39,11 @@
     return self;
 }
 
+- (void) menuPressed
+{
+    [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
@@ -55,6 +62,14 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    //Set Menu Button
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];//tes dimensions de l'image
+    [backButton setImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(menuPressed) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
 }
 
 - (void)viewDidUnload {

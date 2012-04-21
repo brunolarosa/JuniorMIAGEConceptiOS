@@ -16,6 +16,8 @@
 @implementation JMCNewsViewController
 
 @synthesize jmcNews = _jmcNews;
+
+@synthesize scrollView = _scrollView;
 @synthesize newsTitle = _newsTitle;
 @synthesize newsSubTitle = _newsSubTitle;
 @synthesize newsContent = _newsContent;
@@ -40,7 +42,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = BG_COLOR;
     
-    
     self.newsTitle.text = self.jmcNews.title;
     self.newsSubTitle.text = [NSString stringWithFormat:@"%@ - %@", self.jmcNews.author, self.jmcNews.pubDate];
     self.newsContent.text = self.jmcNews.description;
@@ -59,6 +60,7 @@
     [self setNewsTitle:nil];
     [self setNewsSubTitle:nil];
     [self setNewsContent:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -73,6 +75,7 @@
     [_newsTitle release];
     [_newsSubTitle release];
     [_newsContent release];
+    [_scrollView release];
     [super dealloc];
 }
 @end
