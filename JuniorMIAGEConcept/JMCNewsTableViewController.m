@@ -41,7 +41,7 @@
 {    
     [super viewDidLoad];
     
-    NSLog(@"View loaded");
+//    NSLog(@"View loaded");
     self.navigationItem.title = @"RSSFeeds";
     self.jmcNewsList = [NSMutableArray array];
     
@@ -77,12 +77,9 @@
 {
     // this will allow us as an observer to notified (see observeValueForKeyPath)
     // so we can update our UITableView
-    //
     
-//    NSLog(@"InsertJMCNews - JMCNewsTableViewController - %d", JMCNews.count);
-//    NSLog(@"Debug : %@",JMCNews.debugDescription);
     [self willChangeValueForKey:@"JMCNewsList"];
-    
+    NSLog(@"Ajout des %d articles", aJMCNews.count);
     [self.jmcNewsList addObjectsFromArray:aJMCNews];
     
     [self didChangeValueForKey:@"JMCNewsList"];
@@ -93,7 +90,7 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    NSLog(@"observeValueForKeyPath - JMCNewsTableViewController");
+//    NSLog(@"observeValueForKeyPath - JMCNewsTableViewController");
     [self.tableView reloadData];
 }
 
@@ -124,7 +121,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TextCellIdentifier] autorelease];
     }
     JMCNews *entry = [self.jmcNewsList objectAtIndex:((indexPath.row-1)/2)];
-    NSLog(@"%@", entry.title);
+//    NSLog(@"%@", entry.title);
 
     
     
@@ -154,30 +151,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-     
-     HUGO VERSION
-     
-    if (indexPath.row % 2 == 1) {
-		return [self getTextCellWithTableView:tableView atIndexPath:indexPath];
-	}
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil)
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 
-    UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-	backView.backgroundColor = [UIColor clearColor];
-	cell.backgroundView = backView;
-
-	JMCNews *entry = [self.JMCNewsList objectAtIndex: indexPath.row/2];
-	cell.textLabel.text = entry.title;        
-    NSLog(@"Cell recupéré : %@", cell.textLabel.text);
-     */
-    
     
     static NSString *CellIdentifier = @"menuCell";
     
@@ -192,7 +166,7 @@
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
     cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];
     cell.commentsLabel.text = @"99";
-    NSLog(@"%@", entry.author);
+//    NSLog(@"%@", entry.author);
     
     
     return cell;
@@ -264,24 +238,6 @@
 {
     [jmcNewsList release];
     [super dealloc];
-}
-
-#pragma mark -
-#pragma mark JMCParserdelegate
--(void)updatedFeedWithRSS:(NSMutableArray*)items
-{
-	self.jmcNewsList = [items retain];
-	[self.tableView reloadData];
-}
-
--(void)failedFeedUpdateWithError:(NSError *)error
-{
-	//
-}
-
--(void)updatedFeedTitle:(NSString*)rssTitle
-{
-    //
 }
 
 @end

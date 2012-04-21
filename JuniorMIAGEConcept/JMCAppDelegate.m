@@ -24,8 +24,10 @@
 @property (nonatomic, retain) NSMutableData *JMCNewsData;    // the data returned from the NSURLConnection
 @property (nonatomic, retain) NSOperationQueue *parseQueue;     // the queue that manages our NSOperation for parsing earthquake data(n
 @property (nonatomic, retain) JMCNewsTableViewController *newsTabView;
+@property (nonatomic, retain) JMCMenuViewController *menuTabView;
 
-- (void)addJMCNewsToList:(NSArray *)JMCNews;
+- (void)addJMCNewsToList:(NSArray *)news;
+- (void)addCategoriesToList:(NSArray *)categories;
 - (void)handleError:(NSError *)error;
 @end
 
@@ -39,6 +41,7 @@
 @synthesize leftViewController = _leftViewController;
 @synthesize centerViewController = _centerViewController;
 @synthesize newsTabView;
+@synthesize menuTabView;
 
 
 - (void)dealloc
@@ -52,6 +55,10 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddJMCNewsNotif object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kJMCNewsErrorNotif object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddCategoriesNotif object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kCategoriesErrorNotif object:nil];
+    
 
     [_centerViewController release];
     [_leftViewController release];
@@ -65,7 +72,7 @@
     // Set the background image for *all* UINavigationBars
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar.png"]
                                        forBarMetrics:UIBarMetricsDefault];
-    NSLog(@"Background OK");
+//    NSLog(@"Background OK");
     
     //
     /*[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];*/
@@ -75,7 +82,7 @@
     /*UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backButtonItem;//on remplace le bouton en haut à gauche*/
     
-    NSLog(@"Back button OK");
+//    NSLog(@"Back button OK");
     
     
     
@@ -109,12 +116,22 @@
                                                  name:kJMCNewsErrorNotif
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addCatgories:)
+                                                 name:kAddJMCNewsNotif
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addCategoriesError:)
+                                                 name:kJMCNewsErrorNotif
+                                               object:nil];
+    
     newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
 
     
 
-    self.leftViewController = [[[JMCMenuViewController alloc] init] retain];
+    menuTabView = [[[JMCMenuViewController alloc] init] retain];
+    self.leftViewController = menuTabView;
     
    
     IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
@@ -210,12 +227,20 @@
     [alertView release];
 }
 
-// Our NSNotification callback from the running NSOperation to add the earthquakes
+// Our NSNotification callback from the running NSOperation to add the JMCNews
 //
 - (void)addJMCNews:(NSNotification *)notif {
     assert([NSThread isMainThread]);
     
     [self addJMCNewsToList:[[notif userInfo] valueForKey:kJMCNewsResultsKey]];
+}
+
+// Our NSNotification callback from the running NSOperation to add the JMCNews
+//
+- (void)addCatgories:(NSNotification *)notif {
+    assert([NSThread isMainThread]);
+    
+    [self addCategoriesToList:[[notif userInfo] valueForKey:kCategoriesResultsKey]];
 }
 
 // Our NSNotification callback from the running NSOperation when a parsing error has occurred
@@ -226,15 +251,28 @@
     [self handleError:[[notif userInfo] valueForKey:kJMCNewsMsgErrorKey]];
 }
 
-// The NSOperation "ParseOperation" calls addEarthquakes: via NSNotification, on the main thread
+// Our NSNotification callback from the running NSOperation when a parsing error has occurred
+//
+- (void)categoriesError:(NSNotification *)notif {
+    assert([NSThread isMainThread]);
+    
+    [self handleError:[[notif userInfo] valueForKey:kCategoriesMsgErrorKey]];
+}
+
+// The NSOperation "ParseOperation" calls addJMCNews: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
 // The batch size is set via the kSizeOfEarthquakeBatch constant.
 //
-- (void)addJMCNewsToList:(NSArray *)JMCNews {
+- (void)addJMCNewsToList:(NSArray *)news {
     
-    // insert the earthquakes into our rootViewController's data source (for KVO purposes)
-    NSLog(@"addJMCNewsToList - JMCAppDelgate - %d", JMCNews.count);
-    [self.newsTabView insertJMCNews:JMCNews];
+    // insert the JMCNews into our rootViewController's data source (for KVO purposes)
+    [self.newsTabView insertJMCNews:news];
+}
+
+- (void)addCategoriesToList:(NSArray *)categories {
+    
+    // insert the JMCNews into our rootViewController's data source (for KVO purposes)
+    [self.menuTabView insertCategories:categories];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
