@@ -11,6 +11,11 @@
 #import "JMCNewsTableViewController.h"
 #import "JMCMenuHeaderSectionView.h"
 
+#define BG_COLOR [UIColor colorWithRed:(49.0/255.0) green:(57.0/255.0) blue:(74.0/255.0) alpha:1.0]
+#define TITLE_CELL_COLOR [UIColor colorWithRed:(194.0/255.0) green:(204.0/255.0) blue:(218.0/255.0) alpha:1.0]
+
+#define SECTION_HEADER_HEIGHT 20;
+
 
 @interface JMCMenuViewController ()
 
@@ -24,11 +29,18 @@
 @synthesize sections = _sections;
 @synthesize menu = _menu;
 
+- (void) dealloc
+{
+    [_sections release];
+    [_menu release];
+    [super dealloc];
+}
+
 - (NSArray *) sections
 {
     if(!_sections)
     {
-        _sections = [[NSArray alloc] initWithObjects:@"Général", @"Catégorie", @"Autres", nil];
+        _sections = [[NSArray arrayWithObjects:@"Général", @"Catégorie", @"Autres", nil] retain];
     }
     
     return _sections;
@@ -38,10 +50,10 @@
 {
     if (!_menu)
     {
-        NSArray *geneMenu = [[NSArray alloc] initWithObjects:@"All", @"New", nil];
-        NSArray *categoryMenu = [[NSArray alloc] initWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil];
+        NSArray *geneMenu = [NSArray arrayWithObjects:@"All", @"New", nil];
+        NSArray *categoryMenu = [NSArray arrayWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil];
         
-        _menu = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], categoryMenu, [self.sections objectAtIndex:1], nil] retain];
+        _menu = [[NSMutableDictionary dictionaryWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], categoryMenu, [self.sections objectAtIndex:1],nil] retain];
     }
     return _menu;
 }
@@ -61,12 +73,6 @@
         // Change the properties of the imageView and tableView (these could be set
         // in interface builder instead).
         //
-        self.tableView.rowHeight = 30;
-        self.tableView.backgroundColor = [UIColor colorWithRed:(49.0/255.0)
-                                                         green:(57.0/255.0)
-                                                          blue:(74.0/255.0)
-                                                         alpha:1.0];
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -74,7 +80,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.tableView.rowHeight = 30;
+    self.tableView.sectionHeaderHeight = SECTION_HEADER_HEIGHT;
+    self.tableView.backgroundColor = BG_COLOR;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -99,11 +109,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    CGRect frame = CGRectMake(0, 0, 320, 15);
 	// create the parent view that will hold header Label
-	JMCMenuHeaderSectionView *headerSectionView = [[[JMCMenuHeaderSectionView alloc] initWithFrame:frame] autorelease];
-    headerSectionView.sectionTitle.text = @"CATEGORIES";
-   // NSLog(@"%f", headerSectionView.frame.size.height);
+
+	JMCMenuHeaderSectionView *headerSectionView = [[[JMCMenuHeaderSectionView alloc] initWithFrame:CGRectZero] autorelease];
+    headerSectionView.sectionTitle.text = @"CATEGORIES";// TODO Mettre nom de la section
 	return headerSectionView;
 }
 
@@ -122,20 +131,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"MenuCell";
+    static NSString *CellIdentifier = @"menuCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuCell.png"]]autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        cell.backgroundView =[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuCell.png"]]autorelease];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
-        cell.textLabel.textColor = [UIColor colorWithRed:(194.0/255.0)
-                                                   green:(204.0/255.0)
-                                                    blue:(218.0/255.0)
-                                                   alpha:1.0];
+        cell.textLabel.textColor = TITLE_CELL_COLOR;
         cell.textLabel.shadowColor = [UIColor blackColor];
         cell.textLabel.shadowOffset = CGSizeMake(0, 1);
     }

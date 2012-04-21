@@ -8,6 +8,7 @@
 
 #import "JMCNewsTableViewController.h"
 #import "JMCNews.h"
+#import "JMCNewsCell.h"
 
 @interface JMCNewsTableViewController ()
 
@@ -23,6 +24,10 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
+        
+        self.tableView.rowHeight = 80;
+        self.tableView.backgroundColor = [UIColor lightGrayColor];
     }
     return self;
 }
@@ -104,13 +109,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (self.rss.loaded == YES) {
+		return [self.jmcNewsList count];
+	} else {
+		return 1;
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     return [JMCNewsList count];
+
 }
 
 - (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
@@ -171,6 +181,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    if (self.rss.loaded == NO)
+    {
+		return [self getLoadingTableCellWithTableView:tableView];
+	}
+    /*
+     
+     HUGO VERSION
+     
     if (indexPath.row % 2 == 1) {
 		return [self getTextCellWithTableView:tableView atIndexPath:indexPath];
 	}
@@ -189,6 +208,25 @@
 	JMCNews *entry = [self.JMCNewsList objectAtIndex: indexPath.row/2];
 	cell.textLabel.text = entry.title;        
     NSLog(@"Cell recupéré : %@", cell.textLabel.text);
+     */
+    
+    
+    static NSString *CellIdentifier = @"menuCell";
+    
+    JMCNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        cell = [[[JMCNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    // Configure the cell...
+    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    cell.titleLabel.text = entry.title;
+    cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
+    cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];
+    cell.commentsLabel.text = @"99";
+    NSLog(@"%@", entry.author);
+    
+    
     return cell;
 }
 

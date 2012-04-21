@@ -19,7 +19,7 @@ NSMutableData *JMCNewsData;
 NSOperationQueue *parseQueue;
 }
 
-@property (strong, nonatomic) UIWindow *window;
+@property (retain, nonatomic) UIWindow *window;
 
 @property (retain, nonatomic) UITableViewController *leftViewController;
 @property (retain, nonatomic) UIViewController* centerViewController;

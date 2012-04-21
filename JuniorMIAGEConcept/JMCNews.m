@@ -43,5 +43,13 @@
     
 }
 
+- (void) dealloc {
+    [_title release];
+    [_pubDate release];
+    [_author release];
+    [_category release];
+    [_description release];
+    [super dealloc];
+}
 
 @end

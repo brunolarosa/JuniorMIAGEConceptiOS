@@ -8,6 +8,8 @@
 
 #import "JMCMenuHeaderSectionView.h"
 
+#define TITLE_COLOR [UIColor colorWithRed:(196.0/255.0) green:(204.0/255.0) blue:(218.0/255.0) alpha:1.0]
+
 @implementation JMCMenuHeaderSectionView
 
 @synthesize sectionTitle = _sectionTitle;
@@ -15,7 +17,7 @@
 - (UILabel *) sectionTitle
 {
     if (!_sectionTitle)
-        _sectionTitle = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 300, 10)] autorelease];
+        _sectionTitle = [[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 310, 20)] retain];
     return _sectionTitle;
 }
 
@@ -25,17 +27,13 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
-        UIImage *backgroundImage = [UIImage imageNamed:@"SectionHeader.png"];
-        UIImageView * background = [[UIImageView alloc] initWithImage:backgroundImage];
+        UIImageView * background = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sectionHeader.png"]] autorelease];
         [self addSubview:background];
         
         self.sectionTitle.font = [UIFont boldSystemFontOfSize:10];
         self.sectionTitle.backgroundColor = [UIColor clearColor];
         
-        self.sectionTitle.textColor = [UIColor colorWithRed:(196.0/255.0)
-                                                      green:(204.0/255.0)
-                                                       blue:(218.0/255.0)
-                                                      alpha:1.0];
+        self.sectionTitle.textColor = TITLE_COLOR;
         
         self.sectionTitle.shadowColor = [UIColor blackColor];
         self.sectionTitle.shadowOffset = CGSizeMake(0, 1);

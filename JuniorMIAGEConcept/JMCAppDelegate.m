@@ -43,24 +43,28 @@
 
 - (void)dealloc
 {
+
     [JMCNewsFeedConnection cancel];
     [JMCNewsFeedConnection release];
     
-    [JMCNewsData release];
-
-    
+    [JMCNewsData release];    
     [parseQueue release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddJMCNewsNotif object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kJMCNewsErrorNotif object:nil];
+
+    [_centerViewController release];
+    [_leftViewController release];
+
     [_window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] retain];
     
+
     static NSString *feedURLString = @"http://www.juniormiageconcept.com/clients/?feed=rss2";
     NSURLRequest *JMCNewsURLRequest =
     [NSURLRequest requestWithURL:[NSURL URLWithString:feedURLString]];
@@ -82,14 +86,17 @@
                                                  name:kJMCNewsErrorNotif
                                                object:nil];
     
-    newsTabView = [[[JMCNewsTableViewController alloc] init] autorelease];
-    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] autorelease];
+    JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
+
     
-    NSLog(@"NewsTableView Allocated");
-    self.leftViewController = [[[JMCMenuViewController alloc] init] autorelease];
+
+    self.leftViewController = [[[JMCMenuViewController alloc] init] retain];
     
-    NSLog(@"MenuView Allocated");
-    IIViewDeckController *deck = [[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController leftViewController:self.leftViewController];
+   
+    IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
+                                                                          leftViewController:self.leftViewController] autorelease];
+    deck.leftLedge = 160;
     
     self.window.rootViewController = deck; //TODO: remettre tabController
     [self.window makeKeyAndVisible];

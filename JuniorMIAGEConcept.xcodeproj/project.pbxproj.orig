@@ -413,11 +413,11 @@
 				C74E03B11539EF33007A6974 /* WrapController.m in Sources */,
 				C710D9E4153B8DB000779B10 /* JMCMenuViewController.m in Sources */,
 				C74A82BA153F7416002EF930 /* JMCMenuHeaderSectionView.m in Sources */,
-<<<<<<< .merge_file_KjCQXi
+<<<<<<< HEAD
 				2A4A710C15405B6200621AC7 /* JMCParseOperation.m in Sources */,
 =======
 				C7BD2DBD15405D740031A7E1 /* JMCNewsCell.m in Sources */,
->>>>>>> .merge_file_SaMsRq
+>>>>>>> aa6a24415da552e14d0dedadb9f9497dbec988a7
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
