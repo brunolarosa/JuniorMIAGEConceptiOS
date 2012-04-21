@@ -86,7 +86,7 @@
                                                  name:kJMCNewsErrorNotif
                                                object:nil];
     
-    JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
 
     

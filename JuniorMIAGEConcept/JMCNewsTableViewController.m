@@ -62,15 +62,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    /*
-    if (self.rss==nil) {
-		self.rss = [[[JMCParser alloc] init] autorelease];
-		self.rss.delegate = self;
-		[self.rss load];
-	}
-    
-    NSLog(@"Flux chargé : %@", self.rss );
-     */
+
 }
 
 #pragma mark -
@@ -109,38 +101,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.rss.loaded == YES) {
-		return [self.jmcNewsList count];
-	} else {
-		return 1;
-	}
+    return [JMCNewsList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [JMCNewsList count];
+    return 1;
 
-}
-
-- (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
-{
-    static NSString *LoadingCellIdentifier = @"LoadingCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
-    
-	if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
-    }
-	
-	cell.textLabel.text = @"chargement...";
-	
-	UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[activity startAnimating];
-	[cell setAccessoryView: activity];
-	[activity release];
-	
-    return cell;
 }
 
 - (UITableViewCell *)getTextCellWithTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
@@ -181,11 +149,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (self.rss.loaded == NO)
-    {
-		return [self getLoadingTableCellWithTableView:tableView];
-	}
     /*
      
      HUGO VERSION
@@ -219,7 +182,7 @@
         cell = [[[JMCNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell...
-    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    JMCNews *entry = [self.JMCNewsList objectAtIndex: indexPath.section];
     cell.titleLabel.text = entry.title;
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
     cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];

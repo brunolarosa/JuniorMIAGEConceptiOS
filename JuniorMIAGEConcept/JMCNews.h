@@ -23,11 +23,6 @@ NSString *description;
 @property (nonatomic, retain) NSString *category;
 @property (nonatomic, retain) NSString *description;
 
-- (id)initWithTitle:(NSString *)newTitle 
-            pubDate:(NSString *)newPubDate 
-             author:(NSString *)newAuthor 
-           category:(NSString *)newCategory 
-        description:(NSString *)newDescription;
 
 
 
