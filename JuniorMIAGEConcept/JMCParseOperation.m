@@ -154,6 +154,7 @@ static NSString * const kDescriptionElementName = @"description";
     if ([elementName isEqualToString:kItemElementName]) {
         JMCNews *aJMCNews = [[JMCNews alloc]init];
         self.currentJMCNewsObject = aJMCNews;
+        self.currentJMCNewsObject.category = [[NSMutableArray alloc] init];
         [aJMCNews release];
 
     } else if ([elementName isEqualToString:kTitleElementName] ||
@@ -205,13 +206,14 @@ static NSString * const kDescriptionElementName = @"description";
     }
     else if ([elementName isEqualToString:kCategoryElementName]) {
         if (self.currentJMCNewsObject != nil) {
-//            NSLog(@"Category : %@", self.currentParsedCharacterData);
-            self.currentJMCNewsObject.category = self.currentParsedCharacterData.copy;
+//           NSLog(@"Category : %@", self.currentParsedCharacterData);
+//           self.currentJMCNewsObject.category = self.currentParsedCharacterData.copy; 
+            [self.currentJMCNewsObject.category addObject:self.currentParsedCharacterData.copy];
         }
     }
     else if ([elementName isEqualToString:kDescriptionElementName]) {
         if (self.currentJMCNewsObject != nil) {
-//            NSLog(@"Description : %@", self.currentParsedCharacterData);
+//          NSLog(@"Description : %@", self.currentParsedCharacterData);
             self.currentJMCNewsObject.description = self.currentParsedCharacterData.copy;
         }
     }

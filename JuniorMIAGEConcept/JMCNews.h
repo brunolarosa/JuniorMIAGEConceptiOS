@@ -13,14 +13,14 @@
 NSString *title;
 NSString *pubDate;
 NSString *author;
-NSString *category;
+NSMutableArray *category;
 NSString *description;
 
 }
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *pubDate;
 @property (nonatomic, retain) NSString *author;
-@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSMutableArray *category;
 @property (nonatomic, retain) NSString *description;
 
 
