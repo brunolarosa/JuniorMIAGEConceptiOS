@@ -9,14 +9,10 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *kAddJMCNewsNotif;
-extern NSString *kAddCategoriesNotif;
 extern NSString *kJMCNewsResultsKey;
-extern NSString *kCategoriesResultsKey;
 
 extern NSString *kJMCNewsErrorNotif;
-extern NSString *kCategoriesErrorNotif;
 extern NSString *kJMCNewsMsgErrorKey;
-extern NSString *kCategoriesMsgErrorKey;
 
 @class JMCNews;
 

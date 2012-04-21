@@ -993,7 +993,7 @@ __typeof__(h) __h = (h);                                    \
         }
     }
     
-    BOOL animated = NO;
+//    BOOL animated = NO;
     if (panner.state == UIGestureRecognizerStateEnded) {    
         if ((self.leftController.view.hidden && !leftWasHidden) || (self.rightController.view.hidden && !rightWasHidden)) {
             [self centerViewVisible];
@@ -1009,11 +1009,11 @@ __typeof__(h) __h = (h);                                    \
             // small velocity, no movement
             if (x >= w - self.leftLedge - lw3) {
                 [self openLeftViewAnimated:YES options:UIViewAnimationOptionCurveEaseOut completion:nil];
-                animated = YES;
+//                animated = YES;
             }
             else if (x <= self.rightLedge + rw3 - w) {
                 [self openRightViewAnimated:YES options:UIViewAnimationOptionCurveEaseOut completion:nil];
-                animated = YES;
+//                animated = YES;
             }
             else
                 [self showCenterView:YES];
@@ -1022,7 +1022,7 @@ __typeof__(h) __h = (h);                                    \
             // swipe to the left
             if (x < 0) {
                 [self openRightViewAnimated:YES options:UIViewAnimationOptionCurveEaseOut completion:nil];
-                animated = YES;
+//                animated = YES;
             }
             else 
                 [self showCenterView:YES];
@@ -1031,7 +1031,7 @@ __typeof__(h) __h = (h);                                    \
             // swipe to the right
             if (x > 0) {
                 [self openLeftViewAnimated:YES options:UIViewAnimationOptionCurveEaseOut completion:nil];
-                animated = YES;
+//                animated = YES;
             }
             else 
                 [self showCenterView:YES];

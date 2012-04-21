@@ -28,7 +28,6 @@
 @property (nonatomic, retain) JMCMenuViewController *menuTabView;
 
 - (void)addJMCNewsToList:(NSArray *)news;
-- (void)addCategoriesToList:(NSArray *)categories;
 - (void)handleError:(NSError *)error;
 @end
 
@@ -57,10 +56,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddJMCNewsNotif object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kJMCNewsErrorNotif object:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddCategoriesNotif object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kCategoriesErrorNotif object:nil];
-    
-
     [_centerViewController release];
     [_leftViewController release];
 
@@ -99,6 +94,9 @@
     static NSString *feedURLString = @"http://www.juniormiageconcept.com/clients/?feed=rss2";
     NSURLRequest *JMCNewsURLRequest =
     [NSURLRequest requestWithURL:[NSURL URLWithString:feedURLString]];
+    
+    [feedURLString release];
+    
     self.JMCNewsFeedConnection =
     [[[NSURLConnection alloc] initWithRequest:JMCNewsURLRequest delegate:self] autorelease];
     
@@ -117,14 +115,6 @@
                                                  name:kJMCNewsErrorNotif
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addCatgories:)
-                                                 name:kAddJMCNewsNotif
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addCategoriesError:)
-                                                 name:kJMCNewsErrorNotif
-                                               object:nil];
     
     newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
@@ -236,14 +226,6 @@
     [self addJMCNewsToList:[[notif userInfo] valueForKey:kJMCNewsResultsKey]];
 }
 
-// Our NSNotification callback from the running NSOperation to add the JMCNews
-//
-- (void)addCatgories:(NSNotification *)notif {
-    assert([NSThread isMainThread]);
-    
-    [self addCategoriesToList:[[notif userInfo] valueForKey:kCategoriesResultsKey]];
-}
-
 // Our NSNotification callback from the running NSOperation when a parsing error has occurred
 //
 - (void)JMCNewsError:(NSNotification *)notif {
@@ -252,28 +234,13 @@
     [self handleError:[[notif userInfo] valueForKey:kJMCNewsMsgErrorKey]];
 }
 
-// Our NSNotification callback from the running NSOperation when a parsing error has occurred
-//
-- (void)categoriesError:(NSNotification *)notif {
-    assert([NSThread isMainThread]);
-    
-    [self handleError:[[notif userInfo] valueForKey:kCategoriesMsgErrorKey]];
-}
-
 // The NSOperation "ParseOperation" calls addJMCNews: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
 // The batch size is set via the kSizeOfJMCNewsBatch constant.
 //
-- (void)addJMCNewsToList:(NSArray *)news {
-    
-    // insert the JMCNews into our rootViewController's data source (for KVO purposes)
-    [self.newsTabView insertJMCNews:news];
-}
-
-- (void)addCategoriesToList:(NSArray *)categories {
-    
-    // insert the JMCNews into our rootViewController's data source (for KVO purposes)
-    [self.menuTabView insertCategories:categories];
+- (void)addJMCNewsToList:(NSDictionary *)dic {
+    [self.newsTabView insertJMCNews:[dic objectForKey:@"news"]];
+    [self.menuTabView insertCategories:[dic objectForKey:@"categories"]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

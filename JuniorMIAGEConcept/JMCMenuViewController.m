@@ -48,6 +48,37 @@
     return _sections;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.tableView.rowHeight = 30;
+    self.tableView.sectionHeaderHeight = SECTION_HEADER_HEIGHT;
+    self.tableView.backgroundColor = BG_COLOR;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _categories = [NSMutableArray array];
+    
+    [self addObserver:self forKeyPath:@"categories" options:0 context:NULL];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    _categories = nil;
+    
+    [self removeObserver:self forKeyPath:@"categories"];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
 #pragma mark -
 #pragma mark KVO support
 
@@ -61,8 +92,7 @@
     //    NSLog(@"Debug : %@",JMCNews.debugDescription);
     [self willChangeValueForKey:@"categories"];
     NSLog(@"Ajout des %d categories", someCategories.count);
-    [self.categories addObjectsFromArray:someCategories];
-    
+    [self.categories addObjectsFromArray:[someCategories copy]];
     [self didChangeValueForKey:@"categories"];
 }
 
@@ -79,9 +109,9 @@
     if (!_menu)
     {
         NSArray *geneMenu = [NSArray arrayWithObjects:@"All", @"New", nil];
-        NSArray *categoryMenu = [NSArray arrayWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil];
+//        NSArray *categoryMenu = [NSArray arrayWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil];
         
-        _menu = [[NSMutableDictionary dictionaryWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], categoryMenu, [self.sections objectAtIndex:1],nil] retain];
+        _menu = [[NSMutableDictionary dictionaryWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], self.categories, [self.sections objectAtIndex:1],nil] retain];
     }
     return _menu;
 }
@@ -103,29 +133,6 @@
         //
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.tableView.rowHeight = 30;
-    self.tableView.sectionHeaderHeight = SECTION_HEADER_HEIGHT;
-    self.tableView.backgroundColor = BG_COLOR;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
