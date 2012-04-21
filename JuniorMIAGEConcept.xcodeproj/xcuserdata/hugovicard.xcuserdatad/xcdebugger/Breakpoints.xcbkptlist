@@ -8,12 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356115835.707572"
+         timestampString = "356717311.655085"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "277"
-         endingLineNumber = "277"
-         landmarkName = "-updatedFeedTitle:"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -60,63 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356115835.707572"
+         timestampString = "356717311.655085"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "267"
-         endingLineNumber = "267"
-         landmarkName = "-updatedFeedWithRSS:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356115672.965244"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "197"
-         endingLineNumber = "197"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356113299.74391"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "170"
-         endingLineNumber = "170"
-         landmarkName = "-getTextCellWithTableView:atIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356115835.707572"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "267"
-         endingLineNumber = "267"
-         landmarkName = "-updatedFeedWithRSS:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356115478.592268"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
          landmarkName = "@implementation JMCNewsTableViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -125,51 +73,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356115565.375279"
+         timestampString = "356717311.655085"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "177"
-         endingLineNumber = "177"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNews.h"
-         timestampString = "356179394.344505"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "25"
-         endingLineNumber = "25"
-         landmarkName = "+getNewsFromCategory:category:"
-         landmarkType = "4">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNews.m"
-         timestampString = "356179560.231036"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
-         landmarkName = "+getNewsFromCategory:category:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "JuniorMIAGEConcept/JMCNews.m"
-         timestampString = "356179568.636852"
+         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
+         timestampString = "356717283.937041"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
-         landmarkName = "+getNewsFromCategory:category:"
+         startingLineNumber = "138"
+         endingLineNumber = "138"
+         landmarkName = "-getTextCellWithTableView:atIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
+         timestampString = "356717311.655085"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
+         landmarkName = "@implementation JMCNewsTableViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
+         timestampString = "356717283.937041"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
+         landmarkName = "-getTextCellWithTableView:atIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
+         timestampString = "356717283.937041"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
+         landmarkName = "-getTextCellWithTableView:atIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

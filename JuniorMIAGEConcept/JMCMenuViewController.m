@@ -110,6 +110,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	// create the parent view that will hold header Label
+
 	JMCMenuHeaderSectionView *headerSectionView = [[[JMCMenuHeaderSectionView alloc] initWithFrame:CGRectZero] autorelease];
     headerSectionView.sectionTitle.text = @"CATEGORIES";// TODO Mettre nom de la section
 	return headerSectionView;

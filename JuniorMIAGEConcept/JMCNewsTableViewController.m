@@ -19,8 +19,7 @@
 
 @implementation JMCNewsTableViewController
 
-@synthesize jmcNewsList = _jmcNewsList;
-@synthesize rss = _rss;
+@synthesize JMCNewsList;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -44,12 +43,12 @@
     
     NSLog(@"View loaded");
     self.navigationItem.title = @"RSSFeeds";
+    self.JMCNewsList = [NSMutableArray array];
     
-    self.jmcNewsList = nil;
-    self.rss = nil;
+    [self addObserver:self forKeyPath:@"JMCNewsList" options:0 context:NULL];
     
     //[self addRows];
-    //NSLog(@"%d", [self.jmcNewsList count]);
+    //NSLog(@"%d", [self.JMCNewsList count]);
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,26 +57,45 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    
+    self.JMCNewsList = nil;
+    
+    [self removeObserver:self forKeyPath:@"JMCNewsList"];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    if (self.rss==nil) {
-		self.rss = [[[JMCParser alloc] init] autorelease];
-		self.rss.delegate = self;
-		[self.rss load];
-	}
-    
-    NSLog(@"Flux chargé : %@", self.rss );
+
 }
 
-- (void)viewDidUnload
+#pragma mark -
+#pragma mark KVO support
+
+- (void)insertJMCNews:(NSArray *)aJMCNews
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    // this will allow us as an observer to notified (see observeValueForKeyPath)
+    // so we can update our UITableView
+    //
+    
+//    NSLog(@"InsertJMCNews - JMCNewsTableViewController - %d", JMCNews.count);
+//    NSLog(@"Debug : %@",JMCNews.debugDescription);
+    [self willChangeValueForKey:@"JMCNewsList"];
+    
+    [self.JMCNewsList addObjectsFromArray:aJMCNews];
+    
+    [self didChangeValueForKey:@"JMCNewsList"];
 }
 
-
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    NSLog(@"observeValueForKeyPath - JMCNewsTableViewController");
+    [self.tableView reloadData];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -88,37 +106,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.rss.loaded == YES) {
-		return [self.jmcNewsList count];
-	} else {
-		return 1;
-	}
+    return [JMCNewsList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     return 1;
-}
 
-- (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
-{
-    static NSString *LoadingCellIdentifier = @"LoadingCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
-    
-	if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
-    }
-	
-	cell.textLabel.text = @"chargement...";
-	
-	UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[activity startAnimating];
-	[cell setAccessoryView: activity];
-	[activity release];
-	
-    return cell;
 }
 
 - (UITableViewCell *)getTextCellWithTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
@@ -128,7 +123,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TextCellIdentifier] autorelease];
     }
-    JMCNews *entry = [self.jmcNewsList objectAtIndex:((indexPath.row-1)/2)];
+    JMCNews *entry = [self.JMCNewsList objectAtIndex:((indexPath.row-1)/2)];
     NSLog(@"%@", entry.title);
 
     
@@ -159,10 +154,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.rss.loaded == NO)
-    {
-		return [self getLoadingTableCellWithTableView:tableView];
-	}
     /*
      
      HUGO VERSION
@@ -182,7 +173,7 @@
 	backView.backgroundColor = [UIColor clearColor];
 	cell.backgroundView = backView;
 
-	JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.row/2];
+	JMCNews *entry = [self.JMCNewsList objectAtIndex: indexPath.row/2];
 	cell.textLabel.text = entry.title;        
     NSLog(@"Cell recupéré : %@", cell.textLabel.text);
      */
@@ -196,7 +187,7 @@
         cell = [[[JMCNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell...
-    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    JMCNews *entry = [self.JMCNewsList objectAtIndex: indexPath.section];
     cell.titleLabel.text = entry.title;
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
     cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];
@@ -271,7 +262,7 @@
 
 -(void) dealloc
 {
-    [_jmcNewsList release];
+    [JMCNewsList release];
     [super dealloc];
 }
 
@@ -279,7 +270,7 @@
 #pragma mark JMCParserdelegate
 -(void)updatedFeedWithRSS:(NSMutableArray*)items
 {
-	self.jmcNewsList = [items retain];
+	self.JMCNewsList = [items retain];
 	[self.tableView reloadData];
 }
 

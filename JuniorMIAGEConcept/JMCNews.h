@@ -8,21 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JMCNews : NSObject
+@interface JMCNews : NSObject {
+@private
+NSString *title;
+NSString *pubDate;
+NSString *author;
+NSString *category;
+NSString *description;
 
+}
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSDate *pubDate;
+@property (nonatomic, retain) NSString *pubDate;
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSString *category;
-@property (nonatomic, retain) NSString *description;;
+@property (nonatomic, retain) NSString *description;
 
-- (id)initWithTitle:(NSString *)newTitle 
-            pubDate:(NSString *)newPubDate 
-             author:(NSString *)newAuthor 
-           category:(NSString *)newCategory 
-        description:(NSString *)newDescription;
 
-+ (NSArray *) getNewsFromCategory:(NSArray *) anArray
-                         category:(NSString *)aCategory;
+
 
 @end
