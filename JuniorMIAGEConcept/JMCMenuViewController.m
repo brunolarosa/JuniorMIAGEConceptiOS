@@ -103,7 +103,7 @@
 	// create the parent view that will hold header Label
 	JMCMenuHeaderSectionView *headerSectionView = [[[JMCMenuHeaderSectionView alloc] initWithFrame:frame] autorelease];
     headerSectionView.sectionTitle.text = @"CATEGORIES";
-    NSLog(@"%f", headerSectionView.frame.size.height);
+   // NSLog(@"%f", headerSectionView.frame.size.height);
 	return headerSectionView;
 }
 

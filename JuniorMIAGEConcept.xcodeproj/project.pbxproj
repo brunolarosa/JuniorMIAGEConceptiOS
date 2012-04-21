@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A4A710C15405B6200621AC7 /* JMCParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A710B15405B6200621AC7 /* JMCParseOperation.m */; };
 		2AF10F0915399E120032220A /* JMCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF10F0815399E120032220A /* JMCParser.m */; };
 		2AF10F0A15399E120032220A /* JMCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF10F0815399E120032220A /* JMCParser.m */; };
 		C710D9E4153B8DB000779B10 /* JMCMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C710D9E2153B8DB000779B10 /* JMCMenuViewController.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A4A710A15405B6200621AC7 /* JMCParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCParseOperation.h; sourceTree = "<group>"; };
+		2A4A710B15405B6200621AC7 /* JMCParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCParseOperation.m; sourceTree = "<group>"; };
 		2AF10F0715399E120032220A /* JMCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCParser.h; sourceTree = "<group>"; };
 		2AF10F0815399E120032220A /* JMCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCParser.m; sourceTree = "<group>"; };
 		C710D9E1153B8DB000779B10 /* JMCMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCMenuViewController.h; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				C739D3C4152C437C00FAB22D /* JMCNews.m */,
 				2AF10F0715399E120032220A /* JMCParser.h */,
 				2AF10F0815399E120032220A /* JMCParser.m */,
+				2A4A710A15405B6200621AC7 /* JMCParseOperation.h */,
+				2A4A710B15405B6200621AC7 /* JMCParseOperation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				C74E03B11539EF33007A6974 /* WrapController.m in Sources */,
 				C710D9E4153B8DB000779B10 /* JMCMenuViewController.m in Sources */,
 				C74A82BA153F7416002EF930 /* JMCMenuHeaderSectionView.m in Sources */,
+				2A4A710C15405B6200621AC7 /* JMCParseOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,21 +79,39 @@
 	} else {
 		[self.delegate performSelectorOnMainThread:@selector(failedFeedUpdateWithError:) withObject:error waitUntilDone:YES];
 	}
-	
+    
     [doc autorelease];
     [xmlData release];
 }
 
 -(JMCNews *)getItemFromXmlElement:(GDataXMLElement*)xmlItem
 {
+    /*
     JMCNews *news = [[[JMCNews alloc]initWithTitle:[[[xmlItem elementsForName:@"title"] objectAtIndex:0] stringValue] 
                                          pubDate:[[[xmlItem elementsForName:@"pubDate"] objectAtIndex:0] stringValue]
                                           author:[[[xmlItem elementsForName:@"author"] objectAtIndex:0] stringValue]
                                         category:[[[xmlItem elementsForName:@"category"] objectAtIndex:0] stringValue]
                                       description:[[[xmlItem elementsForName:@"description"] objectAtIndex:0] stringValue]
                      ] autorelease];
-    NSLog(@"%@",news.title);
-	return news;
+    NSLog(@"%@",news.title);*/
+	return nil;
 }
+
+/*
++ (void)saveXMLFeed:(Party *)party {
+    
+    GDataXMLElement * partyElement = [GDataXMLNode elementWithName:@"Party"];
+
+    
+    GDataXMLDocument *document = [[[GDataXMLDocument alloc] 
+                                   initWithRootElement:partyElement] autorelease];
+    NSData *xmlData = document.XMLData;
+    
+    NSString *filePath = [self dataFilePath:TRUE];
+    NSLog(@"Saving xml data to %@...", filePath);
+    [xmlData writeToFile:filePath atomically:YES];
+    
+}
+*/
 
 @end

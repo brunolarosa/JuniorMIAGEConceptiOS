@@ -17,11 +17,20 @@
 @synthesize category = _category;
 @synthesize description = _description;
 
+- (void) dealloc {
+    [_title release];
+    [_pubDate release];
+    [_author release];
+    [_category release];
+    [_description release];
+    [super dealloc];
+}
+
 - (id)initWithTitle:(NSString *)newTitle 
-           pubDate:(NSDate *)newPubDate 
-            author:(NSString *)newAuthor 
-          category:(NSString *)newCategory 
-       description:(NSString *)newDescription{
+            pubDate:(NSString *)newPubDate 
+             author:(NSString *)newAuthor 
+           category:(NSString *)newCategory 
+        description:(NSString *)newDescription{
     
     if ((self = [super init])) {
         self.title = newTitle;
@@ -32,29 +41,6 @@
     }    
     return self;
     
-}
-
-+ (NSArray *) getNewsFromCategory:(NSArray *)anArray
-                         category:(NSString *)aCategory{
-    
-    NSEnumerator *e = [anArray objectEnumerator];
-    NSMutableArray *returnValues = [[NSMutableArray alloc] init];
-    JMCNews *object = nil;
-    while (object = [e nextObject]) {
-        if([object.category isEqualToString:aCategory]){
-            [returnValues addObject:object];
-        }            
-    }
-    return returnValues;    
-}
-
-- (void) dealloc {
-    [_title release];
-    [_pubDate release];
-    [_author release];
-    [_category release];
-    [_description release];
-    [super dealloc];
 }
 
 

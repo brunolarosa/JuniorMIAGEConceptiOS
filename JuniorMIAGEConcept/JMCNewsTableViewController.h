@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "JMCParser.h"
 
-@interface JMCNewsTableViewController : UITableViewController<JMCParserDelegate>
+@interface JMCNewsTableViewController : UITableViewController<UIActionSheetDelegate>
 {
-    JMCParser* rss;
-    NSMutableArray *jmcNewsList;
+    NSMutableArray *JMCNewsList;
 }
 
-@property (nonatomic, retain) NSMutableArray *jmcNewsList;
-@property (nonatomic, retain) JMCParser* rss;
+@property (nonatomic, retain) NSMutableArray *JMCNewsList;
+- (void)insertJMCNews:(NSArray *)aJMCNews;
+
 
 @end
