@@ -10,4 +10,5 @@
 
 @interface JMCMenuViewController : UITableViewController
 
+- (void) insertCategories:(NSArray *) categories;
 @end

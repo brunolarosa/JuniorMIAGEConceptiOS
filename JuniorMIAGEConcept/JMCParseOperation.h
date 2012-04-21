@@ -9,18 +9,21 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *kAddJMCNewsNotif;
+extern NSString *kAddCategoriesNotif;
 extern NSString *kJMCNewsResultsKey;
+extern NSString *kCategoriesResultsKey;
 
 extern NSString *kJMCNewsErrorNotif;
+extern NSString *kCategoriesErrorNotif;
 extern NSString *kJMCNewsMsgErrorKey;
+extern NSString *kCategoriesMsgErrorKey;
 
 @class JMCNews;
 
 @interface JMCParseOperation : NSOperation {
     NSData *JMCNewsData;
-
 @private
-NSDateFormatter *dateFormatter;
+    NSDateFormatter *dateFormatter;
 
 // these variables are used during parsing
 JMCNews *currentJMCNewsObject;

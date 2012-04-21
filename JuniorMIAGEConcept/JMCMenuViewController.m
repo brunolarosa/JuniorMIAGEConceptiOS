@@ -21,6 +21,7 @@
 
 @property (retain, nonatomic) NSArray *sections;
 @property (retain, nonatomic) NSMutableDictionary *menu;
+@property (retain, nonatomic) NSMutableArray *categories;
 
 @end
 
@@ -28,6 +29,7 @@
 
 @synthesize sections = _sections;
 @synthesize menu = _menu;
+@synthesize categories = _categories;
 
 - (void) dealloc
 {
@@ -46,6 +48,32 @@
     return _sections;
 }
 
+#pragma mark -
+#pragma mark KVO support
+
+- (void)insertCategories:(NSArray *)someCategories 
+{
+    // this will allow us as an observer to notified (see observeValueForKeyPath)
+    // so we can update our UITableView
+    //
+    
+    //    NSLog(@"InsertJMCNews - JMCNewsTableViewController - %d", JMCNews.count);
+    //    NSLog(@"Debug : %@",JMCNews.debugDescription);
+    [self willChangeValueForKey:@"categories"];
+    NSLog(@"Ajout des %d categories", someCategories.count);
+    [self.categories addObjectsFromArray:someCategories];
+    
+    [self didChangeValueForKey:@"categories"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    NSLog(@"observeValueForKeyPath - JMCNewsTableViewController");
+    [self.tableView reloadData];
+}
 - (NSMutableDictionary *) menu
 {
     if (!_menu)

@@ -11,27 +11,32 @@
 #import "JMCNews.h"
 
 // NSNotification name for sending JMCNews data back to the app delegate
-NSString *kAddJMCNewsNotif = @"AddJMCNewssNotif";
+NSString *kAddJMCNewsNotif = @"AddJMCNewsNotif";
+NSString *kAddCategoriesNotif = @"AddCategoriesNotif";
 
 // NSNotification userInfo key for obtaining the JMCNews data
 NSString *kJMCNewsResultsKey = @"JMCNewsResultsKey";
+NSString *kCategoriesResultsKey = @"CategoriesResultsKey";
 
 // NSNotification name for reporting errors
 NSString *kJMCNewsErrorNotif = @"JMCNewsErrorNotif";
+NSString *kCategoriesErrorNotif = @"CategoriesErrorNotif";
 
 // NSNotification userInfo key for obtaining the error message
-NSString *kJMCNewsMsgErrorKey = @"JMCNewssMsgErrorKey";
+NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
+NSString *kCategoriesMsgErrorKey = @"CategoriesMsgErrorKey";
 
 
 @interface JMCParseOperation () <NSXMLParserDelegate>
 @property (nonatomic, retain) JMCNews *currentJMCNewsObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
+@property (nonatomic, retain) NSMutableArray *currentCategories;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
 @end
 
 @implementation JMCParseOperation
 
-@synthesize JMCNewsData, currentJMCNewsObject, currentParsedCharacterData, currentParseBatch;
+@synthesize JMCNewsData, currentJMCNewsObject, currentParsedCharacterData, currentParseBatch, currentCategories;
 
 - (id)initWithData:(NSData *)xmlData
 {
@@ -51,9 +56,19 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewssMsgErrorKey";
                                                                                            forKey:kJMCNewsResultsKey]]; 
 }
 
+- (void)addCategoriesToList:(NSArray *)categories {
+    assert([NSThread isMainThread]);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAddCategoriesNotif
+                                                        object:self
+                                                      userInfo:[NSDictionary dictionaryWithObject:categories
+                                                                                           forKey:kCategoriesResultsKey]]; 
+}
+
 // the main function for this NSOperation, to start the parsing
 - (void)main {
     self.currentParseBatch = [NSMutableArray array];
+    self.currentCategories = [NSMutableArray array];
     self.currentParsedCharacterData = [NSMutableString string];
     
     // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is
@@ -69,13 +84,17 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewssMsgErrorKey";
     // the array and, if necessary, send it to the main thread.
     //
     if ([self.currentParseBatch count] > 0) {
-        NSLog(@"main - JMCParseOperation");
+//        NSLog(@"main - JMCParseOperation");
         [self performSelectorOnMainThread:@selector(addJMCNewsToList:)
-                               withObject:self.currentParseBatch
+                               withObject:self.currentParseBatch.copy
+                            waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(addCategoriesToList:)
+                               withObject:self.currentCategories.copy
                             waitUntilDone:NO];
     }
     
     self.currentParseBatch = nil;
+    self.currentCategories = nil;
     self.currentJMCNewsObject = nil;
     self.currentParsedCharacterData = nil;
     
@@ -88,7 +107,7 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewssMsgErrorKey";
     [currentJMCNewsObject release];
     [currentParsedCharacterData release];
     [currentParseBatch release];
-    [dateFormatter release];
+    [currentCategories release];
     
     [super dealloc];
 }
@@ -98,9 +117,9 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewssMsgErrorKey";
 #pragma mark Parser constants
 
 // Limit the number of parsed JMCNewss to 50
-// (a given day may have more than 50 JMCNewss around the world, so we only take the first 50)
+// (a given day may have more than 50 JMCNewss around the world, so we only take the first 20)
 //
-static const const NSUInteger kMaximumNumberOfJMCNewsToParse = 10;
+static const const NSUInteger kMaximumNumberOfJMCNewsToParse = 20;
 
 // When an JMCNews object has been fully constructed, it must be passed to the main thread and
 // the table view in RootViewController must be reloaded to display it. It is not efficient to do
@@ -109,7 +128,7 @@ static const const NSUInteger kMaximumNumberOfJMCNewsToParse = 10;
 // constant below. In your application, the optimal batch size will vary 
 // depending on the amount of data in the object and other factors, as appropriate.
 //
-static NSUInteger const kSizeOfJMCNewsBatch = 10;
+static NSUInteger const kSizeOfJMCNewsBatch = 50;
 
 static NSString * const kItemElementName = @"item";
 static NSString * const kPubDateName = @"pubDate";
@@ -169,9 +188,13 @@ static NSString * const kDescriptionElementName = @"description";
         [self.currentParseBatch addObject:self.currentJMCNewsObject];
         parsedJMCNewsCounter++;
         if ([self.currentParseBatch count] >= kMaximumNumberOfJMCNewsToParse) {
-            NSLog(@"parser - didEndElement - JMCParseOperation");
+
             [self performSelectorOnMainThread:@selector(addJMCNewsToList:)
                                    withObject:self.currentParseBatch
+                                waitUntilDone:NO];
+
+            [self performSelectorOnMainThread:@selector(addCategoriesToList:)
+                                   withObject:self.currentCategories
                                 waitUntilDone:NO];
             self.currentParseBatch = [NSMutableArray array];
         }
@@ -183,7 +206,14 @@ static NSString * const kDescriptionElementName = @"description";
     } else if ([elementName isEqualToString:kPubDateName]) {
         if (self.currentJMCNewsObject != nil) {
 //            NSLog(@"PubDate : %@", self.currentParsedCharacterData);
-            self.currentJMCNewsObject.pubDate = currentParsedCharacterData.copy;
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss VVVV"];            
+            NSDate *date = [dateFormatter dateFromString:self.currentParsedCharacterData.copy];  
+            [dateFormatter setDateFormat:@"EEE, dd MMM yy HH"];        
+            NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+            [dateFormatter setLocale:frLocale];
+
+            self.currentJMCNewsObject.pubDate = [dateFormatter stringFromDate:date];
         }
     } else if ([elementName isEqualToString:kAuthorElementName]) {
         if (self.currentJMCNewsObject != nil) {
@@ -196,6 +226,11 @@ static NSString * const kDescriptionElementName = @"description";
 //           NSLog(@"Category : %@", self.currentParsedCharacterData);
 //           self.currentJMCNewsObject.category = self.currentParsedCharacterData.copy; 
             [self.currentJMCNewsObject.category addObject:self.currentParsedCharacterData.copy];
+            if (![currentCategories containsObject:self.currentParsedCharacterData ]) {
+//                NSLog(@"Ajout de la categorie : %@", self.currentParsedCharacterData);
+                [self.currentCategories addObject:self.currentParsedCharacterData.copy];                
+            }
+
         }
     }
     else if ([elementName isEqualToString:kDescriptionElementName]) {
@@ -217,7 +252,7 @@ static NSString * const kDescriptionElementName = @"description";
     if (accumulatingParsedCharacterData) {
         // If the current element is one whose content we care about, append 'string'
         // to the property that holds the content of the current element.
-        //
+        
         [self.currentParsedCharacterData appendString:string];
     }
 }
@@ -225,7 +260,7 @@ static NSString * const kDescriptionElementName = @"description";
 // an error occurred while parsing the JMCNews data,
 // post the error as an NSNotification to our app delegate.
 // 
-- (void)handleJMCNewssError:(NSError *)parseError {
+- (void)handleJMCNewsError:(NSError *)parseError {
     [[NSNotificationCenter defaultCenter] postNotificationName:kJMCNewsErrorNotif
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:parseError

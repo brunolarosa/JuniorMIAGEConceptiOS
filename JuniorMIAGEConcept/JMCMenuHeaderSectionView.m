@@ -38,7 +38,6 @@
         self.sectionTitle.shadowColor = [UIColor blackColor];
         self.sectionTitle.shadowOffset = CGSizeMake(0, 1);
         
-        
         [self addSubview:self.sectionTitle];
     }
     return self;
