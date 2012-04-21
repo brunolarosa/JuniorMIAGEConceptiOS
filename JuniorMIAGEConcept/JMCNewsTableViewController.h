@@ -11,10 +11,10 @@
 
 @interface JMCNewsTableViewController : UITableViewController<UIActionSheetDelegate>
 {
-    NSMutableArray *JMCNewsList;
+    NSMutableArray *jmcNewsList;
 }
 
-@property (nonatomic, retain) NSMutableArray *JMCNewsList;
+@property (nonatomic, retain) NSMutableArray *jmcNewsList;
 - (void)insertJMCNews:(NSArray *)aJMCNews;
 
 

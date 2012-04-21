@@ -41,19 +41,6 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewssMsgErrorKey";
     return self;
 }
 
--(JMCNews *)getItemFromXmlElement:(GDataXMLElement*)xmlItem
-{
-    /*
-     JMCNews *news = [[[JMCNews alloc]initWithTitle:[[[xmlItem elementsForName:@"title"] objectAtIndex:0] stringValue] 
-     pubDate:[[[xmlItem elementsForName:@"pubDate"] objectAtIndex:0] stringValue]
-     author:[[[xmlItem elementsForName:@"author"] objectAtIndex:0] stringValue]
-     category:[[[xmlItem elementsForName:@"category"] objectAtIndex:0] stringValue]
-     description:[[[xmlItem elementsForName:@"description"] objectAtIndex:0] stringValue]
-     ] autorelease];
-     NSLog(@"%@",news.title);*/
-	return nil;
-}
-
 
 - (void)addJMCNewsToList:(NSArray *)JMCNews {
     assert([NSThread isMainThread]);

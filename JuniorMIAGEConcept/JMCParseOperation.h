@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GDataXMLNode.h"
 
 extern NSString *kAddJMCNewsNotif;
 extern NSString *kJMCNewsResultsKey;

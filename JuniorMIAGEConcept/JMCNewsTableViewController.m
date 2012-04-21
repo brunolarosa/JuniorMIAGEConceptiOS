@@ -9,6 +9,9 @@
 #import "JMCNewsTableViewController.h"
 #import "JMCNews.h"
 #import "JMCNewsCell.h"
+#import "JMCNewsViewController.h"
+
+#define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
 @interface JMCNewsTableViewController ()
 
@@ -16,7 +19,7 @@
 
 @implementation JMCNewsTableViewController
 
-@synthesize JMCNewsList;
+@synthesize jmcNewsList;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -25,9 +28,11 @@
     if (self) {
         // Custom initialization
         
+        self.navigationItem.backBarButtonItem.title = @"";
+        
         
         self.tableView.rowHeight = 80;
-        self.tableView.backgroundColor = [UIColor lightGrayColor];
+        self.tableView.backgroundColor = BG_COLOR;
     }
     return self;
 }
@@ -38,7 +43,7 @@
     
     NSLog(@"View loaded");
     self.navigationItem.title = @"RSSFeeds";
-    self.JMCNewsList = [NSMutableArray array];
+    self.jmcNewsList = [NSMutableArray array];
     
     [self addObserver:self forKeyPath:@"JMCNewsList" options:0 context:NULL];
     
@@ -55,7 +60,7 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     
-    self.JMCNewsList = nil;
+    self.jmcNewsList = nil;
     
     [self removeObserver:self forKeyPath:@"JMCNewsList"];
 }
@@ -78,7 +83,7 @@
 //    NSLog(@"Debug : %@",JMCNews.debugDescription);
     [self willChangeValueForKey:@"JMCNewsList"];
     
-    [self.JMCNewsList addObjectsFromArray:aJMCNews];
+    [self.jmcNewsList addObjectsFromArray:aJMCNews];
     
     [self didChangeValueForKey:@"JMCNewsList"];
 }
@@ -101,7 +106,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [JMCNewsList count];
+    return [jmcNewsList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -118,7 +123,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TextCellIdentifier] autorelease];
     }
-    JMCNews *entry = [self.JMCNewsList objectAtIndex:((indexPath.row-1)/2)];
+    JMCNews *entry = [self.jmcNewsList objectAtIndex:((indexPath.row-1)/2)];
     NSLog(@"%@", entry.title);
 
     
@@ -182,7 +187,7 @@
         cell = [[[JMCNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell...
-    JMCNews *entry = [self.JMCNewsList objectAtIndex: indexPath.section];
+    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
     cell.titleLabel.text = entry.title;
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
     cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];
@@ -245,11 +250,19 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    
+    JMCNewsViewController *newsViewController = [[JMCNewsViewController alloc] initWithNibName:@"JMCNewsViewController" bundle:nil];
+    newsViewController.jmcNews = entry;
+    
+    [self.navigationController pushViewController:newsViewController animated:YES];
+    [newsViewController release];
+    
 }
 
 -(void) dealloc
 {
-    [JMCNewsList release];
+    [jmcNewsList release];
     [super dealloc];
 }
 
@@ -257,7 +270,7 @@
 #pragma mark JMCParserdelegate
 -(void)updatedFeedWithRSS:(NSMutableArray*)items
 {
-	self.JMCNewsList = [items retain];
+	self.jmcNewsList = [items retain];
 	[self.tableView reloadData];
 }
 

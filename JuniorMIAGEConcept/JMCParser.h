@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GDataXMLNode.h"
 #import "JMCNews.h"
 #define kRSSUrl @"http://www.juniormiageconcept.com/clients/?feed=rss2"
 
