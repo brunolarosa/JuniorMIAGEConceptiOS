@@ -22,7 +22,8 @@
 
 @property (nonatomic, retain) NSURLConnection *JMCNewsFeedConnection;
 @property (nonatomic, retain) NSMutableData *JMCNewsData;    // the data returned from the NSURLConnection
-@property (nonatomic, retain) NSOperationQueue *parseQueue;     // the queue that manages our NSOperation for parsing earthquake data(n
+@property (nonatomic, retain) NSOperationQueue *parseQueue;     // the queue that manages our NSOperation for parsing JMCNews data(n
+
 @property (nonatomic, retain) JMCNewsTableViewController *newsTabView;
 @property (nonatomic, retain) JMCMenuViewController *menuTabView;
 
@@ -194,7 +195,7 @@
     self.JMCNewsFeedConnection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
     
-    // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the
+    // Spawn an NSOperation to parse the JMCNews data so that the UI is not blocked while the
     // application parses the XML data.
     //
     // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
@@ -261,7 +262,7 @@
 
 // The NSOperation "ParseOperation" calls addJMCNews: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
-// The batch size is set via the kSizeOfEarthquakeBatch constant.
+// The batch size is set via the kSizeOfJMCNewsBatch constant.
 //
 - (void)addJMCNewsToList:(NSArray *)news {
     

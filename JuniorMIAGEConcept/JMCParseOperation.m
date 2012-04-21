@@ -117,9 +117,9 @@ NSString *kCategoriesMsgErrorKey = @"CategoriesMsgErrorKey";
 #pragma mark Parser constants
 
 // Limit the number of parsed JMCNewss to 50
-// (a given day may have more than 50 JMCNewss around the world, so we only take the first 50)
+// (a given day may have more than 50 JMCNewss around the world, so we only take the first 20)
 //
-static const const NSUInteger kMaximumNumberOfJMCNewsToParse = 50;
+static const const NSUInteger kMaximumNumberOfJMCNewsToParse = 20;
 
 // When an JMCNews object has been fully constructed, it must be passed to the main thread and
 // the table view in RootViewController must be reloaded to display it. It is not efficient to do
@@ -192,7 +192,7 @@ static NSString * const kDescriptionElementName = @"description";
             [self performSelectorOnMainThread:@selector(addJMCNewsToList:)
                                    withObject:self.currentParseBatch
                                 waitUntilDone:NO];
-            NSLog(@"1");
+
             [self performSelectorOnMainThread:@selector(addCategoriesToList:)
                                    withObject:self.currentCategories
                                 waitUntilDone:NO];
@@ -206,7 +206,14 @@ static NSString * const kDescriptionElementName = @"description";
     } else if ([elementName isEqualToString:kPubDateName]) {
         if (self.currentJMCNewsObject != nil) {
 //            NSLog(@"PubDate : %@", self.currentParsedCharacterData);
-            self.currentJMCNewsObject.pubDate = currentParsedCharacterData.copy;
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss VVVV"];            
+            NSDate *date = [dateFormatter dateFromString:self.currentParsedCharacterData.copy];  
+            [dateFormatter setDateFormat:@"EEE, dd MMM yy HH"];        
+            NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+            [dateFormatter setLocale:frLocale];
+
+            self.currentJMCNewsObject.pubDate = [dateFormatter stringFromDate:date];
         }
     } else if ([elementName isEqualToString:kAuthorElementName]) {
         if (self.currentJMCNewsObject != nil) {
@@ -245,7 +252,7 @@ static NSString * const kDescriptionElementName = @"description";
     if (accumulatingParsedCharacterData) {
         // If the current element is one whose content we care about, append 'string'
         // to the property that holds the content of the current element.
-        //
+        
         [self.currentParsedCharacterData appendString:string];
     }
 }
@@ -253,7 +260,7 @@ static NSString * const kDescriptionElementName = @"description";
 // an error occurred while parsing the JMCNews data,
 // post the error as an NSNotification to our app delegate.
 // 
-- (void)handleJMCNewssError:(NSError *)parseError {
+- (void)handleJMCNewsError:(NSError *)parseError {
     [[NSNotificationCenter defaultCenter] postNotificationName:kJMCNewsErrorNotif
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:parseError
