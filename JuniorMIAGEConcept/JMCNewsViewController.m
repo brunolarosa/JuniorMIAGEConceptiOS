@@ -7,6 +7,7 @@
 //
 
 #import "JMCNewsViewController.h"
+#define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
 @interface JMCNewsViewController ()
 
@@ -37,21 +38,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = BG_COLOR;
+    
+    
     self.newsTitle.text = self.jmcNews.title;
     self.newsSubTitle.text = [NSString stringWithFormat:@"%@ - %@", self.jmcNews.author, self.jmcNews.pubDate];
     self.newsContent.text = self.jmcNews.description;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backButton.png"] style:UIBarButtonItemStyleBordered target:nil action:nil];
-    
-    
-    [[self navigationItem] setBackBarButtonItem:backButton]; 
-    /*
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 20)];//tes dimensions de l'image
+
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];//tes dimensions de l'image
     [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;//on remplace le bouton en haut à gauche*/
-
+    self.navigationItem.leftBarButtonItem = backButtonItem;//on remplace le bouton en haut à gauche
 
     // Do any additional setup after loading the view from its nib.
 }

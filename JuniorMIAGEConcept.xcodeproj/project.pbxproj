@@ -172,9 +172,9 @@
 		C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */ = {
 			isa = PBXGroup;
 			children = (
-				2A848791154313E2001B4939 /* Ressources */,
 				C727F2FA152BC45500E507B1 /* JMCAppDelegate.h */,
 				C727F2FB152BC45500E507B1 /* JMCAppDelegate.m */,
+				2A848791154313E2001B4939 /* Ressources */,
 				C7FBA1B3152C34C9001827DC /* Controllers */,
 				C739D3CB152C43A300FAB22D /* Library */,
 				C7B92E3B152C3FC3002113DF /* Models */,
