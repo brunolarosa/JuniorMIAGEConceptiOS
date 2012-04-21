@@ -26,8 +26,31 @@
     [super dealloc];
 }
 
+- (void) customizeNavBar
+{
+    // Set the background image for *all* UINavigationBars
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar.png"]
+                                       forBarMetrics:UIBarMetricsDefault];
+    NSLog(@"Background OK");
+    
+    //
+    /*[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];*/
+    
+
+    
+    /*UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;//on remplace le bouton en haut à gauche*/
+    
+    NSLog(@"Back button OK");
+    
+    
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self customizeNavBar];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] retain];
     
     JMCNewsTableViewController *newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];

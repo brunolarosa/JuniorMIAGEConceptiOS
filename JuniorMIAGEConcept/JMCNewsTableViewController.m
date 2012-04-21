@@ -9,6 +9,9 @@
 #import "JMCNewsTableViewController.h"
 #import "JMCNews.h"
 #import "JMCNewsCell.h"
+#import "JMCNewsViewController.h"
+
+#define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
 @interface JMCNewsTableViewController ()
 
@@ -26,9 +29,11 @@
     if (self) {
         // Custom initialization
         
+        self.navigationItem.backBarButtonItem.title = @"";
+        
         
         self.tableView.rowHeight = 80;
-        self.tableView.backgroundColor = [UIColor lightGrayColor];
+        self.tableView.backgroundColor = BG_COLOR;
     }
     return self;
 }
@@ -254,6 +259,14 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    
+    JMCNewsViewController *newsViewController = [[JMCNewsViewController alloc] initWithNibName:@"JMCNewsViewController" bundle:nil];
+    newsViewController.jmcNews = entry;
+    
+    [self.navigationController pushViewController:newsViewController animated:YES];
+    [newsViewController release];
+    
 }
 
 -(void) dealloc
