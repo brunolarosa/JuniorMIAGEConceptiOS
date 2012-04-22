@@ -123,7 +123,8 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    UIView *aView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];    myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIView *aView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     myIndicator.frame = CGRectMake(0, 0,100.0,100.0);
     myIndicator.center = aView.center;
 

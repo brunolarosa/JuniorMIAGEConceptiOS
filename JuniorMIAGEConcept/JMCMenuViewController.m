@@ -9,6 +9,7 @@
 #import "JMCMenuViewController.h"
 #import "IIViewDeckController.h"
 #import "JMCNewsTableViewController.h"
+#import "JMCNewsViewController.h"
 #import "JMCMenuHeaderSectionView.h"
 
 #define BG_COLOR [UIColor colorWithRed:(49.0/255.0) green:(57.0/255.0) blue:(74.0/255.0) alpha:1.0]
@@ -42,7 +43,7 @@
 {
     if(!_sections)
     {
-        _sections = [[NSArray arrayWithObjects:@"Général", @"Catégorie", @"Autres", nil] retain];
+        _sections = [[NSArray arrayWithObjects:@"Général", @"Catégorie", nil] retain];
     }
     
     return _sections;
@@ -92,7 +93,7 @@
     //    NSLog(@"Debug : %@",JMCNews.debugDescription);
     [self willChangeValueForKey:@"categories"];
     NSLog(@"Ajout des %d categories", someCategories.count);
-    [self.categories addObjectsFromArray:[someCategories copy]];
+    [self.categories addObjectsFromArray:[[someCategories copy]autorelease]];
     [self didChangeValueForKey:@"categories"];
 }
 
@@ -108,7 +109,7 @@
 {
     if (!_menu)
     {
-        NSArray *geneMenu = [NSArray arrayWithObjects:@"All", @"New", nil];
+        NSArray *geneMenu = [NSArray arrayWithObjects:@"All", nil];
 //        NSArray *categoryMenu = [NSArray arrayWithObjects:@"CNJE", @"UNS", @"JMC", @"MIAGE", nil];
         
         _menu = [[NSMutableDictionary dictionaryWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], self.categories, [self.sections objectAtIndex:1],nil] retain];
@@ -251,10 +252,16 @@
      {
          if ([controller.centerController isKindOfClass:[UINavigationController class]])
          {
-             JMCNewsTableViewController *jmcNewsTableController = (JMCNewsTableViewController *)((UINavigationController *)controller.centerController).topViewController;
-             
-             jmcNewsTableController.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-             jmcNewsTableController.selectedCategory = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;;
+             if ([((UINavigationController *)controller.centerController).topViewController isKindOfClass:[JMCNewsViewController class]])
+             {
+                 [(UINavigationController *)controller.centerController popViewControllerAnimated:NO];
+             }
+             if ([((UINavigationController *)controller.centerController).topViewController isKindOfClass:[JMCNewsTableViewController class]]) {
+                 JMCNewsTableViewController *jmcNewsTableController = (JMCNewsTableViewController *)((UINavigationController *)controller.centerController).topViewController;
+                 
+                 jmcNewsTableController.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                 jmcNewsTableController.selectedCategory = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+             }
          }
      }];
 }

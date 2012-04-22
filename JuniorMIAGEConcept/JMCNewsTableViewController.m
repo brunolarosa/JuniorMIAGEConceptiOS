@@ -74,10 +74,10 @@
     
     
     //Set Menu Button
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];//tes dimensions de l'image
+    UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)] autorelease];//tes dimensions de l'image
     [backButton setImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(menuPressed) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     self.navigationItem.leftBarButtonItem = backButtonItem;
 }
 
@@ -205,9 +205,12 @@
 
     // Configure the cell...
     JMCNews *entry;
-    if(selectedCategory == nil){
+    if(selectedCategory == nil)
+    {
         entry = [self.jmcNewsList objectAtIndex: indexPath.section];
-    } else {
+    }
+    else
+    {
         NSInteger count=0;
         
         NSEnumerator *e = [jmcNewsList objectEnumerator];
@@ -219,12 +222,11 @@
                 entry = buf;
             }
         }
-        [buf release];
     }
 
     cell.titleLabel.text = entry.title;
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
-    cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];
+    cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@ ", entry.author, entry.pubDate];
     cell.commentsLabel.text = @"99";
 //    NSLog(@"%@", entry.author);
     
