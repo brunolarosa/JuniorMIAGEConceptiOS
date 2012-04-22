@@ -16,7 +16,6 @@
 #define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
 @interface JMCNewsTableViewController ()
-
 @end
 
 @implementation JMCNewsTableViewController
@@ -58,9 +57,8 @@
 
 - (void)viewDidLoad
 {    
-    [super viewDidLoad];
+    [super viewDidLoad]; 
     
-//    NSLog(@"View loaded");
     self.navigationItem.title = @"RSSFeeds";
     self.jmcNewsList = [NSMutableArray array];
     [self addObserver:self forKeyPath:@"JMCNewsList" options:0 context:NULL];
@@ -143,6 +141,24 @@
     return count;
 }
 
+- (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
+{
+    static NSString *LoadingCellIdentifier = @"LoadingCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
+	if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
+    }
+	cell.textLabel.text = @"Loading...";
+    
+	UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+	[activity startAnimating];
+	[cell setAccessoryView: activity];
+	[activity release];
+	
+    return cell;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
@@ -179,8 +195,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
     static NSString *CellIdentifier = @"menuCell";
     
     JMCNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
