@@ -254,6 +254,7 @@
              JMCNewsTableViewController *jmcNewsTableController = (JMCNewsTableViewController *)((UINavigationController *)controller.centerController).topViewController;
              
              jmcNewsTableController.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+             jmcNewsTableController.selectedCategory = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;;
          }
      }];
 }
