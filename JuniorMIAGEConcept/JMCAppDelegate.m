@@ -73,17 +73,19 @@
     // Set the background image for *all* UINavigationBars
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar.png"]
                                        forBarMetrics:UIBarMetricsDefault];
-//    NSLog(@"Background OK");
     
-    //
-    /*[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];*/
-    
-
-    
-    /*UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;//on remplace le bouton en haut à gauche*/
-    
-//    NSLog(@"Back button OK");
+    //Set the title appearance for *all* UINavigationBars
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0], 
+      UITextAttributeTextColor, 
+      [UIColor clearColor], 
+      UITextAttributeTextShadowColor, 
+      [NSValue valueWithUIOffset:UIOffsetMake(0, -1)], 
+      UITextAttributeTextShadowOffset, 
+      [UIFont fontWithName:@"Arial-Bold" size:0.0], 
+      UITextAttributeFont, 
+      nil]];
     
     
     
