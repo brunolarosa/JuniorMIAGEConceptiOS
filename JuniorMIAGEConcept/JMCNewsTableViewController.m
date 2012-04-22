@@ -16,12 +16,12 @@
 #define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
 @interface JMCNewsTableViewController ()
-
 @end
 
 @implementation JMCNewsTableViewController
 
 @synthesize jmcNewsList;
+@synthesize selectedCategory;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -39,6 +39,17 @@
     return self;
 }
 
+-(void) setSelectedCategory:(NSString *)aSelectedCategory{
+    
+    if(aSelectedCategory == @"All"){
+        selectedCategory = nil;
+    } else {
+         selectedCategory = aSelectedCategory;
+    }
+   
+    [self.tableView reloadData];
+}
+
 - (void) menuPressed
 {
     [self.viewDeckController toggleLeftViewAnimated:YES];
@@ -46,12 +57,10 @@
 
 - (void)viewDidLoad
 {    
-    [super viewDidLoad];
+    [super viewDidLoad]; 
     
-//    NSLog(@"View loaded");
     self.navigationItem.title = @"RSSFeeds";
     self.jmcNewsList = [NSMutableArray array];
-    
     [self addObserver:self forKeyPath:@"JMCNewsList" options:0 context:NULL];
     
     //[self addRows];
@@ -118,7 +127,36 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [jmcNewsList count];
+    NSInteger count = 0;
+    if(selectedCategory != nil){
+        for(JMCNews *object in jmcNewsList){
+                if([object.category containsObject:selectedCategory]){
+                    count++;   
+                }
+            
+        }
+    } else {
+        count = [jmcNewsList count];
+    }
+    return count;
+}
+
+- (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
+{
+    static NSString *LoadingCellIdentifier = @"LoadingCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
+	if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
+    }
+	cell.textLabel.text = @"Loading...";
+    
+	UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+	[activity startAnimating];
+	[cell setAccessoryView: activity];
+	[activity release];
+	
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -136,15 +174,6 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TextCellIdentifier] autorelease];
     }
     JMCNews *entry = [self.jmcNewsList objectAtIndex:((indexPath.row-1)/2)];
-//    NSLog(@"%@", entry.title);
-
-    
-    
-    //date format
-    /*NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    NSString *articleDateString = [dateFormatter stringFromDate:item.pubDate];*/
 	
 	//article preview
 	cell.textLabel.font = [UIFont systemFontOfSize:11];
@@ -166,8 +195,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
     static NSString *CellIdentifier = @"menuCell";
     
     JMCNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -175,8 +202,26 @@
     if (!cell) {
         cell = [[[JMCNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+
     // Configure the cell...
-    JMCNews *entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    JMCNews *entry;
+    if(selectedCategory == nil){
+        entry = [self.jmcNewsList objectAtIndex: indexPath.section];
+    } else {
+        NSInteger count=0;
+        
+        NSEnumerator *e = [jmcNewsList objectEnumerator];
+        JMCNews *buf;
+        while (count != (indexPath.section+1) && (buf = [e nextObject])) {
+            // do something with object
+            if([buf.category containsObject:selectedCategory]){
+                count++;
+                entry = buf;
+            }
+        }
+        [buf release];
+    }
+
     cell.titleLabel.text = entry.title;
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
     cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];

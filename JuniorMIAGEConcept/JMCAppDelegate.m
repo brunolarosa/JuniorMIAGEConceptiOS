@@ -27,8 +27,9 @@
 @property (nonatomic, retain) JMCNewsTableViewController *newsTabView;
 @property (nonatomic, retain) JMCMenuViewController *menuTabView;
 
+@property (nonatomic, assign) UIActivityIndicatorView *myIndicator; 
+
 - (void)addJMCNewsToList:(NSArray *)news;
-- (void)addCategoriesToList:(NSArray *)categories;
 - (void)handleError:(NSError *)error;
 @end
 
@@ -43,6 +44,7 @@
 @synthesize centerViewController = _centerViewController;
 @synthesize newsTabView;
 @synthesize menuTabView;
+@synthesize myIndicator;
 
 
 - (void)dealloc
@@ -57,10 +59,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddJMCNewsNotif object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kJMCNewsErrorNotif object:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddCategoriesNotif object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kCategoriesErrorNotif object:nil];
-    
-
     [_centerViewController release];
     [_leftViewController release];
 
@@ -101,12 +99,50 @@
     static NSString *feedURLString = @"http://www.juniormiageconcept.com/clients/?feed=rss2";
     NSURLRequest *JMCNewsURLRequest =
     [NSURLRequest requestWithURL:[NSURL URLWithString:feedURLString]];
-    self.JMCNewsFeedConnection =
-    [[[NSURLConnection alloc] initWithRequest:JMCNewsURLRequest delegate:self] autorelease];
     
-     NSAssert(self.JMCNewsFeedConnection != nil, @"Failure to create URL connection.");
+    [feedURLString release];
+    
+    self.JMCNewsFeedConnection = [[[NSURLConnection alloc] initWithRequest:JMCNewsURLRequest delegate:self] autorelease];
+    NSAssert(self.JMCNewsFeedConnection != nil, @"Failure to create URL connection.");
+    
+    newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
+    
+    
+    
+    menuTabView = [[[JMCMenuViewController alloc] init] retain];
+    self.leftViewController = menuTabView;
+    
+    
+    IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
+                                                                          leftViewController:self.leftViewController] autorelease];
+    deck.leftLedge = 160;
+    
+    self.window.rootViewController = deck; //TODO: remettre tabController
+    [self.window makeKeyAndVisible];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    UIView *aView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];    myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    myIndicator.frame = CGRectMake(0, 0,100.0,100.0);
+    myIndicator.center = aView.center;
+
+    myIndicator.color = [UIColor blackColor];
+	myIndicator.hidesWhenStopped = NO;
+    [myIndicator startAnimating];
+    
+    UITextView *msgView=[[UITextView alloc]init];
+    
+    msgView.frame=CGRectMake(10, 80, 100, 100);
+    msgView.font=[UIFont systemFontOfSize:12.0];
+    msgView.editable=FALSE;
+    msgView.textColor=[UIColor grayColor];
+    msgView.backgroundColor=[UIColor clearColor];
+    msgView.text=@"Chargement";
+    
+    [myIndicator addSubview:msgView];
+    
+    [newsTabView.view addSubview:myIndicator];
     
     parseQueue = [NSOperationQueue new];
     
@@ -119,30 +155,6 @@
                                                  name:kJMCNewsErrorNotif
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addCatgories:)
-                                                 name:kAddJMCNewsNotif
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addCategoriesError:)
-                                                 name:kJMCNewsErrorNotif
-                                               object:nil];
-    
-    newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
-
-    
-
-    menuTabView = [[[JMCMenuViewController alloc] init] retain];
-    self.leftViewController = menuTabView;
-    
-   
-    IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
-                                                                          leftViewController:self.leftViewController] autorelease];
-    deck.leftLedge = 160;
-    
-    self.window.rootViewController = deck; //TODO: remettre tabController
-    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -175,6 +187,9 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    [myIndicator stopAnimating];
+    [myIndicator removeFromSuperview];
+    
     if ([error code] == kCFURLErrorNotConnectedToInternet) {
         // if we can identify the error, we can present a more precise message to the user.
         NSDictionary *userInfo =
@@ -194,8 +209,11 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
     self.JMCNewsFeedConnection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    [myIndicator stopAnimating];
+    [myIndicator removeFromSuperview];
     
     // Spawn an NSOperation to parse the JMCNews data so that the UI is not blocked while the
     // application parses the XML data.
@@ -238,14 +256,6 @@
     [self addJMCNewsToList:[[notif userInfo] valueForKey:kJMCNewsResultsKey]];
 }
 
-// Our NSNotification callback from the running NSOperation to add the JMCNews
-//
-- (void)addCatgories:(NSNotification *)notif {
-    assert([NSThread isMainThread]);
-    
-    [self addCategoriesToList:[[notif userInfo] valueForKey:kCategoriesResultsKey]];
-}
-
 // Our NSNotification callback from the running NSOperation when a parsing error has occurred
 //
 - (void)JMCNewsError:(NSNotification *)notif {
@@ -254,28 +264,13 @@
     [self handleError:[[notif userInfo] valueForKey:kJMCNewsMsgErrorKey]];
 }
 
-// Our NSNotification callback from the running NSOperation when a parsing error has occurred
-//
-- (void)categoriesError:(NSNotification *)notif {
-    assert([NSThread isMainThread]);
-    
-    [self handleError:[[notif userInfo] valueForKey:kCategoriesMsgErrorKey]];
-}
-
 // The NSOperation "ParseOperation" calls addJMCNews: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
 // The batch size is set via the kSizeOfJMCNewsBatch constant.
 //
-- (void)addJMCNewsToList:(NSArray *)news {
-    
-    // insert the JMCNews into our rootViewController's data source (for KVO purposes)
-    [self.newsTabView insertJMCNews:news];
-}
-
-- (void)addCategoriesToList:(NSArray *)categories {
-    
-    // insert the JMCNews into our rootViewController's data source (for KVO purposes)
-    [self.menuTabView insertCategories:categories];
+- (void)addJMCNewsToList:(NSDictionary *)dic {
+    [self.newsTabView insertJMCNews:[dic objectForKey:@"news"]];
+    [self.menuTabView insertCategories:[dic objectForKey:@"categories"]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

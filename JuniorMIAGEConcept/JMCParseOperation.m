@@ -12,19 +12,15 @@
 
 // NSNotification name for sending JMCNews data back to the app delegate
 NSString *kAddJMCNewsNotif = @"AddJMCNewsNotif";
-NSString *kAddCategoriesNotif = @"AddCategoriesNotif";
 
 // NSNotification userInfo key for obtaining the JMCNews data
 NSString *kJMCNewsResultsKey = @"JMCNewsResultsKey";
-NSString *kCategoriesResultsKey = @"CategoriesResultsKey";
 
 // NSNotification name for reporting errors
 NSString *kJMCNewsErrorNotif = @"JMCNewsErrorNotif";
-NSString *kCategoriesErrorNotif = @"CategoriesErrorNotif";
 
 // NSNotification userInfo key for obtaining the error message
 NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
-NSString *kCategoriesMsgErrorKey = @"CategoriesMsgErrorKey";
 
 
 @interface JMCParseOperation () <NSXMLParserDelegate>
@@ -56,15 +52,6 @@ NSString *kCategoriesMsgErrorKey = @"CategoriesMsgErrorKey";
                                                                                            forKey:kJMCNewsResultsKey]]; 
 }
 
-- (void)addCategoriesToList:(NSArray *)categories {
-    assert([NSThread isMainThread]);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAddCategoriesNotif
-                                                        object:self
-                                                      userInfo:[NSDictionary dictionaryWithObject:categories
-                                                                                           forKey:kCategoriesResultsKey]]; 
-}
-
 // the main function for this NSOperation, to start the parsing
 - (void)main {
     self.currentParseBatch = [NSMutableArray array];
@@ -84,13 +71,16 @@ NSString *kCategoriesMsgErrorKey = @"CategoriesMsgErrorKey";
     // the array and, if necessary, send it to the main thread.
     //
     if ([self.currentParseBatch count] > 0) {
-//        NSLog(@"main - JMCParseOperation");
+        
+        NSLog(@"main - JMCParseOperation - addJMCNewsToList");
+        NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                currentParseBatch.copy, @"news",
+                                currentCategories.copy, @"categories",
+                                nil];
         [self performSelectorOnMainThread:@selector(addJMCNewsToList:)
-                               withObject:self.currentParseBatch.copy
-                            waitUntilDone:NO];
-        [self performSelectorOnMainThread:@selector(addCategoriesToList:)
-                               withObject:self.currentCategories.copy
-                            waitUntilDone:NO];
+                               withObject:dic
+                            waitUntilDone:YES];
+        [dic release];
     }
     
     self.currentParseBatch = nil;
@@ -179,10 +169,7 @@ static NSString * const kDescriptionElementName = @"description";
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName {     
-    
-    //NSLog(@"2. eltName : %@", elementName );
 
-    
     if ([elementName isEqualToString:kItemElementName]) {
         NSLog(@"Ajout de l'article : %@", currentJMCNewsObject.title);
         [self.currentParseBatch addObject:self.currentJMCNewsObject];
@@ -193,23 +180,18 @@ static NSString * const kDescriptionElementName = @"description";
                                    withObject:self.currentParseBatch
                                 waitUntilDone:NO];
 
-            [self performSelectorOnMainThread:@selector(addCategoriesToList:)
-                                   withObject:self.currentCategories
-                                waitUntilDone:NO];
             self.currentParseBatch = [NSMutableArray array];
         }
     } else if ([elementName isEqualToString:kTitleElementName]) {
         if (self.currentJMCNewsObject != nil) {
-//            NSLog(@"Title : %@", self.currentParsedCharacterData);
             self.currentJMCNewsObject.title = self.currentParsedCharacterData.copy;
         }
     } else if ([elementName isEqualToString:kPubDateName]) {
         if (self.currentJMCNewsObject != nil) {
-//            NSLog(@"PubDate : %@", self.currentParsedCharacterData);
             dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss VVVV"];            
             NSDate *date = [dateFormatter dateFromString:self.currentParsedCharacterData.copy];  
-            [dateFormatter setDateFormat:@"EEE, dd MMM yy HH"];        
+            [dateFormatter setDateFormat:@"EEE, dd MMM yyyy 'à' HH:mm"];        
             NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
             [dateFormatter setLocale:frLocale];
 
@@ -217,17 +199,13 @@ static NSString * const kDescriptionElementName = @"description";
         }
     } else if ([elementName isEqualToString:kAuthorElementName]) {
         if (self.currentJMCNewsObject != nil) {
-//           NSLog(@"Autor : %@", self.currentParsedCharacterData);
             self.currentJMCNewsObject.author = self.currentParsedCharacterData.copy;
         }
     }
     else if ([elementName isEqualToString:kCategoryElementName]) {
         if (self.currentJMCNewsObject != nil) {
-//           NSLog(@"Category : %@", self.currentParsedCharacterData);
-//           self.currentJMCNewsObject.category = self.currentParsedCharacterData.copy; 
             [self.currentJMCNewsObject.category addObject:self.currentParsedCharacterData.copy];
             if (![currentCategories containsObject:self.currentParsedCharacterData ]) {
-//                NSLog(@"Ajout de la categorie : %@", self.currentParsedCharacterData);
                 [self.currentCategories addObject:self.currentParsedCharacterData.copy];                
             }
 
@@ -235,7 +213,6 @@ static NSString * const kDescriptionElementName = @"description";
     }
     else if ([elementName isEqualToString:kDescriptionElementName]) {
         if (self.currentJMCNewsObject != nil) {
-//          NSLog(@"Description : %@", self.currentParsedCharacterData);
             self.currentJMCNewsObject.description = self.currentParsedCharacterData.copy;
         }
     }
