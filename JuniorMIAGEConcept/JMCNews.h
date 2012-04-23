@@ -14,6 +14,7 @@
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSMutableArray *category;
 @property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *content;
 
 
 

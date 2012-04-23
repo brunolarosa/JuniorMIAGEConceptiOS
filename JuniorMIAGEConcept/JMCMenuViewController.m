@@ -102,7 +102,6 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    NSLog(@"observeValueForKeyPath - JMCNewsTableViewController");
     [self.tableView reloadData];
 }
 - (NSMutableDictionary *) menu

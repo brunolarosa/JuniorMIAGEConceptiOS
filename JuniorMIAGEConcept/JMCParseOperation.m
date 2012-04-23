@@ -159,7 +159,8 @@ static NSString * const kPubDateName = @"pubDate";
 static NSString * const kTitleElementName = @"title";
 static NSString * const kAuthorElementName = @"dc:creator";
 static NSString * const kCategoryElementName = @"category";
-static NSString * const kDescriptionElementName = @"content:encoded";
+static NSString * const kDescriptionElementName = @"description";
+static NSString * const kContentElementName = @"content:encoded";
 
 #pragma mark -
 #pragma mark NSXMLParser delegate methods
@@ -194,7 +195,8 @@ static NSString * const kDescriptionElementName = @"content:encoded";
              [elementName isEqualToString:kPubDateName] ||
              [elementName isEqualToString:kAuthorElementName] ||
              [elementName isEqualToString:kCategoryElementName] ||
-             [elementName isEqualToString:kDescriptionElementName])
+             [elementName isEqualToString:kDescriptionElementName] ||
+             [elementName isEqualToString:kContentElementName])
     {
         // For the 'title', 'updated', or 'georss:point' element begin accumulating parsed character data.
         // The contents are collected in parser:foundCharacters:.
@@ -207,7 +209,6 @@ static NSString * const kDescriptionElementName = @"content:encoded";
 - (NSString *) formatDateFromString:(NSString *) stringDate
 {           
     NSDate *date = [self.dateFromatterFromString dateFromString:stringDate];
-    NSLog(@"pppppppppp %@",date.description);
     
     return [self.dateFormatterFromDate stringFromDate:date];
 }
@@ -234,15 +235,7 @@ static NSString * const kDescriptionElementName = @"content:encoded";
         }
     } else if ([elementName isEqualToString:kPubDateName]) {
         if (self.currentJMCNewsObject != nil)
-        {/*
-            [self.dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss VVVV"];            
-            NSDate *date = [self.dateFormatter dateFromString:[[self.currentParsedCharacterData copy] autorelease]];  
-            [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy 'à' HH:mm"];        
-            NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
-            [self.dateFormatter setLocale:frLocale];
-
-            self.currentJMCNewsObject.pubDate = [self.dateFormatter stringFromDate:date];*/
-
+        {
            self.currentJMCNewsObject.pubDate = [self formatDateFromString:self.currentParsedCharacterData];
             
         }
@@ -257,12 +250,16 @@ static NSString * const kDescriptionElementName = @"content:encoded";
             if (![currentCategories containsObject:self.currentParsedCharacterData ]) {
                 [self.currentCategories addObject:[[self.currentParsedCharacterData copy] autorelease]];                
             }
-
         }
     }
     else if ([elementName isEqualToString:kDescriptionElementName]) {
         if (self.currentJMCNewsObject != nil) {
             self.currentJMCNewsObject.description = [[self.currentParsedCharacterData copy] autorelease];
+        }
+    }
+    else if ([elementName isEqualToString:kContentElementName]) {
+        if (self.currentJMCNewsObject != nil) {
+            self.currentJMCNewsObject.content = [[self.currentParsedCharacterData copy] autorelease];
         }
     }
     

@@ -46,7 +46,7 @@
     
     NSString* strHtml = [NSString stringWithFormat:@"<html><body>%@</body></html>",self.jmcNews.description];
     
-    NSLog(@"%@", self.jmcNews.description);
+    NSLog(@"Content : %@", self.jmcNews.content);
 
     
     [self.newsContent loadHTMLString:strHtml baseURL:nil];

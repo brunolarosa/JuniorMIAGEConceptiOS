@@ -16,6 +16,7 @@
 @synthesize author = _author;
 @synthesize category = _category;
 @synthesize description = _description;
+@synthesize content = _content;
 
 - (void) dealloc {
     [_title release];
@@ -23,6 +24,7 @@
     [_author release];
     [_category release];
     [_description release];
+    [_content release];
     [super dealloc];
 }
 
