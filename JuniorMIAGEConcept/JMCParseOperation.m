@@ -57,9 +57,9 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
 {
     if (!_dateFormatterFromDate)
     {
-        _dateFormatterFromDate = [[NSDateFormatter alloc] init];
+        _dateFormatterFromDate = [[[NSDateFormatter alloc] init] autorelease];
         [_dateFormatterFromDate setDateFormat:@"EEE dd MMM yyyy 'à' HH:mm"];
-        [_dateFormatterFromDate setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]];
+        [_dateFormatterFromDate setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]autorelease]];
 
     }
 
@@ -70,7 +70,7 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
 {
     if (!_dateFromatterFromString)
     {
-        _dateFromatterFromString = [[NSDateFormatter alloc] init];
+        _dateFromatterFromString = [[[NSDateFormatter alloc] init] autorelease];
         [_dateFromatterFromString setDateFormat:@"EEE, dd MMM yy HH:mm:ss Z"];
     }
     return _dateFromatterFromString;
@@ -109,8 +109,8 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
         
         NSLog(@"main - JMCParseOperation - addJMCNewsToList");
         NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                currentParseBatch.copy, @"news",
-                                currentCategories.copy, @"categories",
+                                self.currentParseBatch, @"news",
+                                self.currentCategories, @"categories",
                                 nil];
         [self performSelectorOnMainThread:@selector(addJMCNewsToList:)
                                withObject:dic
@@ -187,7 +187,7 @@ static NSString * const kContentElementName = @"content:encoded";
     {
         JMCNews *aJMCNews = [[JMCNews alloc]init];
         self.currentJMCNewsObject = aJMCNews;
-        self.currentJMCNewsObject.category = [[NSMutableArray alloc] init];
+        self.currentJMCNewsObject.category = [[[NSMutableArray alloc] init] autorelease];
         [aJMCNews release];
 
     }

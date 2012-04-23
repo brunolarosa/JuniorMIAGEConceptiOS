@@ -44,7 +44,7 @@
     self.newsTitle.text = self.jmcNews.title;
     self.newsSubTitle.text = [NSString stringWithFormat:@"%@ - %@", self.jmcNews.author, self.jmcNews.pubDate];
     
-    NSString* strHtml = [NSString stringWithFormat:@"<html><body>%@</body></html>",self.jmcNews.description];
+    NSString* strHtml = [NSString stringWithFormat:@"<html><body>%@</body></html>",self.jmcNews.content];
     
     NSLog(@"Content : %@", self.jmcNews.content);
 

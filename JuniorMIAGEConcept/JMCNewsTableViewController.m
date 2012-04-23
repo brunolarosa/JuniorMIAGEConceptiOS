@@ -88,6 +88,9 @@
     UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     
+    
+    
+    //Set Refresh Button
     UIButton *refreshButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];//tes dimensions de l'image
     [refreshButton setImage:[UIImage imageNamed:@"refresh.png"] forState:UIControlStateNormal];
     [refreshButton addTarget:self action:@selector(refreshPressed) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
@@ -162,6 +165,7 @@
 
 }
 
+/*
 - (UITableViewCell *)getTextCellWithTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
 	static NSString *TextCellIdentifier = @"TextCell";
 	
@@ -187,7 +191,7 @@
 	cell.textLabel.text = entry.description;
 	
 	return cell;
-}
+}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -221,7 +225,7 @@
     }
 
     cell.titleLabel.text = entry.title;
-    cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
+    cell.resumeLabel.text = entry.description;
     cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@ ", entry.author, entry.pubDate];
     cell.commentsLabel.text = @"99";
 //    NSLog(@"%@", entry.author);
