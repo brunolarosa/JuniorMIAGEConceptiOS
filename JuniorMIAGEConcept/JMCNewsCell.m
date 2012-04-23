@@ -41,7 +41,7 @@
         self.backgroundView = background;*/
         
         self.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newsCellBG.png"]] autorelease];
-        self.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newsCell_selected.png"]] autorelease];
+        self.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newsCellBG_selected.png"]] autorelease];
 
         
      /* TITLE LABEL */           
