@@ -15,13 +15,13 @@
 // for downloading the xml data
 NSURLConnection *JMCNewsFeedConnection;
 NSMutableData *JMCNewsData;
-
 NSOperationQueue *parseQueue;
 }
 
 @property (retain, nonatomic) UIWindow *window;
-
 @property (retain, nonatomic) UITableViewController *leftViewController;
 @property (retain, nonatomic) UIViewController* centerViewController;
+
+- (void)loadRssFeed;
 
 @end

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface JMCMenuViewController : UITableViewController
-
+{
+    NSMutableArray *categories;
+}
+@property (retain, nonatomic) NSMutableArray *categories;
 - (void) insertCategories:(NSArray *) someCategories;
 @end

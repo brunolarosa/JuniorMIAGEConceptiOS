@@ -11,6 +11,8 @@
 #import "JMCNews.h"
 #import "JMCNewsCell.h"
 #import "JMCNewsViewController.h"
+#import "JMCAppDelegate.h"
+
 
 
 #define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
@@ -53,6 +55,12 @@
 - (void) menuPressed
 {
     [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
+- (void) refreshPressed
+{
+    JMCAppDelegate *delegate = (JMCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate loadRssFeed];
 }
 
 - (void)viewDidLoad
@@ -145,24 +153,6 @@
         count = [jmcNewsList count];
     }
     return count;
-}
-
-- (UITableViewCell *)getLoadingTableCellWithTableView:(UITableView *)tableView 
-{
-    static NSString *LoadingCellIdentifier = @"LoadingCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
-	if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
-    }
-	cell.textLabel.text = @"Loading...";
-    
-	UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-	[activity startAnimating];
-	[cell setAccessoryView: activity];
-	[activity release];
-	
-    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

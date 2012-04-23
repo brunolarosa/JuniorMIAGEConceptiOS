@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356866813.333763"
+         timestampString = "356873073.736133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "279"
-         endingLineNumber = "279"
+         startingLineNumber = "269"
+         endingLineNumber = "269"
          landmarkName = "@implementation JMCNewsTableViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356866813.333763"
+         timestampString = "356873073.736133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "269"
-         endingLineNumber = "269"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
          landmarkName = "@implementation JMCNewsTableViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356866813.333763"
+         timestampString = "356873073.736133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "269"
-         endingLineNumber = "269"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
          landmarkName = "@implementation JMCNewsTableViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -86,24 +86,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCAppDelegate.m"
-         timestampString = "356800485.239371"
+         timestampString = "356873619.524856"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "270"
-         endingLineNumber = "270"
-         landmarkName = "-addJMCNewsToList:"
-         landmarkType = "5">
+         startingLineNumber = "283"
+         endingLineNumber = "283"
+         landmarkName = "@implementation JMCAppDelegate"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCMenuViewController.m"
-         timestampString = "356743519.806689"
+         timestampString = "356873459.976178"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "96"
-         endingLineNumber = "96"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
          landmarkName = "-insertCategories:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356866813.333763"
+         timestampString = "356873073.736133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "309"
-         endingLineNumber = "309"
+         startingLineNumber = "299"
+         endingLineNumber = "299"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
-         timestampString = "356866813.333763"
+         timestampString = "356873073.736133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "231"
-         endingLineNumber = "231"
+         startingLineNumber = "221"
+         endingLineNumber = "221"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCMenuViewController.m"
-         timestampString = "356865663.249363"
+         timestampString = "356873459.976178"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "189"
-         endingLineNumber = "189"
+         startingLineNumber = "193"
+         endingLineNumber = "193"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,12 +151,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "JuniorMIAGEConcept/JMCMenuViewController.m"
-         timestampString = "356865663.799842"
+         timestampString = "356873459.976178"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "188"
-         endingLineNumber = "188"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "JuniorMIAGEConcept/JMCNewsTableViewController.m"
+         timestampString = "356873073.736133"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
+         landmarkName = "-refreshPressed"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

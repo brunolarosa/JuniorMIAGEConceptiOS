@@ -22,7 +22,7 @@
 
 @property (retain, nonatomic) NSArray *sections;
 @property (retain, nonatomic) NSMutableDictionary *menu;
-@property (retain, nonatomic) NSMutableArray *categories;
+
 
 @end
 
@@ -58,8 +58,12 @@
     self.tableView.backgroundColor = BG_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _categories = [NSMutableArray array];
-    
+    if(!_categories){
+        _categories = [NSMutableArray array];
+    } else {
+        [_categories removeAllObjects];
+    }
+
     [self addObserver:self forKeyPath:@"categories" options:0 context:NULL];
     
     // Uncomment the following line to preserve selection between presentations.

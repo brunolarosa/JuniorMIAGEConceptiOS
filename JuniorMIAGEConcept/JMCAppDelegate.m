@@ -11,6 +11,7 @@
 #import "JMCMenuViewController.h"
 #import "IIViewDeckController.h"
 #import "JMCParseOperation.h"
+#import <QuartzCore/QuartzCore.h>
 
 // this framework was imported so we could use the kCFURLErrorNotConnectedToInternet error code
 #import <CFNetwork/CFNetwork.h>
@@ -31,6 +32,7 @@
 
 - (void)addJMCNewsToList:(NSArray *)news;
 - (void)handleError:(NSError *)error;
+
 @end
 
 
@@ -89,13 +91,10 @@
     
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    [self customizeNavBar];
-    
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] retain];
-    
 
+- (void)loadRssFeed 
+{
+    
     static NSString *feedURLString = @"http://www.juniormiageconcept.com/clients/?feed=rss2";
     NSURLRequest *JMCNewsURLRequest =
     [NSURLRequest requestWithURL:[NSURL URLWithString:feedURLString]];
@@ -105,29 +104,18 @@
     self.JMCNewsFeedConnection = [[[NSURLConnection alloc] initWithRequest:JMCNewsURLRequest delegate:self] autorelease];
     NSAssert(self.JMCNewsFeedConnection != nil, @"Failure to create URL connection.");
     
-    newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
-    
-    
-    
-    menuTabView = [[[JMCMenuViewController alloc] init] retain];
-    self.leftViewController = menuTabView;
-    
-    
-    IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
-                                                                          leftViewController:self.leftViewController] autorelease];
-    deck.leftLedge = 160;
-    
-    self.window.rootViewController = deck; //TODO: remettre tabController
-    [self.window makeKeyAndVisible];
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     UIView *aView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    aView.backgroundColor  = [UIColor whiteColor];
+    aView.layer.borderWidth = 3; 
+    aView.layer.borderColor = [UIColor whiteColor].CGColor; 
+
+    
     myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     myIndicator.frame = CGRectMake(0, 0,100.0,100.0);
     myIndicator.center = aView.center;
-
+    
     myIndicator.color = [UIColor blackColor];
 	myIndicator.hidesWhenStopped = NO;
     [myIndicator startAnimating];
@@ -142,8 +130,10 @@
     msgView.text=@"Chargement";
     
     [myIndicator addSubview:msgView];
-    
     [newsTabView.view addSubview:myIndicator];
+    newsTabView.selectedCategory = nil;
+    [menuTabView.categories removeAllObjects];
+    
     
     parseQueue = [NSOperationQueue new];
     
@@ -155,6 +145,29 @@
                                              selector:@selector(JMCNewsError:)
                                                  name:kJMCNewsErrorNotif
                                                object:nil];
+}
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [self customizeNavBar];
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] retain];
+    
+    newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
+    
+    menuTabView = [[[JMCMenuViewController alloc] init] retain];
+    self.leftViewController = menuTabView;
+    
+    IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
+                                                                          leftViewController:self.leftViewController] autorelease];
+    deck.leftLedge = 160;
+    
+    self.window.rootViewController = deck; //TODO: remettre tabController
+    [self.window makeKeyAndVisible];
+    
+    [self loadRssFeed];
     
     return YES;
 }
