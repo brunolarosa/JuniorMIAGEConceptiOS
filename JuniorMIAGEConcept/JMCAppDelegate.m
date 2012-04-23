@@ -129,6 +129,7 @@
     [self.loadingIndicator addSubview:msgView];
     
     
+    
     [self.newsTabView.view addSubview:self.loadingIndicator];
     self.newsTabView.selectedCategory = nil;
     [self.menuTabView.categories removeAllObjects];
@@ -136,14 +137,6 @@
     
     parseQueue = [NSOperationQueue new];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addJMCNews:)
-                                                 name:kAddJMCNewsNotif
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(JMCNewsError:)
-                                                 name:kJMCNewsErrorNotif
-                                               object:nil];
 }
 
 
@@ -156,6 +149,10 @@
     self.newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:self.newsTabView] autorelease];
     
+    
+    if(self.menuTabView){
+        [self.menuTabView refreshPressed];
+    }
     self.menuTabView = [[[JMCMenuViewController alloc] init] autorelease];
     self.leftViewController = self.menuTabView;
     
@@ -167,6 +164,15 @@
     [self.window makeKeyAndVisible];
     
     [self loadRssFeed];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addJMCNews:)
+                                                 name:kAddJMCNewsNotif
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(JMCNewsError:)
+                                                 name:kJMCNewsErrorNotif
+                                               object:nil];
     
     return YES;
 }
@@ -282,6 +288,8 @@
 // The batch size is set via the kSizeOfJMCNewsBatch constant.
 //
 - (void)addJMCNewsToList:(NSDictionary *)dic {
+    
+    NSLog(@" Dico : %d", [[dic objectForKey:@"news"] count]);
     [self.newsTabView insertJMCNews:[dic objectForKey:@"news"]];
     [self.menuTabView insertCategories:[dic objectForKey:@"categories"]];
 }

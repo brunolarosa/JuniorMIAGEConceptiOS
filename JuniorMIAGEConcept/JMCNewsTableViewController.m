@@ -60,6 +60,10 @@
 - (void) refreshPressed
 {
     JMCAppDelegate *delegate = (JMCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [jmcNewsList removeAllObjects];
+    [self.tableView reloadData];
+
     [delegate loadRssFeed];
 }
 
@@ -87,8 +91,6 @@
     [backButton addTarget:self action:@selector(menuPressed) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
     UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     self.navigationItem.leftBarButtonItem = backButtonItem;
-    
-    
     
     //Set Refresh Button
     UIButton *refreshButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];//tes dimensions de l'image
@@ -131,7 +133,6 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-//    NSLog(@"observeValueForKeyPath - JMCNewsTableViewController");
     [self.tableView reloadData];
 }
 

@@ -14,4 +14,5 @@
 }
 @property (retain, nonatomic) NSMutableArray *categories;
 - (void) insertCategories:(NSArray *) someCategories;
+- (void) refreshPressed;
 @end
