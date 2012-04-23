@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A49D68A15461A8A006029EA /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A49D68915461A8A006029EA /* refresh.png */; };
 		2A84877C15431107001B4939 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A84877B15431107001B4939 /* IIViewDeckController.m */; };
 		2A84878015431124001B4939 /* JMCParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A84877F15431124001B4939 /* JMCParseOperation.m */; };
 		2A84878615431149001B4939 /* JMCMenuHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A84878215431149001B4939 /* JMCMenuHeaderSectionView.m */; };
@@ -18,7 +19,6 @@
 		2A84879D1543187B001B4939 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A84879C1543187B001B4939 /* Icon@2x.png */; };
 		2A84879F15431880001B4939 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A84879E15431880001B4939 /* Icon.png */; };
 		2A8FF27715455C3400FBB253 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8FF27615455C3400FBB253 /* rss.png */; };
-		2A8FF27B15455C9B00FBB253 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8FF27A15455C9A00FBB253 /* refresh.png */; };
 		C70BB246154591D300442ECC /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C70BB245154591D300442ECC /* style.css */; };
 		C70BB26D1545FF8800442ECC /* navBar_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = C70BB26C1545FF8800442ECC /* navBar_shadow.png */; };
 		C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EB152BC45500E507B1 /* UIKit.framework */; };
@@ -60,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A49D68915461A8A006029EA /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		2A84877A15431107001B4939 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
 		2A84877B15431107001B4939 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		2A84877E15431124001B4939 /* JMCParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCParseOperation.h; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		2A84879C1543187B001B4939 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2A84879E15431880001B4939 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		2A8FF27615455C3400FBB253 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
-		2A8FF27A15455C9A00FBB253 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		C70BB245154591D300442ECC /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		C70BB26C1545FF8800442ECC /* navBar_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar_shadow.png; sourceTree = "<group>"; };
 		C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuniorMIAGEConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,9 +154,9 @@
 				C7DDCE131546016900925D60 /* newsCellBG.png */,
 				C73101031543238600428893 /* iconNew.png */,
 				C73101041543238600428893 /* menuCell.png */,
+				2A49D68915461A8A006029EA /* refresh.png */,
 				C7310113154329B400428893 /* sectionHeader.png */,
 				C73101051543238600428893 /* navBar.png */,
-				2A8FF27A15455C9A00FBB253 /* refresh.png */,
 				2A8FF27615455C3400FBB253 /* rss.png */,
 			);
 			path = Ressources;
@@ -389,13 +389,13 @@
 				C7310114154329B400428893 /* sectionHeader.png in Resources */,
 				C731011B15432D3A00428893 /* menuButton.png in Resources */,
 				2A8FF27715455C3400FBB253 /* rss.png in Resources */,
-				2A8FF27B15455C9B00FBB253 /* refresh.png in Resources */,
 				C70BB246154591D300442ECC /* style.css in Resources */,
 				C70BB26D1545FF8800442ECC /* navBar_shadow.png in Resources */,
 				C7DDCE141546016900925D60 /* newsCellBG.png in Resources */,
 				C7DDCE17154602E100925D60 /* newsListBG.png in Resources */,
 				C7DDCE231546090200925D60 /* JMCNewsTableViewController.xib in Resources */,
 				C7DDCE25154615BC00925D60 /* newsCell_selected.png in Resources */,
+				2A49D68A15461A8A006029EA /* refresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

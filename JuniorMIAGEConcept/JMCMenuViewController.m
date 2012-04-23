@@ -6,11 +6,8 @@
 //  Copyright (c) 2012 Université Nice Sophia Antipolis. All rights reserved.
 //
 
+
 #import "JMCMenuViewController.h"
-#import "IIViewDeckController.h"
-#import "JMCNewsTableViewController.h"
-#import "JMCNewsViewController.h"
-#import "JMCMenuHeaderSectionView.h"
 
 #define BG_COLOR [UIColor colorWithRed:(49.0/255.0) green:(57.0/255.0) blue:(74.0/255.0) alpha:1.0]
 #define TITLE_CELL_COLOR [UIColor colorWithRed:(194.0/255.0) green:(204.0/255.0) blue:(218.0/255.0) alpha:1.0]
@@ -47,13 +44,6 @@
     }
     
     return _sections;
-}
-
-- (void) refreshPressed
-{
-    
-    [categories removeAllObjects];
-    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "JMCParser.h"
+#import "JMCNews.h"
+#import "JMCNewsCell.h"
+#import "JMCNewsViewController.h"
+#import "JMCAppDelegate.h"
+#import "IIViewDeckController.h"
+
 
 @interface JMCNewsTableViewController : UITableViewController<UIActionSheetDelegate>
 {

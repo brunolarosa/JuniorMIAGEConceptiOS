@@ -8,10 +8,7 @@
 #import "IIViewDeckController.h"
 
 #import "JMCNewsTableViewController.h"
-#import "JMCNews.h"
-#import "JMCNewsCell.h"
-#import "JMCNewsViewController.h"
-#import "JMCAppDelegate.h"
+
 
 
 
