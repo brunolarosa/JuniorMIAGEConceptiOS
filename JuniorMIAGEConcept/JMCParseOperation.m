@@ -24,15 +24,26 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
 
 
 @interface JMCParseOperation () <NSXMLParserDelegate>
+
 @property (nonatomic, retain) JMCNews *currentJMCNewsObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableArray *currentCategories;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
 @end
 
+@interface JMCParseOperation ()
+
+@property (nonatomic, assign) NSDateFormatter *dateFormatterFromDate;
+@property (nonatomic, assign) NSDateFormatter *dateFromatterFromString;
+
+@end
+
 @implementation JMCParseOperation
 
 @synthesize JMCNewsData, currentJMCNewsObject, currentParsedCharacterData, currentParseBatch, currentCategories;
+
+@synthesize dateFormatterFromDate = _dateFormatterFromDate;
+@synthesize dateFromatterFromString = _dateFromatterFromString;
 
 - (id)initWithData:(NSData *)xmlData
 {
@@ -40,6 +51,29 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
         JMCNewsData = [xmlData copy];
     }
     return self;
+}
+
+- (NSDateFormatter *) dateFormatterFromDate
+{
+    if (!_dateFormatterFromDate)
+    {
+        _dateFormatterFromDate = [[NSDateFormatter alloc] init];
+        [_dateFormatterFromDate setDateFormat:@"EEE dd MMM yyyy 'à' HH:mm"];
+        [_dateFormatterFromDate setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"]];
+
+    }
+
+    return _dateFormatterFromDate;
+}
+
+- (NSDateFormatter *) dateFromatterFromString
+{
+    if (!_dateFromatterFromString)
+    {
+        _dateFromatterFromString = [[NSDateFormatter alloc] init];
+        [_dateFromatterFromString setDateFormat:@"EEE, dd MMM yy HH:mm:ss Z"];
+    }
+    return _dateFromatterFromString;
 }
 
 
@@ -70,7 +104,8 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
     // "full" batch, and thus not been part of the regular batch transfer. So, we check the count of
     // the array and, if necessary, send it to the main thread.
     //
-    if ([self.currentParseBatch count] > 0) {
+    if ([self.currentParseBatch count] > 0)
+    {
         
         NSLog(@"main - JMCParseOperation - addJMCNewsToList");
         NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -93,7 +128,6 @@ NSString *kJMCNewsMsgErrorKey = @"JMCNewsMsgErrorKey";
 
 - (void)dealloc {
     [JMCNewsData release];
-    
     [currentJMCNewsObject release];
     [currentParsedCharacterData release];
     [currentParseBatch release];
@@ -118,14 +152,14 @@ static const const NSUInteger kMaximumNumberOfJMCNewsToParse = 20;
 // constant below. In your application, the optimal batch size will vary 
 // depending on the amount of data in the object and other factors, as appropriate.
 //
-static NSUInteger const kSizeOfJMCNewsBatch = 50;
+static NSUInteger const kSizeOfJMCNewsBatch = 100;
 
 static NSString * const kItemElementName = @"item";
 static NSString * const kPubDateName = @"pubDate";
 static NSString * const kTitleElementName = @"title";
 static NSString * const kAuthorElementName = @"dc:creator";
 static NSString * const kCategoryElementName = @"category";
-static NSString * const kDescriptionElementName = @"description";
+static NSString * const kDescriptionElementName = @"content:encoded";
 
 #pragma mark -
 #pragma mark NSXMLParser delegate methods
@@ -140,30 +174,42 @@ static NSString * const kDescriptionElementName = @"description";
     // If the number of parsed JMCNewss is greater than
     // kMaximumNumberOfJMCNewssToParse, abort the parse.
     //
-    if (parsedJMCNewsCounter >= kMaximumNumberOfJMCNewsToParse) {
+    if (parsedJMCNewsCounter >= kMaximumNumberOfJMCNewsToParse)
+    {
         // Use the flag didAbortParsing to distinguish between this deliberate stop
         // and other parser errors.
         //
         didAbortParsing = YES;
         [parser abortParsing];
     }
-    if ([elementName isEqualToString:kItemElementName]) {
+    if ([elementName isEqualToString:kItemElementName])
+    {
         JMCNews *aJMCNews = [[JMCNews alloc]init];
         self.currentJMCNewsObject = aJMCNews;
         self.currentJMCNewsObject.category = [[NSMutableArray alloc] init];
         [aJMCNews release];
 
-    } else if ([elementName isEqualToString:kTitleElementName] ||
-               [elementName isEqualToString:kPubDateName] ||
-               [elementName isEqualToString:kAuthorElementName] ||
-               [elementName isEqualToString:kCategoryElementName] ||
-               [elementName isEqualToString:kDescriptionElementName]) {
+    }
+    else if ([elementName isEqualToString:kTitleElementName] ||
+             [elementName isEqualToString:kPubDateName] ||
+             [elementName isEqualToString:kAuthorElementName] ||
+             [elementName isEqualToString:kCategoryElementName] ||
+             [elementName isEqualToString:kDescriptionElementName])
+    {
         // For the 'title', 'updated', or 'georss:point' element begin accumulating parsed character data.
         // The contents are collected in parser:foundCharacters:.
         accumulatingParsedCharacterData = YES;
         // The mutable string needs to be reset to empty.
         [currentParsedCharacterData setString:@""];
     }
+}
+
+- (NSString *) formatDateFromString:(NSString *) stringDate
+{           
+    NSDate *date = [self.dateFromatterFromString dateFromString:stringDate];
+    NSLog(@"pppppppppp %@",date.description);
+    
+    return [self.dateFormatterFromDate stringFromDate:date];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
@@ -184,36 +230,39 @@ static NSString * const kDescriptionElementName = @"description";
         }
     } else if ([elementName isEqualToString:kTitleElementName]) {
         if (self.currentJMCNewsObject != nil) {
-            self.currentJMCNewsObject.title = self.currentParsedCharacterData.copy;
+            self.currentJMCNewsObject.title = [[self.currentParsedCharacterData copy] autorelease];
         }
     } else if ([elementName isEqualToString:kPubDateName]) {
-        if (self.currentJMCNewsObject != nil) {
-            dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss VVVV"];            
-            NSDate *date = [dateFormatter dateFromString:self.currentParsedCharacterData.copy];  
-            [dateFormatter setDateFormat:@"EEE, dd MMM yyyy 'à' HH:mm"];        
+        if (self.currentJMCNewsObject != nil)
+        {/*
+            [self.dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss VVVV"];            
+            NSDate *date = [self.dateFormatter dateFromString:[[self.currentParsedCharacterData copy] autorelease]];  
+            [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy 'à' HH:mm"];        
             NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
-            [dateFormatter setLocale:frLocale];
+            [self.dateFormatter setLocale:frLocale];
 
-            self.currentJMCNewsObject.pubDate = [dateFormatter stringFromDate:date].retain;
+            self.currentJMCNewsObject.pubDate = [self.dateFormatter stringFromDate:date];*/
+
+           self.currentJMCNewsObject.pubDate = [self formatDateFromString:self.currentParsedCharacterData];
+            
         }
     } else if ([elementName isEqualToString:kAuthorElementName]) {
         if (self.currentJMCNewsObject != nil) {
-            self.currentJMCNewsObject.author = self.currentParsedCharacterData.copy;
+            self.currentJMCNewsObject.author = [[self.currentParsedCharacterData copy] autorelease];
         }
     }
     else if ([elementName isEqualToString:kCategoryElementName]) {
         if (self.currentJMCNewsObject != nil) {
-            [self.currentJMCNewsObject.category addObject:self.currentParsedCharacterData.copy];
+            [self.currentJMCNewsObject.category addObject:[[self.currentParsedCharacterData copy] autorelease]];
             if (![currentCategories containsObject:self.currentParsedCharacterData ]) {
-                [self.currentCategories addObject:self.currentParsedCharacterData.copy];                
+                [self.currentCategories addObject:[[self.currentParsedCharacterData copy] autorelease]];                
             }
 
         }
     }
     else if ([elementName isEqualToString:kDescriptionElementName]) {
         if (self.currentJMCNewsObject != nil) {
-            self.currentJMCNewsObject.description = self.currentParsedCharacterData.copy;
+            self.currentJMCNewsObject.description = [[self.currentParsedCharacterData copy] autorelease];
         }
     }
     

@@ -18,8 +18,6 @@ extern NSString *kJMCNewsMsgErrorKey;
 
 @interface JMCParseOperation : NSOperation {
     NSData *JMCNewsData;
-@private
-    NSDateFormatter *dateFormatter;
 
 // these variables are used during parsing
 JMCNews *currentJMCNewsObject;

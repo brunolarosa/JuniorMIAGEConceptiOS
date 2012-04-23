@@ -17,7 +17,6 @@
 
 @synthesize jmcNews = _jmcNews;
 
-@synthesize scrollView = _scrollView;
 @synthesize newsTitle = _newsTitle;
 @synthesize newsSubTitle = _newsSubTitle;
 @synthesize newsContent = _newsContent;
@@ -44,12 +43,20 @@
     
     self.newsTitle.text = self.jmcNews.title;
     self.newsSubTitle.text = [NSString stringWithFormat:@"%@ - %@", self.jmcNews.author, self.jmcNews.pubDate];
-    self.newsContent.text = self.jmcNews.description;
+    
+    NSString* strHtml = [NSString stringWithFormat:@"<html><body>%@</body></html>",self.jmcNews.description];
+    
+    NSLog(@"%@", self.jmcNews.description);
 
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];//tes dimensions de l'image
+    
+    [self.newsContent loadHTMLString:strHtml baseURL:nil];
+
+    
+    // Set the back button
+    UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)]autorelease];//Create a view with "backButton" UIImage size
     [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [backButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchDown];
+    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     self.navigationItem.leftBarButtonItem = backButtonItem;//on remplace le bouton en haut à gauche
 
     // Do any additional setup after loading the view from its nib.
@@ -60,7 +67,6 @@
     [self setNewsTitle:nil];
     [self setNewsSubTitle:nil];
     [self setNewsContent:nil];
-    [self setScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -75,7 +81,6 @@
     [_newsTitle release];
     [_newsSubTitle release];
     [_newsContent release];
-    [_scrollView release];
     [super dealloc];
 }
 @end

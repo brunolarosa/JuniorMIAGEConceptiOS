@@ -15,9 +15,8 @@
 
 @property (retain, nonatomic) JMCNews* jmcNews;
 
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UILabel *newsTitle;
 @property (retain, nonatomic) IBOutlet UILabel *newsSubTitle;
-@property (retain, nonatomic) IBOutlet UITextView *newsContent;
+@property (retain, nonatomic) IBOutlet UIWebView *newsContent;
 
 @end
