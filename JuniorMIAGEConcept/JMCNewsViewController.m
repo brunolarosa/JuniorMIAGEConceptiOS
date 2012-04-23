@@ -43,7 +43,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = BG_COLOR;
     
-    
     //Configuration du titre
     self.newsTitle.text = self.jmcNews.title;
     
@@ -76,6 +75,7 @@
     [self setNewsTitle:nil];
     [self setNewsSubTitle:nil];
     [self setNewsContent:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

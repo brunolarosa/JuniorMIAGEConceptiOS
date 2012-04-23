@@ -146,7 +146,7 @@
     
     [self customizeNavBar];
     
-    self.newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    self.newsTabView = [[JMCNewsTableViewController alloc] initWithNibName:@"JMCNewsTableViewController" bundle:nil];
     self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:self.newsTabView] autorelease];
     
     
