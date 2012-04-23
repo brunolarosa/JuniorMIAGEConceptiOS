@@ -17,7 +17,7 @@
 - (UILabel *) sectionTitle
 {
     if (!_sectionTitle)
-        _sectionTitle = [[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 310, 20)] retain];
+        _sectionTitle = [[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 310, 25)] retain];
     return _sectionTitle;
 }
 
@@ -30,7 +30,8 @@
         UIImageView * background = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sectionHeader.png"]] autorelease];
         [self addSubview:background];
         
-        self.sectionTitle.font = [UIFont boldSystemFontOfSize:10];
+        
+        self.sectionTitle.font = [UIFont boldSystemFontOfSize:13];
         self.sectionTitle.backgroundColor = [UIColor clearColor];
         
         self.sectionTitle.textColor = TITLE_COLOR;

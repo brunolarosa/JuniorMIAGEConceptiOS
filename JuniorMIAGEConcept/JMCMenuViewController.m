@@ -15,7 +15,8 @@
 #define BG_COLOR [UIColor colorWithRed:(49.0/255.0) green:(57.0/255.0) blue:(74.0/255.0) alpha:1.0]
 #define TITLE_CELL_COLOR [UIColor colorWithRed:(194.0/255.0) green:(204.0/255.0) blue:(218.0/255.0) alpha:1.0]
 
-#define SECTION_HEADER_HEIGHT 20;
+#define SECTION_HEADER_HEIGHT 25;
+#define ROW_HEIGHT 40;
 
 
 @interface JMCMenuViewController ()
@@ -60,7 +61,7 @@
 {
     [super viewDidLoad];
     
-    self.tableView.rowHeight = 30;
+    self.tableView.rowHeight = ROW_HEIGHT;
     self.tableView.sectionHeaderHeight = SECTION_HEADER_HEIGHT;
     self.tableView.backgroundColor = BG_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -187,10 +188,12 @@
         cell.backgroundView =[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuCell.png"]]autorelease];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
         cell.textLabel.textColor = TITLE_CELL_COLOR;
         cell.textLabel.shadowColor = [UIColor blackColor];
         cell.textLabel.shadowOffset = CGSizeMake(0, 1);
+        
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuCell_selected.png"]]autorelease];
     }
     // Configure the cell...
     

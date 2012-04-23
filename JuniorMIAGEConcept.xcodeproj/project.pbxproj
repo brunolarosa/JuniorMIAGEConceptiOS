@@ -46,7 +46,8 @@
 		C7DDCE17154602E100925D60 /* newsListBG.png in Resources */ = {isa = PBXBuildFile; fileRef = C7DDCE16154602E100925D60 /* newsListBG.png */; };
 		C7DDCE221546090200925D60 /* JMCNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DDCE201546090200925D60 /* JMCNewsTableViewController.m */; };
 		C7DDCE231546090200925D60 /* JMCNewsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7DDCE211546090200925D60 /* JMCNewsTableViewController.xib */; };
-		C7DDCE25154615BC00925D60 /* newsCell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C7DDCE24154615BC00925D60 /* newsCell_selected.png */; };
+		C7DDCE2B15461DD200925D60 /* menuCell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C7DDCE2A15461DD200925D60 /* menuCell_selected.png */; };
+		C7DDCE2E15461EB200925D60 /* newsCellBG_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C7DDCE2D15461EB200925D60 /* newsCellBG_selected.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +113,8 @@
 		C7DDCE1F1546090200925D60 /* JMCNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCNewsTableViewController.h; sourceTree = "<group>"; };
 		C7DDCE201546090200925D60 /* JMCNewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCNewsTableViewController.m; sourceTree = "<group>"; };
 		C7DDCE211546090200925D60 /* JMCNewsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JMCNewsTableViewController.xib; sourceTree = "<group>"; };
-		C7DDCE24154615BC00925D60 /* newsCell_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newsCell_selected.png; sourceTree = "<group>"; };
+		C7DDCE2A15461DD200925D60 /* menuCell_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCell_selected.png; sourceTree = "<group>"; };
+		C7DDCE2D15461EB200925D60 /* newsCellBG_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newsCellBG_selected.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,12 +150,13 @@
 				C731011A15432D3A00428893 /* menuButton.png */,
 				C7DDCE16154602E100925D60 /* newsListBG.png */,
 				C73101001543238600428893 /* backButton.png */,
-				C7DDCE24154615BC00925D60 /* newsCell_selected.png */,
 				C73101011543238600428893 /* bubleComment.png */,
 				C73101021543238600428893 /* iconAll.png */,
 				C7DDCE131546016900925D60 /* newsCellBG.png */,
 				C73101031543238600428893 /* iconNew.png */,
 				C73101041543238600428893 /* menuCell.png */,
+				C7DDCE2A15461DD200925D60 /* menuCell_selected.png */,
+				C7DDCE2D15461EB200925D60 /* newsCellBG_selected.png */,
 				C7310113154329B400428893 /* sectionHeader.png */,
 				C73101051543238600428893 /* navBar.png */,
 				2A8FF27A15455C9A00FBB253 /* refresh.png */,
@@ -395,7 +398,8 @@
 				C7DDCE141546016900925D60 /* newsCellBG.png in Resources */,
 				C7DDCE17154602E100925D60 /* newsListBG.png in Resources */,
 				C7DDCE231546090200925D60 /* JMCNewsTableViewController.xib in Resources */,
-				C7DDCE25154615BC00925D60 /* newsCell_selected.png in Resources */,
+				C7DDCE2B15461DD200925D60 /* menuCell_selected.png in Resources */,
+				C7DDCE2E15461EB200925D60 /* newsCellBG_selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
