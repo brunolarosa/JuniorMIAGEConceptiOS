@@ -204,14 +204,14 @@
     }
 
     // Configure the cell...
-    JMCNews *entry;
+    JMCNews *entry = [[JMCNews alloc] init];
     if(selectedCategory == nil){
         entry = [self.jmcNewsList objectAtIndex: indexPath.section];
     } else {
         NSInteger count=0;
         
         NSEnumerator *e = [jmcNewsList objectEnumerator];
-        JMCNews *buf;
+        JMCNews *buf = [[JMCNews alloc] init];
         while (count != (indexPath.section+1) && (buf = [e nextObject])) {
             // do something with object
             if([buf.category containsObject:selectedCategory]){
@@ -223,12 +223,14 @@
     }
 
     cell.titleLabel.text = entry.title;
+
     cell.resumeLabel.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et";
-    cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate];
+    NSLog(@"%@", entry.author);
+    NSLog(@"%@", entry.pubDate);
+    cell.footerLabel.text = [NSString stringWithFormat:@"%@ - %@", entry.author, entry.pubDate.copy];
     cell.commentsLabel.text = @"99";
 //    NSLog(@"%@", entry.author);
-    
-    
+
     return cell;
 }
 

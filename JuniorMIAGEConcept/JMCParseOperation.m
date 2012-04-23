@@ -195,7 +195,7 @@ static NSString * const kDescriptionElementName = @"description";
             NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
             [dateFormatter setLocale:frLocale];
 
-            self.currentJMCNewsObject.pubDate = [dateFormatter stringFromDate:date];
+            self.currentJMCNewsObject.pubDate = [dateFormatter stringFromDate:date].retain;
         }
     } else if ([elementName isEqualToString:kAuthorElementName]) {
         if (self.currentJMCNewsObject != nil) {
