@@ -44,12 +44,14 @@
     self.newsTitle.text = self.jmcNews.title;
     self.newsSubTitle.text = [NSString stringWithFormat:@"%@ - %@", self.jmcNews.author, self.jmcNews.pubDate];
     
-    NSString* strHtml = [NSString stringWithFormat:@"<html><body>%@</body></html>",self.jmcNews.content];
+    NSString* strHtml = [NSString stringWithFormat:@"<html><head><link href='style.css' rel='stylesheet' type='text/css' /></head><body>%@</body></html>",self.jmcNews.content];
     
     NSLog(@"Content : %@", self.jmcNews.content);
 
     
-    [self.newsContent loadHTMLString:strHtml baseURL:nil];
+    [self.newsContent loadHTMLString:strHtml baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+    self.newsContent.backgroundColor = [UIColor clearColor];
+    self.newsContent.opaque = NO;
 
     
     // Set the back button

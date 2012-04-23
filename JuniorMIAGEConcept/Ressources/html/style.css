@@ -1,0 +1,17 @@
+body
+{
+    font-family:Helvetica,sans-serif;
+    font-size: 13px;
+    text-align : justify;
+}
+
+img
+{
+    height: 200px;
+    width: auto;
+}
+
+.alignleft {
+    float: left;
+    margin-right: 10px;
+}
