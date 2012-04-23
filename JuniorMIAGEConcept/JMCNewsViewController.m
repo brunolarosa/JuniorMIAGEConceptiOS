@@ -9,6 +9,8 @@
 #import "JMCNewsViewController.h"
 #define BG_COLOR [UIColor colorWithRed:(216.0/255.0) green:(216.0/255.0) blue:(216.0/255.0) alpha:1.0]
 
+#define SUBTITLE_COLOR [UIColor colorWithRed:(147.0/255.0) green:(144.0/255.0) blue:(144.0/255.0) alpha:1.0]
+
 @interface JMCNewsViewController ()
 
 @end
@@ -41,7 +43,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = BG_COLOR;
     
+    
+    //Configuration du titre
     self.newsTitle.text = self.jmcNews.title;
+    
+    //Configuration du sous-titre
+    self.newsSubTitle.textColor= SUBTITLE_COLOR;
     self.newsSubTitle.text = [NSString stringWithFormat:@"%@ - %@", self.jmcNews.author, self.jmcNews.pubDate];
     
     NSString* strHtml = [NSString stringWithFormat:@"<html><head><link href='style.css' rel='stylesheet' type='text/css' /></head><body>%@</body></html>",self.jmcNews.content];

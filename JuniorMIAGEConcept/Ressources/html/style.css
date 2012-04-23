@@ -9,6 +9,11 @@ img
 {
     height: 200px;
     width: auto;
+    border-style:solid;
+    border-width:medium;
+    border-color: white;
+    
+    box-shadow: 5px 5px 5px #888;
 }
 
 .alignleft {
