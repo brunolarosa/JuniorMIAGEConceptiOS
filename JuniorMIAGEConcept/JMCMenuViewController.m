@@ -117,6 +117,7 @@
         
         _menu = [[NSMutableDictionary dictionaryWithObjectsAndKeys:geneMenu, [self.sections objectAtIndex:0], self.categories, [self.sections objectAtIndex:1],nil] retain];
     }
+    
     return _menu;
 }
 

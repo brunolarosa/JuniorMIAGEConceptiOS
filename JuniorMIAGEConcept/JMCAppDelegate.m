@@ -252,7 +252,7 @@
     NSString *errorMessage = [error localizedDescription];
     UIAlertView *alertView =
     [[UIAlertView alloc] initWithTitle:
-     NSLocalizedString(@"Error Title",
+     NSLocalizedString(@"Error",
                        @"Title for alert displayed when download or parse error occurs.")
                                message:errorMessage
                               delegate:nil
