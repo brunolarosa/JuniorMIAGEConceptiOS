@@ -16,19 +16,21 @@
 // this framework was imported so we could use the kCFURLErrorNotConnectedToInternet error code
 #import <CFNetwork/CFNetwork.h>
 
+#define URL_RSS @"http://www.juniormiageconcept.com/clients/?feed=rss2"
+
 #pragma mark JMCAppDelegate () 
 
 // forward declarations
 @interface JMCAppDelegate ()
 
-@property (nonatomic, retain) NSURLConnection *JMCNewsFeedConnection;
-@property (nonatomic, retain) NSMutableData *JMCNewsData;    // the data returned from the NSURLConnection
+@property (nonatomic, retain) NSURLConnection *jmcNewsFeedConnection;
+@property (nonatomic, retain) NSMutableData *jmcNewsData;    // the data returned from the NSURLConnection
 @property (nonatomic, retain) NSOperationQueue *parseQueue;     // the queue that manages our NSOperation for parsing JMCNews data(n
 
 @property (nonatomic, retain) JMCNewsTableViewController *newsTabView;
 @property (nonatomic, retain) JMCMenuViewController *menuTabView;
 
-@property (nonatomic, assign) UIActivityIndicatorView *myIndicator; 
+@property (nonatomic, assign) UIActivityIndicatorView *loadingIndicator; 
 
 - (void)addJMCNewsToList:(NSArray *)news;
 - (void)handleError:(NSError *)error;
@@ -39,23 +41,23 @@
 @implementation JMCAppDelegate
 
 @synthesize window = _window;
-@synthesize JMCNewsFeedConnection;
-@synthesize JMCNewsData;
+@synthesize jmcNewsFeedConnection = _jmcNewsFeedConnection;
+@synthesize jmcNewsData = _jmcNewsData;
 @synthesize parseQueue;
 @synthesize leftViewController = _leftViewController;
 @synthesize centerViewController = _centerViewController;
-@synthesize newsTabView;
-@synthesize menuTabView;
-@synthesize myIndicator;
+@synthesize newsTabView = _newsTabView;
+@synthesize menuTabView = _menuTabView;
+@synthesize loadingIndicator = _loadingIndicator;
 
 
 - (void)dealloc
 {
 
-    [JMCNewsFeedConnection cancel];
-    [JMCNewsFeedConnection release];
+    [_jmcNewsFeedConnection cancel];
+    [_jmcNewsFeedConnection release];
     
-    [JMCNewsData release];    
+    [_jmcNewsData release];    
     [parseQueue release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddJMCNewsNotif object:nil];
@@ -63,6 +65,8 @@
     
     [_centerViewController release];
     [_leftViewController release];
+    [_newsTabView release];
+    [_menuTabView release];
 
     [_window release];
     [super dealloc];
@@ -95,44 +99,39 @@
 - (void)loadRssFeed 
 {
     
-    static NSString *feedURLString = @"http://www.juniormiageconcept.com/clients/?feed=rss2";
+    static NSString *feedURLString = URL_RSS;
     NSURLRequest *JMCNewsURLRequest =
     [NSURLRequest requestWithURL:[NSURL URLWithString:feedURLString]];
     
     [feedURLString release];
     
-    self.JMCNewsFeedConnection = [[[NSURLConnection alloc] initWithRequest:JMCNewsURLRequest delegate:self] autorelease];
-    NSAssert(self.JMCNewsFeedConnection != nil, @"Failure to create URL connection.");
+    self.jmcNewsFeedConnection = [[[NSURLConnection alloc] initWithRequest:JMCNewsURLRequest delegate:self] autorelease];
+    NSAssert(self.jmcNewsFeedConnection != nil, @"Failure to create URL connection.");
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    UIView *aView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
-    aView.backgroundColor  = [UIColor whiteColor];
-    aView.layer.borderWidth = 3; 
-    aView.layer.borderColor = [UIColor whiteColor].CGColor; 
-
+    UIView *aView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)] autorelease];
     
-    myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    myIndicator.frame = CGRectMake(0, 0,100.0,100.0);
-    myIndicator.center = aView.center;
+    self.loadingIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+    self.loadingIndicator.frame = CGRectMake(0, 0,200.0,200.0);
+    self.loadingIndicator.center = aView.center;
+    self.loadingIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.loadingIndicator.color = [UIColor whiteColor];
+	self.loadingIndicator.hidesWhenStopped = NO;
+    [self.loadingIndicator startAnimating];
     
-    myIndicator.color = [UIColor blackColor];
-	myIndicator.hidesWhenStopped = NO;
-    [myIndicator startAnimating];
-    
-    UITextView *msgView=[[UITextView alloc]init];
-    
-    msgView.frame=CGRectMake(10, 80, 100, 100);
+    UILabel *msgView = [[[UILabel alloc] initWithFrame:CGRectMake(50, 120, 100, 20)] autorelease];
     msgView.font=[UIFont systemFontOfSize:12.0];
-    msgView.editable=FALSE;
-    msgView.textColor=[UIColor grayColor];
+    msgView.textAlignment = UITextAlignmentCenter;
+    msgView.textColor=[UIColor whiteColor];
     msgView.backgroundColor=[UIColor clearColor];
     msgView.text=@"Chargement";
+    [self.loadingIndicator addSubview:msgView];
     
-    [myIndicator addSubview:msgView];
-    [newsTabView.view addSubview:myIndicator];
-    newsTabView.selectedCategory = nil;
-    [menuTabView.categories removeAllObjects];
+    
+    [self.newsTabView.view addSubview:self.loadingIndicator];
+    self.newsTabView.selectedCategory = nil;
+    [self.menuTabView.categories removeAllObjects];
     
     
     parseQueue = [NSOperationQueue new];
@@ -150,21 +149,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
     [self customizeNavBar];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] retain];
+    self.newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:self.newsTabView] autorelease];
     
-    newsTabView = [[[JMCNewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-    self.centerViewController = [[[UINavigationController alloc]initWithRootViewController:newsTabView] retain];
-    
-    menuTabView = [[[JMCMenuViewController alloc] init] retain];
-    self.leftViewController = menuTabView;
+    self.menuTabView = [[[JMCMenuViewController alloc] init] autorelease];
+    self.leftViewController = self.menuTabView;
     
     IIViewDeckController *deck = [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
                                                                           leftViewController:self.leftViewController] autorelease];
     deck.leftLedge = 160;
     
-    self.window.rootViewController = deck; //TODO: remettre tabController
+    self.window.rootViewController = deck;
     [self.window makeKeyAndVisible];
     
     [self loadRssFeed];
@@ -184,7 +183,7 @@
     //
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     if ((([httpResponse statusCode]/100) == 2) && [[response MIMEType] isEqual:@"application/rss+xml"]) {
-        self.JMCNewsData = [NSMutableData data];
+        self.jmcNewsData = [NSMutableData data];
     } else {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:
                                   NSLocalizedString(@"HTTP Error",
@@ -196,13 +195,13 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [JMCNewsData appendData:data];
+    [self.jmcNewsData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
-    [myIndicator stopAnimating];
-    [myIndicator removeFromSuperview];
+    [self.loadingIndicator stopAnimating];
+    [self.loadingIndicator removeFromSuperview];
     
     if ([error code] == kCFURLErrorNotConnectedToInternet) {
         // if we can identify the error, we can present a more precise message to the user.
@@ -219,28 +218,28 @@
         // otherwise handle the error generically
         [self handleError:error];
     }
-    self.JMCNewsFeedConnection = nil;
+    self.jmcNewsFeedConnection = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-    self.JMCNewsFeedConnection = nil;
+    self.jmcNewsFeedConnection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
-    [myIndicator stopAnimating];
-    [myIndicator removeFromSuperview];
+    [self.loadingIndicator stopAnimating];
+    [self.loadingIndicator removeFromSuperview];
     
     // Spawn an NSOperation to parse the JMCNews data so that the UI is not blocked while the
     // application parses the XML data.
     //
     // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
     //
-    JMCParseOperation *parseOperation = [[JMCParseOperation alloc] initWithData:self.JMCNewsData];
+    JMCParseOperation *parseOperation = [[JMCParseOperation alloc] initWithData:self.jmcNewsData];
     [self.parseQueue addOperation:parseOperation];
     [parseOperation release];   // once added to the NSOperationQueue it's retained, we don't need it anymore
     
     // JMCNewsData will be retained by the NSOperation until it has finished executing,
     // so we no longer need a reference to it in the main thread.
-    self.JMCNewsData = nil;
+    self.jmcNewsData = nil;
 }
 
 // Handle errors in the download by showing an alert to the user. This is a very

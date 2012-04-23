@@ -9,14 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JMCParser.h"
 
-@interface JMCAppDelegate : UIResponder <UIApplicationDelegate, NSXMLParserDelegate>{
-
-@private
-// for downloading the xml data
-NSURLConnection *JMCNewsFeedConnection;
-NSMutableData *JMCNewsData;
-NSOperationQueue *parseQueue;
-}
+@interface JMCAppDelegate : UIResponder <UIApplicationDelegate, NSXMLParserDelegate>
 
 @property (retain, nonatomic) UIWindow *window;
 @property (retain, nonatomic) UITableViewController *leftViewController;
