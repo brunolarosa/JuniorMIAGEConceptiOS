@@ -184,7 +184,12 @@
     // Configure the cell...
     
     cell.textLabel.text = [self menusAtIndexPath:indexPath];
-    cell.imageView.image = [UIImage imageNamed:@"iconNew.png"]; 
+    
+    if([cell.textLabel.text isEqual:@"All"]){
+        cell.imageView.image = [UIImage imageNamed:@"rss.png"];
+    } else {
+        cell.imageView.image = [UIImage imageNamed:@"iconNew.png"];
+    }
     
     return cell;
 }

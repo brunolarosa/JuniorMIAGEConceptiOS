@@ -79,6 +79,12 @@
     [backButton addTarget:self action:@selector(menuPressed) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
     UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     self.navigationItem.leftBarButtonItem = backButtonItem;
+    
+    UIButton *refreshButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];//tes dimensions de l'image
+    [refreshButton setImage:[UIImage imageNamed:@"refresh.png"] forState:UIControlStateNormal];
+    [refreshButton addTarget:self action:@selector(refreshPressed) forControlEvents:UIControlEventTouchDown];//il faudra définir une fonction de retour
+    UIBarButtonItem *refreshButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:refreshButton] autorelease];
+    self.navigationItem.rightBarButtonItem = refreshButtonItem;
 }
 
 - (void)viewDidUnload {
