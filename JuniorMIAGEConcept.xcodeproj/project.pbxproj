@@ -21,6 +21,8 @@
 		2A8FF27B15455C9B00FBB253 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8FF27A15455C9A00FBB253 /* refresh.png */; };
 		C70BB246154591D300442ECC /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C70BB245154591D300442ECC /* style.css */; };
 		C70BB26D1545FF8800442ECC /* navBar_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = C70BB26C1545FF8800442ECC /* navBar_shadow.png */; };
+		C722BD8F1546B20400DA6C42 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C722BD8E1546B20400DA6C42 /* Default.png */; };
+		C722BD921546B20D00DA6C42 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C722BD911546B20D00DA6C42 /* Default@2x.png */; };
 		C727F2EC152BC45500E507B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EB152BC45500E507B1 /* UIKit.framework */; };
 		C727F2EE152BC45500E507B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2ED152BC45500E507B1 /* Foundation.framework */; };
 		C727F2F0152BC45500E507B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727F2EF152BC45500E507B1 /* CoreGraphics.framework */; };
@@ -81,6 +83,8 @@
 		2A8FF27A15455C9A00FBB253 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		C70BB245154591D300442ECC /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		C70BB26C1545FF8800442ECC /* navBar_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar_shadow.png; sourceTree = "<group>"; };
+		C722BD8E1546B20400DA6C42 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C722BD911546B20D00DA6C42 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C727F2E7152BC45500E507B1 /* JuniorMIAGEConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuniorMIAGEConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C727F2EB152BC45500E507B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C727F2ED152BC45500E507B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -185,6 +189,8 @@
 		C727F2DC152BC45500E507B1 = {
 			isa = PBXGroup;
 			children = (
+				C722BD911546B20D00DA6C42 /* Default@2x.png */,
+				C722BD8E1546B20400DA6C42 /* Default.png */,
 				2A84879E15431880001B4939 /* Icon.png */,
 				2A84879C1543187B001B4939 /* Icon@2x.png */,
 				C727F2F1152BC45500E507B1 /* JuniorMIAGEConcept */,
@@ -400,6 +406,8 @@
 				C7DDCE231546090200925D60 /* JMCNewsTableViewController.xib in Resources */,
 				C7DDCE2B15461DD200925D60 /* menuCell_selected.png in Resources */,
 				C7DDCE2E15461EB200925D60 /* newsCellBG_selected.png in Resources */,
+				C722BD8F1546B20400DA6C42 /* Default.png in Resources */,
+				C722BD921546B20D00DA6C42 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
