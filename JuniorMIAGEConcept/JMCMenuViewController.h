@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IIViewDeckController.h"
+#import "JMCNewsTableViewController.h"
+#import "JMCMenuHeaderSectionView.h"
 
 @interface JMCMenuViewController : UITableViewController
 {
